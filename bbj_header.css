@@ -1,0 +1,489 @@
+/* =========================
+   bbj_header.css (shared) — FINAL
+   Scope:
+   - Header layout (PC/SP)
+   - Hamburger (SP)
+   - Drawer (SP)
+   - Lang dropdown (PC)
+   - Helpers (pc-only/sp-only)
+========================= */
+
+/* -------------------------
+   Helpers: responsive visibility
+------------------------- */
+.pc-only{ display:none; }
+.sp-only{ display:inline-flex; }
+br.pc-only{ display:none; }
+
+@media (min-width:961px){
+  .pc-only{ display:block; }
+  .pc-only.is-flex{ display:flex; }
+  .sp-only{ display:none; }
+  br.pc-only{ display:inline; }
+}
+
+/* -------------------------
+   Header base
+------------------------- */
+.site-header__bar{
+  width:100%;
+  position:relative;
+  z-index:50;
+  overflow:visible;
+
+  background:rgba(255,255,255,.82);
+  border-bottom:1px solid rgba(16,66,111,.10);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+}
+
+.site-header__bar .container{ max-width:100%; }
+
+/* “天井ベタ”対策＆ロゴ縦位置を安定 */
+.site-header__bar{
+  padding-top:10px;
+  padding-bottom:10px;
+}
+
+.site-header__bar-inner{
+  position:relative;
+  padding:14px 20px;
+  min-height:68px;
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
+  column-gap:16px;
+  overflow:visible;
+}
+
+/* silk (JSが .is-silk を付ける) */
+.site-header__bar{
+  transition:
+    background .22s ease,
+    border-color .22s ease,
+    box-shadow .22s ease,
+    backdrop-filter .22s ease;
+}
+.site-header__bar.is-silk{
+  background: rgba(255,255,255,.82);
+  border-bottom-color: rgba(16,66,111,.10);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 10px 24px rgba(16,34,53,.06);
+}
+
+body.is-header-fixed:not(.page-top) .header-spacer {
+  height: var(--header-h, 0px);
+}
+/* spacer SSOT */
+.header-spacer{ height: 0; }
+
+/* logo */
+.site-header__logo{
+  justify-self:center;
+  display:inline-flex;
+  align-items:center;
+  text-decoration:none;
+}
+.site-header__logo img{
+  height:44px; /* “今朝の高さ”寄せ */
+  width:auto;
+  display:block;
+}
+
+/* nav */
+.header-nav{ justify-self:end; }
+.header-nav .nav-list{
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:flex;
+  align-items:center;
+  gap:22px;
+}
+.header-nav .nav-link{
+  font-weight:600;
+  letter-spacing:.02em;
+  text-decoration:none;
+}
+
+/* CTA */
+.header-nav .nav-cta{
+  background:#10426F;
+  color:#fff;
+  border:0;
+  padding:10px 16px;
+  border-radius:999px;
+  font-weight:700;
+  box-shadow:0 10px 26px rgba(16,66,111,.20);
+}
+
+/* -------------------------
+   Hamburger (SP) — right fixed
+------------------------- */
+@media (max-width: 960px){
+  .site-header__bar-inner{ position: relative; }
+
+  .hamburger.sp-only{
+    position:absolute;
+    right:16px;
+    top:50%;
+    transform:translateY(-50%);
+    width:40px;
+    height:40px;
+    padding:0;
+    border-radius:12px;
+    border:1px solid rgba(16,66,111,.22);
+    background:rgba(255,255,255,.92);
+    box-shadow:0 6px 18px rgba(0,0,0,.06);
+    display:grid;
+    place-content:center;
+    row-gap:3px;
+    line-height:0;
+    cursor:pointer;
+    z-index:10002;
+    pointer-events:auto;
+  }
+
+  .hamburger.sp-only span{
+    width:16px;
+    height:1.5px;
+    background:rgba(16,66,111,.95);
+    border-radius:999px;
+    display:block;
+  }
+  /* ===== SP logo center (match TOP) ===== */
+  .site-header__bar-inner{
+    padding: 0 16px;  /* TOP寄せの余白感 */
+  }
+
+  .site-header__logo{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    line-height: 0;
+    z-index: 10001;
+  }
+
+  .site-header__logo img{
+    height: 34px;     /* TOPのSPロゴサイズに寄せる */
+    width: auto;
+  }
+}
+
+/* -------------------------
+   Drawer (SP) — LP style unified
+------------------------- */
+.drawer{ display:none; }
+
+.drawer[aria-hidden="false"]{
+  display:block !important;
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  background: rgba(16,34,53,.22);
+}
+
+/* panel */
+.drawer__panel{
+  position:absolute;
+  top:0;
+  right:0;
+  height:100%;
+  width:min(420px, 86vw);
+  background: rgba(255,255,255,.96);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-left: 1px solid rgba(16,34,53,.10);
+  box-shadow: -24px 0 60px rgba(16,34,53,.18);
+  padding: 16px 16px 22px;
+  overflow:auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* head */
+.drawer__head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:14px;
+}
+.drawer__title{
+  font-size:13px;
+  letter-spacing:.10em;
+  color: rgba(16,34,53,.60);
+  text-transform: uppercase;
+}
+
+/* close */
+.drawer__close{
+  border: 1px solid rgba(16,34,53,.16);
+  background: rgba(255,255,255,.92);
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  cursor: pointer;
+  color: rgba(16,34,53,.78);
+}
+.drawer__close:hover{ background: rgba(16,34,53,.06); }
+
+/* sections */
+.drawer__section{ margin-top:14px; }
+.drawer__label{
+  font-size:12px;
+  letter-spacing:.12em;
+  color: rgba(16,34,53,.52);
+  margin:10px 6px 10px;
+}
+
+/* list reset */
+.drawer__list{
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:grid;
+  gap:10px;
+}
+
+/* item */
+.drawer__item{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:12px 12px;
+  border-radius:16px;
+  text-decoration:none;
+  color: rgba(16,34,53,.92);
+  border: 1px solid rgba(16,34,53,.10);
+  background: rgba(255,255,255,.92);
+}
+.drawer__item:hover{ background: rgba(16,34,53,.06); }
+
+/* CTA item */
+.drawer__item--cta{
+  border-color: rgba(232,139,122,.26);
+  background: rgba(232,139,122,.16);
+  font-weight:700;
+}
+
+/* langs */
+.drawer__langs{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:12px;
+  padding:0 4px;
+}
+.drawer__langbtn{
+  border: 1px solid rgba(16,34,53,.16);
+  background: rgba(255,255,255,.92);
+  padding: 8px 10px;
+  border-radius: 999px;
+  cursor:pointer;
+  font-size:12px;
+  letter-spacing:.06em;
+  color: rgba(16,34,53,.78);
+}
+.drawer__langbtn:hover{ background: rgba(16,34,53,.06); }
+
+/* stop body scroll when open */
+html.is-drawer-open, body.is-drawer-open{ overflow:hidden; }
+
+/* -------------------------
+   Lang (PC) — dropdown
+------------------------- */
+.lang{ position: relative; }
+
+/* translate pill */
+.header-nav .nav-translate{
+  -webkit-appearance:none;
+  appearance:none;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  height:44px;
+  padding:0 16px 0 14px;
+  border-radius:999px;
+  border:1px solid rgba(16,66,111,.22);
+  background: rgba(16,66,111,.08);
+  color:#102235;
+  font-weight:600;
+  letter-spacing:.02em;
+  cursor:pointer;
+  text-decoration:none !important;
+  line-height:1;
+  margin-left:12px;
+}
+.header-nav .nav-translate:hover{ background: rgba(16,66,111,.10); }
+.header-nav .nav-translate:focus-visible{
+  outline:3px solid rgba(16,66,111,.22);
+  outline-offset:2px;
+}
+
+/* panel */
+.lang__panel,
+[data-lang-panel]{
+  position:absolute;
+  right:0;
+  top: calc(100% + 10px);
+  min-width: 190px;
+  padding: 10px;
+  border-radius: 14px;
+  border:1px solid rgba(16,34,53,.12);
+  background: rgba(255,255,255,.98);
+  box-shadow: 0 18px 45px rgba(16,34,53,.12);
+  display:grid;
+  gap:8px;
+  z-index: 9999;
+}
+.lang__panel[hidden],
+[data-lang-panel][hidden]{ display:none !important; }
+
+.lang__panel button,
+[data-lang-panel] button{
+  width:100%;
+  text-align:left;
+  border:0;
+  background:transparent;
+  padding:10px 12px;
+  border-radius:10px;
+  cursor:pointer;
+  font-size:14px;
+  color:#102235;
+}
+.lang__panel button:hover,
+[data-lang-panel] button:hover{
+  background: rgba(16,66,111,.06);
+}
+
+/* =========================
+   Header translate button (UNIFY)
+   HTMLを触らず見た目を揃える
+========================= */
+
+.header-nav .nav-translate{
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px 10px 38px; /* ←左にアイコン分 */
+  border-radius: 999px;
+  border: 1px solid rgba(16,66,111,.22);
+  background: rgba(255,255,255,.92);
+  color: #10426F;
+  font-weight: 600;
+  line-height: 1;
+}
+
+/* 🌐 地球アイコン（TOPにだけ無い分をCSSで補う） */
+.header-nav .nav-translate::before{
+  content: "🌐";
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+}
+
+/* ▾ 下向き三角（二重防止でこれだけに統一） */
+.header-nav .nav-translate::after{
+  content: "▾";
+  margin-left: 4px;
+  font-size: 12px;
+  opacity: .7;
+}
+
+/* =========================
+   LANG "pressed ring" — LUX (ALL PAGES)
+   Replace existing .lang.is-open rule
+========================= */
+
+.lang.is-open .nav-translate{
+  /* 外側に出っ張る太リングをやめる */
+  box-shadow:
+    0 0 0 2px rgba(16,66,111,.22),     /* うす外輪 */
+    0 10px 22px rgba(16,34,53,.10);    /* ふわ影（控えめ） */
+
+  /* ピル自体を少しだけ締める */
+  border-color: rgba(16,66,111,.20);
+  background: rgba(255,255,255,.88);
+}
+
+/* “内側に光る”感じ（画像1寄せ） */
+.lang.is-open .nav-translate{
+  position: relative;
+}
+
+/* 内側ハイライトは擬似要素を増やさず、insetで表現 */
+.lang.is-open .nav-translate{
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.90), /* 内側ハイライト */
+    0 0 0 2px rgba(16,66,111,.22),         /* 外輪 */
+    0 10px 22px rgba(16,34,53,.10);        /* 影 */
+}
+.lang.is-open .nav-translate{ box-shadow: inset 0 0 0 1px rgba(255,255,255,.92), 0 0 0 2px rgba(16,66,111,.16), 0 10px 22px rgba(16,34,53,.08); }
+
+/* =========================
+   HEADER SSOT — page exception
+   - default: silk（全ページ）
+   - only TOP(hero上): transparent
+========================= */
+
+/* TOP(hero上)だけ透過にする（bodyに .page-top を付ける） */
+.page-top .site-header__bar{
+  background: transparent;
+  border-bottom-color: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: none;
+}
+
+/* TOPはスクロール後にsilkへ戻す（bbj_header.js が .is-silk を付与） */
+.page-top .site-header__bar.is-silk{
+  background: rgba(255,255,255,.82);
+  border-bottom-color: rgba(16,66,111,.10);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 10px 24px rgba(16,34,53,.06);
+}
+
+/* Header base (FIXED) */
+.site-header__bar{
+  width:100%;
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:999;
+  overflow:visible;
+
+  /* Hero上は透明（silkで切替） */
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: none;
+
+  transition:
+    background .22s ease,
+    border-color .22s ease,
+    box-shadow .22s ease,
+    backdrop-filter .22s ease;
+}
+
+/* silk (JSが .is-silk を付ける) */
+.site-header__bar.is-silk{
+  background: rgba(255,255,255,.82);
+  border-bottom-color: rgba(16,66,111,.10);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 10px 24px rgba(16,34,53,.06);
+}
+

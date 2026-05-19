@@ -1,0 +1,3507 @@
+/* =========================================================
+   SCOPE MAP（影響範囲マップ）
+   ─ この順番は絶対に崩さない ─
+   01. Base / Tokens
+   02. Hero
+   03. Income Formula（上の計算式）
+   04. Option Fees
+   05. Income Examples（下の収入例レール）
+   06. WorkStyle Cards（今回触ってるやつ）
+   07. Utilities / HOTFIX
+========================================================= */
+
+/* =========================
+   bbj_work_income.css
+   Page-only (header is shared by bbj-lp.css)
+========================= */
+
+:root {
+  --bg: #F6FDFF;
+  --ink: #102235;
+  --navy: #10426F;
+  --peach: #FFCFC2;
+  --gold: #AD853F;
+  --card: #ffffff;
+  --line: rgba(16, 34, 53, .12);
+  --shadow: 0 14px 30px rgba(16, 34, 53, .10);
+  --radius: 22px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+body {
+  font-family: "Noto Sans JP", system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+}
+
+a,
+button {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.sp-br {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .sp-br {
+    display: block;
+  }
+}
+
+/* =========================
+   HERO — arrange based on latest screenshot
+   (keep left aligned / keep subtle)
+========================= */
+
+.hero--style-income {
+  padding: 44px 0 44px;
+  /* 空気だけ整える */
+}
+
+/* タイトル：目立たせすぎないが“見出し”は担保 */
+.hero--style-income .hero__title {
+  font-size: 31px;
+  /* +1pxだけ戻す */
+  font-weight: 600;
+  /* そのまま */
+  letter-spacing: .03em;
+}
+
+/* 英字サブ：読ませない、でも品 */
+.hero--style-income .hero__subtitle {
+  margin-top: 8px;
+  font-size: 11.5px;
+  letter-spacing: .18em;
+  color: rgba(16, 66, 111, .52);
+}
+
+/* 説明文：少し小さく＋横幅を絞る */
+.hero--style-income .hero__lead {
+  margin-top: 18px;
+  font-size: 14px;
+  line-height: 1.85;
+  max-width: 720px;
+  color: rgba(16, 34, 53, .72);
+}
+
+/* 背景文字（Style and Income）：空気化 */
+.hero--style-income .hero__script {
+  left: -56px;
+  /* -110→-56：端切れ圧を弱める */
+  top: 10px;
+  /* -40→10：上に消える感じを消す */
+  font-size: 62px;
+  /* 維持 */
+  opacity: .28;
+  /* .34→.28：背景として一段下げる */
+  filter: blur(.3px);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* SP */
+@media (max-width: 640px) {
+  .hero--style-income {
+    padding: 38px 0 36px;
+  }
+
+  .hero--style-income .hero__title {
+    font-size: 28px;
+  }
+
+  .hero--style-income .hero__lead {
+    font-size: 13.5px;
+    max-width: 100%;
+  }
+
+  .hero--style-income .hero__script {
+    left: -40px;
+    top: 6px;
+    font-size: 44px;
+    opacity: .26;
+    filter: none;
+  }
+}
+
+
+
+/* ===== placeholder ===== */
+.placeholder {
+  padding: 14px 0 40px;
+}
+
+.placeholder__box {
+  border: 1px dashed rgba(16, 34, 53, .20);
+  border-radius: var(--radius);
+  padding: 18px;
+  background: rgba(255, 255, 255, .50);
+}
+
+.placeholder__text {
+  margin: 0;
+  color: rgba(16, 34, 53, .70);
+  line-height: 1.8;
+}
+
+/* =========================
+   WORK — Supporter income (formula layout)
+   closer to design comp (image2)
+   breakpoints: 960 / 640
+========================= */
+
+.income-formula {
+  padding: 28px 0 24px;
+}
+
+.income-formula__head {
+  text-align: center;
+  margin: 0 0 16px;
+}
+
+.income-formula__title {
+  margin: 0;
+  font-size: 20px;
+  letter-spacing: .06em;
+  color: rgba(16, 34, 53, .92);
+}
+
+.income-formula__sub {
+  margin: 6px 0 0;
+  font-size: 11.5px;
+  letter-spacing: .18em;
+  color: rgba(16, 66, 111, .55);
+  font-family: "Inter", "Helvetica Neue", system-ui, sans-serif;
+}
+
+/* beige panel */
+.income-formula__panel {
+  background: rgba(255, 232, 200, .52);
+  border: 1px solid rgba(16, 34, 53, .06);
+  border-radius: 18px;
+  padding: 18px 18px 14px;
+  box-shadow: 0 12px 26px rgba(16, 34, 53, .06);
+}
+
+.income-formula__grid {
+  display: grid;
+  grid-template-columns: 1.35fr 44px 1.05fr 44px 1.05fr;
+  gap: 14px;
+  align-items: center;
+}
+
+/* operator */
+.income-op {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+  color: rgba(16, 34, 53, .45);
+  line-height: 1;
+}
+
+/* pills */
+.income-pill {
+  display: inline-flex;
+  align-items: center;
+  height: 28px;
+  padding: 0 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  white-space: nowrap;
+}
+
+.income-pill--dark {
+  background: rgba(16, 34, 53, .92);
+  color: rgba(255, 255, 255, .92);
+}
+
+.income-pill--gold {
+  background: rgba(173, 133, 63, .18);
+  border: 1px solid rgba(173, 133, 63, .28);
+  color: rgba(16, 34, 53, .80);
+}
+
+/* left */
+.income-left {
+  background: rgba(255, 255, 255, .92);
+  border: 1px solid rgba(16, 34, 53, .10);
+  border-radius: 16px;
+  padding: 14px 16px 14px;
+  box-shadow: 0 10px 22px rgba(16, 34, 53, .06);
+  position: relative;
+  overflow: hidden;
+}
+
+.income-left::after {
+  content: "";
+  position: absolute;
+  top: -40px;
+  right: -70px;
+  width: 220px;
+  height: 220px;
+  border-radius: 999px;
+  background: radial-gradient(circle,
+      rgba(255, 207, 194, .22),
+      rgba(255, 207, 194, 0) 66%);
+  pointer-events: none;
+}
+
+.income-left__row {
+  margin-top: 10px;
+}
+
+.income-left__label {
+  font-size: 12px;
+  color: rgba(16, 34, 53, .50);
+  letter-spacing: .06em;
+}
+
+.income-left__price {
+  margin-top: 6px;
+  font-weight: 800;
+  color: rgba(16, 34, 53, .92);
+  letter-spacing: .01em;
+  line-height: 1;
+}
+
+.income-left__price-num {
+  font-size: 45px;
+  font-weight: 800;
+  letter-spacing: .01em;
+}
+
+.income-left__price-unit {
+  margin-left: 2px;
+  font-size: 16px;
+  opacity: .85;
+}
+
+.income-left__price-tilde {
+  font-size: 18px;
+  margin-left: 2px;
+  position: relative;
+  top: -2px;
+  opacity: .85;
+}
+
+.income-left__underline {
+  width: min(260px, 82%);
+  height: 8px;
+  border-radius: 999px;
+  margin: 10px 0 10px;
+  background: linear-gradient(90deg,
+      rgba(232, 139, 122, .70),
+      rgba(255, 207, 194, .65));
+}
+
+.income-left__note {
+  font-size: 12.5px;
+  color: rgba(16, 66, 111, .78);
+  font-weight: 600;
+  letter-spacing: .01em;
+}
+
+/* center (dotted boxes) */
+.income-center {
+  display: grid;
+  gap: 12px;
+}
+
+.income-dotted {
+  background: rgba(255, 255, 255, .90);
+  border: 1px dashed rgba(16, 34, 53, .26);
+  border-radius: 14px;
+  padding: 14px 14px;
+}
+
+.income-dotted__title {
+  font-size: 13px;
+  font-weight: 800;
+  color: rgba(16, 34, 53, .88);
+  letter-spacing: .03em;
+}
+
+/* 1) セクション左右余白を可変に */
+/*   padding-left: clamp(16px, 3vw, 64px); */
+/*   padding-right: clamp(16px, 3vw, 64px); */
+
+/* 2) 中央のベージュ帯を止める */
+.income-hero__panel {
+  max-width: 1040px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* サービス手数料 数字の薄い下線 */
+.income-hero .income-right__rate-num.fee-rate {
+  position: relative;
+  display: inline-block;
+}
+
+.income-hero .income-right__rate-num.fee-rate::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.15em;
+  /* ← マイナス禁止 */
+  height: 1px;
+  background: currentColor;
+  opacity: .22;
+}
+
+/* FINAL: 薄い上品下線 */
+.income-right__rate-num.fee-rate {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: rgba(16, 34, 53, .18);
+  text-underline-offset: 5px;
+}
+
+
+/* head note (bridge) */
+.income-formula__note {
+  margin: 8px 0 0;
+  font-size: 11px;
+  color: rgba(16, 34, 53, .45);
+}
+
+/* center dotted desc */
+.income-dotted__desc {
+  margin-top: 6px;
+  font-size: 12px;
+  line-height: 1.55;
+  color: rgba(16, 34, 53, .72);
+}
+
+/* 中央：主役感（サイズ＋余白＋点線の品） */
+.income-dotted {
+  padding: 16px 16px;
+  border-color: rgba(16, 34, 53, .22);
+  background: rgba(255, 255, 255, .94);
+}
+
+.income-dotted__title {
+  font-size: 14px;
+}
+
+.income-dotted__desc {
+  font-size: 12px;
+}
+
+/* 右：背景面を足して “引き算” を強く */
+.income-right {
+  background: rgba(255, 207, 194, .18);
+  border: 1px solid rgba(16, 34, 53, .08);
+  border-radius: 16px;
+  padding: 14px 16px;
+  box-shadow: 0 10px 22px rgba(16, 34, 53, .06);
+}
+
+.income-right__text {
+  margin-top: 10px;
+  font-size: 13px;
+  line-height: 1.55;
+  color: rgba(16, 34, 53, .78);
+}
+
+.income-right__rate {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 2px;
+  margin-left: 4px;
+}
+
+.income-right__rate-num {
+  font-size: 34px;
+  font-weight: 800;
+  color: rgba(16, 34, 53, .92);
+}
+
+.income-right__rate-unit {
+  font-size: 14px;
+  font-weight: 700;
+  color: rgba(16, 34, 53, .72);
+}
+
+.income-right__tax {
+  margin-left: 4px;
+  font-size: 12px;
+  color: rgba(16, 34, 53, .55);
+}
+
+.income-right__note {
+  margin-top: 10px;
+  font-size: 12px;
+  line-height: 1.55;
+  color: rgba(16, 34, 53, .60);
+}
+
+/* fineprint */
+.income-formula__fineprint {
+  margin: 14px 0 0;
+  font-size: 11px;
+  line-height: 1.7;
+  color: rgba(16, 34, 53, .45);
+  text-align: center;
+}
+
+.income-right .income-pill {
+  margin-bottom: 10px;
+  font-size: 11px;
+  letter-spacing: .12em;
+  background: rgba(173, 133, 63, .22);
+  border: 1px solid rgba(173, 133, 63, .35);
+}
+
+.income-right .income-right__rate-num {
+  font-size: 42px;
+  /* 数字は遠慮しない */
+  font-weight: 800;
+  line-height: 1;
+}
+
+.income-right .income-right__rate-unit {
+  font-size: 14px;
+  margin-left: 4px;
+  opacity: .75;
+}
+
+.income-right .income-right__desc {
+  margin-top: 10px;
+  padding-top: 10px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: rgba(16, 34, 53, .55);
+  border-top: 1px dashed rgba(16, 34, 53, .18);
+}
+
+/* 3) 広い画面だけ、もう一段“寄せる” */
+@media (min-width: 1200px) {
+  .income-hero {
+    padding-left: clamp(24px, 5vw, 120px);
+    padding-right: clamp(24px, 5vw, 120px);
+  }
+}
+
+/* responsive */
+@media (max-width: 960px) {
+  .income-formula__grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .income-op {
+    display: none;
+  }
+
+  .income-formula__fineprint {
+    text-align: left;
+  }
+}
+
+@media (max-width: 640px) {
+  .income-formula__panel {
+    padding: 14px 14px 12px;
+  }
+
+  .income-left__price-num {
+    font-size: 32px;
+  }
+
+  .income-right__rate-num {
+    font-size: 32px;
+  }
+
+  .income-left__label {
+    font-size: 10.5px;
+  }
+
+  .income-left__note {
+    font-weight: 600;
+  }
+
+  .income-left__underline {
+    width: min(240px, 78%);
+  }
+}
+
+/* =========================
+   Per-item card tints (content-based)
+   - keep it luxe: pastel + white blend
+========================= */
+:root {
+  --card-early: #FFFAD4;
+  /* 早朝 */
+  --card-night: #C2DCFF;
+  /* 夜間 */
+  --card-mid: #D8DCFF;
+  /* 深夜 */
+
+  --card-meet: #FFE6E1;
+  /* 面談 */
+  --card-online: #F3F7FF;
+  /* オンライン（ほぼ白） */
+
+  --card-people: #E7F6F3;
+  /* 人数 */
+
+  --card-sick: #E7F4FF;
+  /* 病児 */
+  --card-post: #FFE7F2;
+  /* 産後 */
+  --card-dis: #FFF0D9;
+  /* 障害児 */
+
+  --card-pick: #E6F7E8;
+  /* 送迎 */
+  --card-out: #E8F3FF;
+  /* 外出 */
+
+  --card-tutor: #FFF2D6;
+  /* 家庭教師 */
+
+  --card-travel1: #EAF4FF;
+  /* トラベル：シッター */
+  --card-travel2: #F2ECFF;
+  /* トラベル：ナース国内 */
+  --card-travel3: #FFEFE5;
+  /* トラベル：ナース海外 */
+}
+
+/* ===== section ===== */
+.opt-fees {
+  padding: 64px 0 88px;
+  background: linear-gradient(180deg, #F6FDFF 0%, #FFFFFF 55%, #FFF7EE 100%);
+  color: #102235;
+}
+
+.opt-fees__panel {
+  width: 100%;
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 clamp(16px, 3vw, 64px);
+}
+
+.opt-fees__head {
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+.opt-fees__title {
+  margin: 0;
+  font-family: "Noto Sans JP", serif;
+  font-size: clamp(20px, 2.1vw, 28px);
+  letter-spacing: .10em;
+  color: #10426F;
+}
+
+.opt-fees__title-en {
+  display: block;
+  margin-top: 6px;
+  font-family: "Noto Sans JP", system-ui, -apple-system, sans-serif;
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba(16, 34, 53, .55);
+}
+
+/* 依頼：タイトル直下の「※税別」不要 */
+.opt-fees__tax {
+  display: none;
+}
+
+/* ===== group wrapper ===== */
+.opt-group {
+  margin-top: 26px;
+  padding: 22px clamp(14px, 2.2vw, 22px);
+  border-radius: 22px;
+  border: 1px solid rgba(173, 133, 63, .35);
+  background: rgba(255, 255, 255, .72);
+  box-shadow: 0 14px 34px rgba(16, 34, 53, .05);
+}
+
+.opt-group__head {
+  text-align: center;
+  margin-bottom: calc(var(--seat-bottom, 18px) + 12px);
+}
+
+.opt-group__title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  color: #10426F;
+}
+
+.opt-group__sub {
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(16, 34, 53, .55);
+  letter-spacing: .04em;
+  margin-left: 6px;
+}
+
+.opt-group__en {
+  margin: 6px 0 0;
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba(16, 34, 53, .45);
+}
+
+/* ===== grid areas ===== */
+.opt-grid {
+  display: grid;
+  gap: 14px;
+}
+
+@media (min-width: 900px) {
+  .opt-grid--top {
+    grid-template-columns: 1.35fr 1.25fr .9fr;
+    align-items: stretch;
+    /* PC：高さ揃え */
+  }
+
+  .opt-grid--bottom {
+    grid-template-columns: 1.25fr 1.05fr .8fr;
+    grid-auto-rows: auto;
+    align-items: stretch;
+    /* PC：高さ揃え */
+  }
+
+  .opt-plate--travel {
+    grid-column: 1 / 3;
+  }
+
+  .opt-note {
+    grid-column: 3 / 4;
+  }
+}
+
+/* ===== outer boxes =====
+   重要：背景は透明（カテゴリ色を勝たせる）
+*/
+.opt-plate,
+.opt-tile,
+.opt-note,
+.opt-footnote {
+  border-radius: 18px;
+  border: 1px solid rgba(173, 133, 63, .45);
+  background: transparent;
+  box-shadow: 0 10px 26px rgba(16, 34, 53, .06);
+}
+
+.opt-card.is-early {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--card-early) 72%, #ffffff), #ffffff);
+}
+
+.opt-card.is-night {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--card-night) 62%, #ffffff), #ffffff);
+}
+
+.opt-card.is-mid {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--card-mid) 62%, #ffffff), #ffffff);
+}
+
+.opt-card.is-meet {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--card-meet) 62%, #ffffff), #ffffff);
+}
+
+.opt-card.is-online {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--card-online)45%, #ffffff), #ffffff);
+}
+
+.opt-card.is-people {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--card-people)55%, #ffffff), #ffffff);
+}
+
+.opt-card.is-sick {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--card-sick) 58%, #ffffff), #ffffff);
+}
+
+.opt-card.is-post {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--card-post) 58%, #ffffff), #ffffff);
+}
+
+.opt-card.is-dis {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--card-dis) 58%, #ffffff), #ffffff);
+}
+
+.opt-card.is-pick {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--card-pick) 55%, #ffffff), #ffffff);
+}
+
+.opt-card.is-out {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--card-out) 55%, #ffffff), #ffffff);
+}
+
+.opt-card.is-tutor {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--card-tutor) 55%, #ffffff), #ffffff);
+}
+
+.opt-card.is-tr1 {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--card-travel1)52%, #ffffff), #ffffff);
+}
+
+.opt-card.is-tr2 {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--card-travel2)52%, #ffffff), #ffffff);
+}
+
+.opt-card.is-tr3 {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--card-travel3)52%, #ffffff), #ffffff);
+}
+
+/* 仕上げ：枠線も“ほんのり”色に馴染ませる（上品） */
+.opt-card[class*="is-"] {
+  border-color: rgba(16, 66, 111, .10);
+}
+
+/* =========================
+   Fallback: solid pastel backgrounds
+   (for browsers without color-mix)
+========================= */
+.opt-card.is-early {
+  background: #FFFAD4;
+}
+
+.opt-card.is-night {
+  background: #C2DCFF;
+}
+
+.opt-card.is-mid {
+  background: #D8DCFF;
+}
+
+.opt-card.is-meet {
+  background: #FFE6E1;
+}
+
+.opt-card.is-online {
+  background: #F3F7FF;
+}
+
+.opt-card.is-people {
+  background: #E7F6F3;
+}
+
+.opt-card.is-sick {
+  background: #E7F4FF;
+}
+
+.opt-card.is-post {
+  background: #FFE7F2;
+}
+
+.opt-card.is-dis {
+  background: #FFF0D9;
+}
+
+.opt-card.is-pick {
+  background: #E6F7E8;
+}
+
+.opt-card.is-out {
+  background: #E8F3FF;
+}
+
+.opt-card.is-tutor {
+  background: #FFF2D6;
+}
+
+.opt-card.is-tr1 {
+  background: #EAF4FF;
+}
+
+.opt-card.is-tr2 {
+  background: #F2ECFF;
+}
+
+.opt-card.is-tr3 {
+  background: #FFEFE5;
+}
+
+/* =========================
+   Modern override (color-mix)
+========================= */
+.opt-card.is-early {
+  background: linear-gradient(180deg, color-mix(in srgb, #FFFAD4 72%, #ffffff), #ffffff);
+}
+
+.opt-card.is-night {
+  background: linear-gradient(180deg, color-mix(in srgb, #C2DCFF 62%, #ffffff), #ffffff);
+}
+
+.opt-card.is-mid {
+  background: linear-gradient(180deg, color-mix(in srgb, #D8DCFF 62%, #ffffff), #ffffff);
+}
+
+/* 以下同様… */
+
+
+/* 枠線を少し馴染ませる（上品） */
+.cat-time,
+.cat-meet,
+.cat-people,
+.cat-sit,
+.cat-move,
+.cat-tutor,
+.cat-travel,
+.cat-note {
+  border-color: rgba(173, 133, 63, .38);
+}
+
+.opt-plate {
+  padding: 14px 14px 18px;
+}
+
+.opt-tile {
+  padding: 14px 14px 18px;
+}
+
+.opt-plate__title,
+.opt-tile__title {
+  margin: 14px 0 14px;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  color: rgba(16, 34, 53, .78);
+}
+
+/* ===== inner grids ===== */
+.opt-plate__grid {
+  display: grid;
+  gap: 10px;
+}
+
+.opt-plate__grid--two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.opt-plate__grid--three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* =========================
+   OPT-CARD — FINAL (SSOT)
+   - meta stays right above price
+   - heights aligned
+   - does NOT break grid columns
+========================= */
+
+/* base */
+.opt-card {
+  border-radius: 14px;
+  border: 1px solid rgba(16, 66, 111, .14);
+  padding: 12px 10px;
+  min-width: 0;
+  text-align: center;
+
+  /* keep grid stable */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* size variants */
+.opt-card--mini {
+  padding: 10px 8px;
+}
+
+.opt-card--solo {
+  padding: 14px 12px;
+}
+
+/* PC height align */
+@media (min-width: 900px) {
+  .opt-card {
+    min-height: 148px;
+  }
+}
+
+/* icon */
+.opt-card__icon {
+  width: 54px;
+  height: 54px;
+  margin: 0 auto 8px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 207, 194, .40);
+  border: 1px solid rgba(16, 66, 111, .10);
+}
+
+.opt-card__icon img {
+  width: 36px;
+  height: 36px;
+  display: block;
+}
+
+/* label */
+.opt-card__label {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .06em;
+  color: rgba(16, 34, 53, .82);
+}
+
+/* meta: sits above price (but near bottom) */
+.opt-card__meta {
+  margin: 0;
+  font-size: 11px;
+  color: rgba(16, 34, 53, .52);
+
+  /* push meta+price block to bottom */
+  margin-top: auto;
+  padding-top: 6px;
+}
+
+/* price: always bottom */
+.opt-card__price {
+  margin: 0;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.opt-card__yen {
+  font-size: 12px;
+  font-weight: 800;
+  color: rgba(16, 34, 53, .62);
+  margin-right: 2px;
+}
+
+.opt-card__price-main {
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: .02em;
+  color: #102235;
+}
+
+.opt-card__price-sub {
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(16, 34, 53, .55);
+  margin-left: 4px;
+}
+
+@media (min-width: 900px) {
+  .opt-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 132px;
+  }
+
+  .opt-card__price {
+    margin-top: auto;
+    padding-top: 8px;
+  }
+}
+
+/* =========================
+   FIX1: 時間帯オプション（PCは横3枚）
+========================= */
+@media (min-width: 900px) {
+  .opt-plate--time .opt-plate__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: stretch;
+  }
+}
+
+/* ===== note big card =====
+   ※カテゴリ背景(cat-note)がある時はそっちを優先
+*/
+/* ===== note big card (FINAL) ===== */
+.opt-note {
+  padding: 18px 18px;
+  /* ←左右を少し増やす */
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  column-gap: 14px;
+  /* ←gapを明示 */
+  align-items: center;
+  /* ←縦中央で揃える */
+}
+
+/* 左アイコンのズレを消す */
+.opt-note__icon {
+  align-self: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  background: rgba(238, 176, 57, .14);
+  border: 1px solid rgba(173, 133, 63, .35);
+}
+
+.opt-note__title {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: .06em;
+  color: rgba(16, 34, 53, .82);
+
+  line-height: 1.25;
+  /* ←追加 */
+  margin-bottom: 6px;
+  /* ←追加 */
+}
+
+.opt-note__text {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.85;
+  /* ←調整 */
+  color: rgba(16, 34, 53, .62);
+}
+
+/* ===== bottom footnotes ===== */
+.opt-footnotes {
+  display: grid;
+  gap: 14px;
+  margin-top: 16px;
+}
+
+@media (min-width: 900px) {
+  .opt-footnotes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* 依頼：日程/キャンセルは“もう少し目に留まる” */
+.opt-footnote {
+  padding: 18px 16px;
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 12px;
+  align-items: start;
+  border-width: 1.2px;
+  box-shadow: 0 14px 30px rgba(16, 34, 53, .08);
+}
+
+@media (min-width: 900px) {
+  .opt-footnote {
+    min-height: 116px;
+  }
+}
+
+.opt-footnote__icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 207, 194, .32);
+  border: 1px solid rgba(16, 66, 111, .12);
+}
+
+.opt-footnote__icon img {
+  width: 34px;
+  height: 34px;
+  display: block;
+}
+
+.opt-footnote__title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: .08em;
+  color: rgba(16, 34, 53, .82);
+}
+
+.opt-footnote__text {
+  margin: 6px 0 0;
+  font-size: 12.5px;
+  line-height: 1.9;
+  color: rgba(16, 34, 53, .62);
+}
+
+/* ===== PC：上段・下段の器を“同じ高さ”に寄せる ===== */
+@media (min-width: 900px) {
+
+  .opt-grid--top>*,
+  .opt-grid--bottom>* {
+    height: 100%;
+  }
+
+  .opt-plate,
+  .opt-tile {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .opt-plate__grid,
+  .opt-tile .opt-card {
+    margin-top: auto;
+  }
+
+  /* travelは横長なので中身の位置を整える */
+  .opt-plate--travel {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .opt-plate--travel .opt-plate__grid {
+    margin-top: auto;
+  }
+}
+
+/* ===== SP: group-by-group 1 col ===== */
+@media (max-width: 899px) {
+
+  .opt-grid--top,
+  .opt-grid--bottom {
+    grid-template-columns: 1fr;
+  }
+
+  .opt-group {
+    padding: 18px 14px;
+  }
+
+  .opt-plate,
+  .opt-tile,
+  .opt-note {
+    padding: 14px;
+  }
+
+  .opt-plate__grid--three {
+    grid-template-columns: 1fr;
+  }
+
+  .opt-plate__grid--two {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================
+   HOTFIX: ¥ と /1時間 が縦落ちするのを強制的に止める
+   ※CSS最下部に置く（勝つため）
+========================= */
+.opt-card__price {
+  display: flex !important;
+  align-items: baseline !important;
+  justify-content: center !important;
+  gap: 4px !important;
+  white-space: nowrap !important;
+
+  /* 高さ揃えも維持 */
+  min-height: 28px;
+}
+
+/* 子要素も横並び固定 */
+.opt-card__yen,
+.opt-card__price-main,
+.opt-card__price-sub {
+  display: inline-block !important;
+}
+
+/* =========================
+   PC: 延長料金ノートを縦レイアウトに
+========================= */
+@media (min-width: 900px) {
+  .opt-note {
+    grid-template-columns: 1fr;
+    /* 横→縦 */
+    text-align: left;
+    row-gap: 12px;
+  }
+
+  .opt-note__icon {
+    margin: 0;
+    /* 上に自然配置 */
+  }
+}
+
+/* =========================
+   FIX: PCで3枚がキツい問題（最終上書き）
+   ※ファイル末尾に置くこと
+========================= */
+@media (min-width: 900px) {
+  .opt-plate .opt-card {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+}
+
+@media (min-width:900px) {
+  .opt-plate--sit .opt-plate__grid--three {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .opt-plate--sit .opt-plate__grid--three>* {
+    max-width: 260px;
+    /* 240〜280で好み */
+    justify-self: center;
+    min-width: 0;
+    /* 念のため */
+  }
+}
+
+@media (min-width:900px) {
+  .opt-grid--bottom {
+    grid-template-columns:
+      minmax(0, 1.55fr)
+      /* ①シッティング：主役 */
+      minmax(0, 1.05fr)
+      /* ②送迎・外出：準主役 */
+      minmax(0, .55fr);
+    /* ③家庭教師：控え */
+  }
+
+  /* 子の最小幅主張で押される事故を封じる */
+  .opt-grid--bottom>* {
+    min-width: 0;
+  }
+}
+
+
+/* =========================
+   MONEY FAQ (WORK) — SSOT FINAL
+   Includes: Q sits on accent line + medallion + final polish
+   Breakpoints: 960 / 640 only
+========================= */
+/*
+*/
+
+
+/*    Breakpoints: 960 / 640 only */
+/* ========================= */
+/*  */
+/* .money-faq { */
+/*   position: relative; */
+/*   overflow: hidden; */
+/*   padding: 58px 0 80px; */
+*/
+/*  */
+/*   /* 上部に“実体”として入る薄いピンク〜オレンジ */
+*/
+
+/*   background: */
+/*    radial-gradient(1200px 420px at 50% 0%,
+      rgba(255, 207, 194, 0.42) 0%,
+      rgba(255, 232, 200, 0.28) 38%,
+      rgba(246, 253, 255, 0.00) 72%);
+}
+*/
+.money-faq__head {
+  text-align: center;
+  margin-bottom: 26px;
+}
+
+.money-faq__title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  color: #102A45;
+}
+
+.money-faq__sub {
+  margin: 8px 0 0;
+  font-size: 11.5px;
+  letter-spacing: .18em;
+  font-weight: 500;
+  color: rgba(16, 66, 111, .55);
+  font-family: "Inter", "Helvetica Neue", system-ui, sans-serif;
+}
+
+.money-faq__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  align-items: stretch;
+}
+
+@media (max-width: 960px) {
+  .money-faq__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== Card ===== */
+.money-faq-card {
+  position: relative;
+  background: rgba(255, 255, 255, .96);
+  border: 1px solid rgba(16, 34, 53, .10);
+  border-radius: 18px;
+  padding: 18px 18px 16px;
+  box-shadow: 0 14px 34px rgba(16, 34, 53, .08);
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+
+/* ===== Accent Line (LOCK) ===== */
+.money-faq-card::before {
+  content: "";
+  position: absolute;
+  left: 18px;
+  right: 18px;
+
+  top: 18px;
+  /* ★確定：Qが乗るレール */
+  height: 2px;
+
+  border-radius: 999px;
+  background: linear-gradient(90deg,
+      rgba(16, 66, 111, .46) 0%,
+      rgba(255, 207, 194, .92) 55%,
+      rgba(173, 133, 63, .46) 100%);
+  opacity: .70;
+  pointer-events: none;
+}
+
+/* hover（上品に） */
+.money-faq-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(16, 34, 53, .14);
+  box-shadow: 0 18px 46px rgba(16, 34, 53, .10);
+}
+
+/* ===== Q Medallion (LOCK) ===== */
+.money-faq-card__q {
+  position: absolute;
+  top: 6px;
+  /* ★確定：ラインに噛ませる */
+  left: 20px;
+  /* ★確定 */
+  z-index: 2;
+
+  width: 30px;
+  /* ★確定：medallion refine を吸収 */
+  height: 30px;
+  border-radius: 999px;
+
+  display: grid;
+  place-items: center;
+
+  background: radial-gradient(circle at 35% 30%,
+      rgba(255, 255, 255, .95),
+      rgba(246, 253, 255, .88) 55%,
+      rgba(255, 255, 255, .92));
+
+  border: 1px solid rgba(16, 66, 111, .18);
+
+  box-shadow:
+    0 10px 22px rgba(16, 34, 53, .10),
+    0 1px 0 rgba(255, 255, 255, .70) inset;
+
+  color: rgba(16, 66, 111, .72);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .06em;
+
+  outline: 3px solid rgba(232, 139, 122, .10);
+  outline-offset: 2px;
+  isolation: isolate;
+}
+
+/* ライン透け防止：Qの“白い受け皿” */
+.money-faq-card__q::after {
+  content: "";
+  position: absolute;
+  inset: -6px -10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .92);
+  z-index: -1;
+}
+
+/* ===== Title ===== */
+.money-faq-card__title {
+  margin: 22px 0 10px;
+  padding-top: 10px;
+
+  /* FINAL POLISH (B) を吸収 */
+  font-size: 14.5px;
+  letter-spacing: .015em;
+  line-height: 1.55;
+  color: rgba(16, 34, 53, .90);
+}
+
+/* ===== Body ===== */
+.money-faq-card__body {
+  margin: 0;
+  flex: 1;
+
+  /* FINAL POLISH (B) を吸収 */
+  font-size: 12.8px;
+  line-height: 1.80;
+  color: rgba(16, 34, 53, .68);
+}
+
+/* ===== Link Button ===== */
+.money-faq-card__link {
+  margin-top: 12px;
+  align-self: flex-start;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  /* FINAL POLISH (B) を吸収 */
+  height: 38px;
+  padding: 0 14px;
+
+  border-radius: 999px;
+  border: 1px solid rgba(232, 139, 122, .26);
+  background: rgba(255, 207, 194, .14);
+
+  color: rgba(16, 34, 53, .82);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: .02em;
+
+  box-shadow: 0 8px 18px rgba(16, 34, 53, .05);
+  transition: transform .16s ease, filter .16s ease, background .16s ease;
+}
+
+.money-faq-card__link:hover {
+  filter: brightness(1.02);
+  background: rgba(255, 207, 194, .18);
+  transform: translateY(-1px);
+}
+
+/* ===== SP ===== */
+@media (max-width: 640px) {
+  .money-faq {
+    padding: 46px 0 70px;
+  }
+
+  .money-faq-card {
+    padding: 18px 16px 16px;
+  }
+
+  .money-faq-card::before {
+    left: 16px;
+    right: 16px;
+    /* top/heightは固定 */
+  }
+
+  .money-faq-card__title {
+    margin: 20px 0 10px;
+    font-size: 14.5px;
+  }
+}
+
+/* ===== modal ===== */
+.modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  z-index: 9999;
+}
+
+.modal.is-open {
+  display: block;
+}
+
+/* =========================
+   MONEY FAQ: full-bleed background presence
+========================= */
+.money-faq {
+  background: #F6FDFF;
+  /* 全幅感の“地”を作る */
+  border-top: 1px solid rgba(16, 66, 111, .08);
+  border-bottom: 1px solid rgba(16, 66, 111, .08);
+}
+
+.money-faq::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  /* 既存より“全幅で効く”薄い演出に上書き */
+  background:
+    radial-gradient(1400px 460px at 50% 0%,
+      rgba(255, 207, 194, 0.40) 0%,
+      rgba(255, 232, 200, 0.22) 42%,
+      rgba(246, 253, 255, 0.00) 74%);
+}
+
+/* =========================
+   CTA button — subtle affordance up
+========================= */
+.money-faq .btn,
+.money-faq a.button,
+.money-faq .faq-btn {
+  border-radius: 999px;
+  box-shadow: 0 6px 14px rgba(16, 34, 53, .10);
+  transition:
+    transform .18s ease,
+    box-shadow .18s ease,
+    background-color .18s ease;
+}
+
+/* hover：浮く */
+.money-faq .btn:hover,
+.money-faq a.button:hover,
+.money-faq .faq-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(16, 34, 53, .16);
+}
+
+/* active：押した感 */
+.money-faq .btn:active,
+.money-faq a.button:active,
+.money-faq .faq-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 10px rgba(16, 34, 53, .12);
+}
+
+/* 全幅ヘッダー */
+.money-faq-head {
+  text-align: center;
+  padding: 0 20px 40px;
+}
+
+/* 和文見出し */
+.money-faq__title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  color: #102235;
+}
+
+/* 英文サブ */
+.money-faq__en {
+  margin-top: 6px;
+  font-size: 12px;
+  letter-spacing: .18em;
+  color: rgba(16, 34, 53, .55);
+}
+
+/* money-faq head: full-bleed header */
+.money-faq__head {
+  text-align: center;
+  padding: 0 20px 40px;
+  /* コンテナと同じ左右余白 */
+}
+
+/* =========================
+   WORK FOOTER + FLOAT CTA (work_income)
+   Paste at END of bbj_work_income.css
+========================= */
+
+/* utilities (scope to WORK CTA only) */
+.work-float-cta.pc-only {
+  display: block;
+}
+
+/*.work-sp-cta.sp-only{ display:none; }*/
+
+@media (max-width: 899px) {
+  .work-float-cta.pc-only {
+    display: none;
+  }
+
+  /* .work-sp-cta.sp-only{ display:block; }*/
+}
+
+/* ===== footer ===== */
+.work-footer {
+  margin-top: 96px;
+  padding: 64px 0 40px;
+  background: #F6FDFF;
+  border-top: 1px solid rgba(16, 66, 111, .10);
+}
+
+.work-footer__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 28px;
+}
+
+.work-footer__logo {
+  font-weight: 900;
+  letter-spacing: .06em;
+  color: #10426F;
+  font-size: 18px;
+}
+
+.work-footer__tag {
+  margin: 8px 0 0;
+  color: rgba(16, 34, 53, .68);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.work-footer__nav {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.work-footer__link {
+  color: rgba(16, 34, 53, .82);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 10px 10px;
+  border-radius: 999px;
+}
+
+.work-footer__link:hover {
+  background: rgba(255, 207, 194, .22);
+}
+
+.work-footer__link--cta {
+  border: 1px solid rgba(232, 139, 122, .35);
+  background: rgba(255, 250, 244, .9);
+}
+
+.work-footer__bottom {
+  margin-top: 34px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(16, 66, 111, .08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.work-footer__copy {
+  color: rgba(16, 34, 53, .55);
+}
+
+.work-footer__mini {
+  display: flex;
+  gap: 14px;
+}
+
+.work-footer__mini-link {
+  color: rgba(16, 34, 53, .62);
+  text-decoration: none;
+  font-size: 12px;
+}
+
+.work-footer__mini-link:hover {
+  text-decoration: underline;
+}
+
+/* SP footer */
+@media (max-width: 899px) {
+  .work-footer {
+    padding: 52px 0 34px;
+  }
+
+  .work-footer__top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .work-footer__nav {
+    justify-content: flex-start;
+  }
+}
+
+/* ===== PC floating CTA ===== */
+.work-float-cta {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 30;
+  width: 250px;
+}
+
+.work-float-cta__card {
+  background: rgba(255, 255, 255, .90);
+  border: 1px solid rgba(16, 66, 111, .12);
+  border-radius: 22px;
+  box-shadow: 0 18px 42px rgba(16, 34, 53, .14);
+  padding: 18px 18px 16px;
+  backdrop-filter: blur(10px);
+}
+
+.work-float-cta__title {
+  margin: 0;
+  font-weight: 900;
+  color: #10426F;
+  font-size: 14px;
+  letter-spacing: .03em;
+}
+
+.work-float-cta__sub {
+  margin: 8px 0 14px;
+  color: rgba(16, 34, 53, .70);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.work-float-cta__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 900;
+  color: #102235;
+  background: rgba(255, 207, 194, .55);
+  border: 1px solid rgba(232, 139, 122, .35);
+  box-shadow: 0 10px 22px rgba(16, 34, 53, .10);
+}
+
+.work-float-cta__btn:hover {
+  transform: translateY(-1px);
+}
+
+.work-float-cta__ghost {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+  font-weight: 800;
+  color: rgba(16, 34, 53, .75);
+  font-size: 12px;
+}
+
+/* =========================
+   MODAL overlay + readability (work_income)
+========================= */
+
+/* モーダルが開いた時、背景を沈める（暗幕） */
+.modal.is-open {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: grid;
+  place-items: center;
+  padding: 24px 16px;
+}
+
+/* 暗幕 */
+.modal.is-open::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(16, 34, 53, .52);
+  /* ←暗さ */
+  backdrop-filter: blur(6px);
+  /* ←高級感 */
+  -webkit-backdrop-filter: blur(6px);
+}
+
+/* 中身（パネル）は暗幕より上 */
+.modal.is-open .modal__panel {
+  position: relative;
+  z-index: 1;
+  width: min(920px, 100%);
+  max-height: min(78vh, 820px);
+  overflow: auto;
+
+  background: rgba(255, 255, 255, .94);
+  border: 1px solid rgba(16, 66, 111, .14);
+  border-radius: 22px;
+  box-shadow: 0 26px 70px rgba(16, 34, 53, .28);
+}
+
+/* 本文は左寄せ（読みやすさ最優先） */
+.modal.is-open .modal__panel {
+  text-align: left;
+}
+
+.modal.is-open .modal__panel h1,
+.modal.is-open .modal__panel h2,
+.modal.is-open .modal__panel h3,
+.modal.is-open .modal__panel p,
+.modal.is-open .modal__panel ul,
+.modal.is-open .modal__panel ol {
+  text-align: left;
+}
+
+/* ただしタイトルだけ中央にしたい場合（任意） */
+.modal.is-open .modal__panel .modal__title {
+  text-align: left;
+  /* ←タイトルも左で上質。中央にしたければ center */
+}
+
+.modal.is-open .modal__panel {
+  padding: 26px 28px;
+  line-height: 1.85;
+}
+
+@media (max-width: 899px) {
+  .modal.is-open .modal__panel {
+    padding: 18px 16px;
+    max-height: 82vh;
+  }
+}
+
+/* =========================
+   MODAL close button (fixed & visible)
+========================= */
+
+/* モーダルパネルを基準にする */
+.modal.is-open .modal__panel {
+  position: relative;
+}
+
+/* ×ボタン：常に見える右上 */
+.modal.is-open .modal__close {
+  position: sticky;
+  top: 16px;
+  right: 16px;
+  margin-left: auto;
+  z-index: 3;
+
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, .9);
+  border: 1px solid rgba(16, 66, 111, .18);
+  box-shadow: 0 8px 18px rgba(16, 34, 53, .18);
+
+  font-size: 18px;
+  font-weight: 700;
+  color: #10426F;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}
+
+/* hoverだけ少し反応（派手にしない） */
+.modal.is-open .modal__close:hover {
+  box-shadow: 0 12px 26px rgba(16, 34, 53, .24);
+  transform: translateY(-1px);
+}
+
+/* =========================
+   Modal scrollbar (polished)
+========================= */
+
+/* スクロールする本体にクラスがあるならそこに付けるのが理想
+   まずは .modal__panel の overflow を使ってる前提で指定 */
+.modal.is-open .modal__panel {
+  scrollbar-gutter: stable;
+  /* レイアウトがガタつかない（対応ブラウザのみ） */
+}
+
+/* Firefox */
+.modal.is-open .modal__panel {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(16, 66, 111, .28) rgba(16, 34, 53, .06);
+}
+
+/* Chrome / Edge / 一部ブラウザ */
+.modal.is-open .modal__panel::-webkit-scrollbar {
+  width: 10px;
+}
+
+.modal.is-open .modal__panel::-webkit-scrollbar-track {
+  background: rgba(16, 34, 53, .06);
+  border-radius: 999px;
+}
+
+.modal.is-open .modal__panel::-webkit-scrollbar-thumb {
+  background: rgba(16, 66, 111, .26);
+  border-radius: 999px;
+  border: 3px solid rgba(0, 0, 0, 0);
+  /* ぷっくり感 */
+  background-clip: padding-box;
+}
+
+.modal.is-open .modal__panel::-webkit-scrollbar-thumb:hover {
+  background: rgba(16, 66, 111, .38);
+  border: 3px solid rgba(0, 0, 0, 0);
+  background-clip: padding-box;
+}
+
+.modal.is-open .modal__panel {
+  -webkit-mask-image: linear-gradient(#000 0%, #000 92%, transparent 100%);
+  mask-image: linear-gradient(#000 0%, #000 92%, transparent 100%);
+}
+
+/* WORK ONLY:
+   keep bottom breathing for Work page
+   (prevents collision with income / faq / CTA stack)
+*/
+/* PATCH: #workstyle-sim bottom breathing (work page only)
+#workstyle-sim {
+  margin-bottom: 32px;
+}
+
+@media (max-width: 768px) {
+  #workstyle-sim {
+    margin-bottom: 36px;
+  }
+}
+*/
+html,
+body {
+  overscroll-behavior-x: none;
+}
+
+
+/* ===== PATCH: remove “boxed section” feel ===== */
+.money-faq {
+  border-top: 0 !important;
+  border-bottom: 0 !important;
+}
+
+/* ===== PATCH: section separation via spacing (lux) ===== */
+.money-faq {
+  padding-top: 92px;
+  padding-bottom: 104px;
+}
+
+/* ===== PATCH: subtle band background (no box) ===== */
+.money-faq::before {
+  background:
+    radial-gradient(1200px 340px at 50% 0%,
+      rgba(255, 207, 194, .40) 0%,
+      rgba(255, 207, 194, 0) 72%),
+    radial-gradient(1200px 360px at 50% 100%,
+      rgba(246, 253, 255, .85) 0%,
+      rgba(246, 253, 255, 0) 75%);
+}
+
+/* PATCH: section separation (no border line) */
+.money-faq {
+  position: relative;
+}
+
+/* =========================================================
+   PATCH: delay FAQ entry (B-melo spacing)
+   - move only the entry, not the whole section
+========================================================= */
+
+.money-faq-head {
+  margin-top: 32px;
+  /* ← 24〜32で迷ったら32 */
+}
+
+/* =========================================================
+   PATCH: FAQ bottom breathing (before footer)
+========================================================= */
+
+.money-faq {
+  padding-bottom: 56px;
+  /* 48〜64で迷うが、まず56がベスト */
+}
+
+/* SPは少し多め */
+@media (max-width: 768px) {
+  .money-faq {
+    padding-bottom: 64px;
+  }
+}
+
+/* =========================================================
+   PATCH: FAQ title → cards breathing
+========================================================= */
+
+.money-faq__inner {
+  margin-top: 16px;
+  /* まずは16。迷ったら12に戻す */
+}
+
+/* =========================================================
+   PATCH: income-breakdown total hierarchy (label < amount)
+========================================================= */
+
+.income-breakdown__total {
+  align-items: center;
+  /* baselineだとラベルが勝ちやすいので */
+  gap: 10px;
+}
+
+/* ラベル（左）＝小さく・薄く・文字間を広げて“背景化” */
+.income-breakdown__total> :first-child {
+  font-weight: 700;
+  /* 800→700 */
+  font-size: 11.5px;
+  /* 12〜13より少し落とす */
+  letter-spacing: .10em;
+  /* .02→上げて空気に */
+  opacity: .62;
+  /* .85→下げる */
+  color: rgba(16, 34, 53, .68);
+  white-space: nowrap;
+}
+
+/* 金額（右）＝主役：少し大きく・濃く・数字を締める */
+.income-breakdown__total> :last-child {
+  font-weight: 900;
+  font-size: 16px;
+  /* 14.5→上げる（主役化） */
+  letter-spacing: .01em;
+  /* 数字は詰めて品 */
+  opacity: .96;
+  /* .72→上げる */
+  color: #AD853F;
+  /* 既定のゴールド維持 */
+  white-space: nowrap;
+}
+
+/* SPだけ、さらに“ラベルを空気”に */
+@media (max-width: 520px) {
+  .income-breakdown__total> :first-child {
+    font-size: 11px;
+    opacity: .56;
+  }
+
+  .income-breakdown__total> :last-child {
+    font-size: 12px;
+    letter-spacing: .03em;
+    color: rgba(16, 34, 53, .72);
+  }
+
+  #income-examples .income-breakdown__value {
+    font-size: 13px;
+    font-weight: 800;
+    color: rgba(16, 34, 53, .92);
+    white-space: nowrap;
+  }
+
+  /* --- 3) 写真：引き（ズームしすぎ禁止）を変数SSOTで固定 --- */
+  /* --- 写真：引き（ズームしすぎ禁止）をSSOTで固定 --- */
+  #income-examples {
+    --photo-zoom: 106%;
+    /* ← %で指定（これが正） */
+    --photo-pos: 50% 16%;
+  }
+
+  #income-examples .income-card__photo {
+    border-radius: 16px;
+    overflow: hidden;
+
+    /* 背景画像は殺さない */
+    background-color: rgba(246, 253, 255, .65);
+
+    /* 描画方式を正に固定 */
+    background-repeat: no-repeat;
+    background-position: var(--photo-pos);
+    background-size: cover;
+  }
+
+  #income-examples .income-card__photo img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: var(--photo-pos);
+    transform: none;
+    transform-origin: center;
+  }
+
+  /* --- 4) 念のため：#income-examples 内だけ“タップ演出”を弱める（パチパチ抑制） --- */
+  #income-examples .income-examples__viewport .income-card:active {
+    transform: none !important;
+  }
+}
+
+/* --- details: info-only (no visible title) --- */
+#income-examples .income-more {
+  margin-top: 10px;
+}
+
+#income-examples .income-more__summary {
+  list-style: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  /* “タイトル”っぽくならない＝右寄せの小UI */
+  margin-left: auto;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(16, 34, 53, .10);
+  background: rgba(255, 255, 255, .70);
+  cursor: pointer;
+  user-select: none;
+}
+
+#income-examples .income-more__summary::-webkit-details-marker {
+  display: none;
+}
+
+#income-examples .income-more__i {
+  width: 18px;
+  height: 18px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 900;
+  color: rgba(16, 34, 53, .72);
+  background: rgba(16, 66, 111, .08);
+}
+
+#income-examples .income-more__chev {
+  font-size: 12px;
+  opacity: .70;
+  transform: translateY(-.5px);
+  transition: transform .18s ease;
+}
+
+#income-examples .income-more[open] .income-more__chev {
+  transform: rotate(180deg) translateY(.5px);
+}
+
+#income-examples .income-more__body {
+  margin-top: 8px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px dashed rgba(16, 34, 53, .16);
+  background: rgba(255, 255, 255, .55);
+}
+
+#income-examples .income-more__text {
+  margin: 0;
+  font-size: 11.5px;
+  line-height: 1.75;
+  color: rgba(16, 34, 53, .66);
+}
+
+/* sr-only (既に共通にあれば不要。無ければ島で定義) */
+#income-examples .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* A案：セクション1個のinfoを上品に配置 */
+#income-examples .income-more--ssot {
+  display: flex;
+  justify-content: flex-end;
+  /* 右寄せで“UI部品”感 */
+  margin-top: 12px;
+  padding-right: max(20px, calc((100vw - 1120px) / 2));
+  /* viewportの余白と揃える */
+}
+
+/* FROZEN: legacy DISABLED sticky-total block moved to _stash_disabled_sticky_total.css (DO NOT EDIT) */
+/* NOTE: scope-sensitive area; stray brace caused incident. Do not edit here without scope check. */
+
+
+
+
+/* 主役感：ラベル控えめ、金額を強く */
+#income-examples .income-card__total .income-breakdown__label {
+  font-size: 11px;
+  opacity: .62;
+  letter-spacing: .06em;
+}
+
+#income-examples .income-card__total .income-breakdown__value {
+  font-size: 16px;
+  font-weight: 900;
+  color: #AD853F;
+}
+
+/* NOTE: scope-sensitive area; stray brace caused incident. Do not edit here without scope check. */
+
+@media (max-width: 768px) {
+
+  /* Case4：下に赤ちゃん（ベビーカー）を見せたい */
+  /* Case5：シッターの頭をもう少し出したい */
+}
+
+/* === SSOT ANCHOR: INCOME_EXAMPLES__PHOTO_TUNE === */
+/* policy: zoom only (global). no !important. */
+@media (max-width: 768px) {
+  #income-examples {
+    --photo-zoom: 102%;
+  }
+}
+
+/* optional: case exceptions (zoom only) */
+@media (max-width: 768px) {}
+
+/* Case exceptions: zoom only (SP) */
+@media (max-width: 768px) {
+  #income-examples .income-card[data-case="4"] {
+    --photo-zoom: 106%;
+  }
+
+  #income-examples .income-card[data-case="5"] {
+    --photo-zoom: 108%;
+  }
+}
+
+/* =========================================================
+   SSOT: SP income-breakdown must NOT pseudo-open on tap
+========================================================= */
+@media (max-width: 768px) {
+
+  /* “押してる間だけ開く”を無効化 */
+  #income-examples .income-breakdown:active {
+    max-height: calc(1.6em * 3) !important;
+  }
+
+  /* タップできそうな匂わせも消す（任意だけどおすすめ） */
+  #income-examples .income-breakdown {
+    cursor: default !important;
+    transition: none !important;
+  }
+
+  #income-examples .income-breakdown::before,
+  #income-examples .income-breakdown::after {
+    content: none !important;
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+
+  /* SP: 閉じ（ちょい見せ） */
+  #income-examples .income-breakdown__rows {
+    max-height: 42px;
+    /* 1〜2行だけ見せる */
+    overflow: hidden;
+    position: relative;
+  }
+
+  #income-examples .income-breakdown__rows::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 28px;
+    background: linear-gradient(to bottom,
+        rgba(255, 255, 255, 0),
+        rgba(255, 255, 255, .95));
+    pointer-events: none;
+  }
+
+  /* SP: 開いたら rows を fixed のボトムシートへ */
+  #income-examples .income-breakdown.is-open .income-breakdown__rows {
+    position: fixed;
+    left: 16px;
+    right: 16px;
+    bottom: calc(var(--seat-bottom, 18px) + 12px);
+    z-index: 9999;
+
+    max-height: min(64vh, 520px);
+    overflow: auto;
+
+    padding: 14px 14px 12px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, .96);
+    border: 1px solid rgba(16, 34, 53, .12);
+    box-shadow: 0 22px 60px rgba(16, 34, 53, .22);
+  }
+
+  /* SP: 背景暗幕（details自身に擬似要素で） */
+  #income-examples .income-breakdown.is-open::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    background: rgba(16, 34, 53, .42);
+    backdrop-filter: blur(6px);
+  }
+
+  /* SP: 開いた時はフェード不要 */
+  #income-examples .income-breakdown.is-open .income-breakdown__rows::after {
+    content: none;
+  }
+
+  /* SP: total は sticky/固定をしない（互換保険） */
+  #income-examples .income-card__total {
+    position: static;
+  }
+}
+
+/* === SSOT FINAL: INCOME_EXAMPLES__PHOTO (ONE) === */
+#income-examples .income-card {
+  --photo-pos: 50% 10%;
+  --photo-zoom: 106%;
+}
+
+#income-examples .income-card__photo {
+  background-position: var(--photo-pos);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* case exceptions (SP only / 必要な分だけ) */
+@media (max-width: 768px) {
+  #income-examples .income-card[data-case="4"] {
+    --photo-pos: 55% 62%;
+    --photo-zoom: 102%;
+  }
+
+  #income-examples .income-card[data-case="5"] {
+    --photo-pos: 50% 16%;
+    --photo-zoom: 102%;
+  }
+}
+
+/* PC/Tablet：常時表示（開閉UIを消す）
+LEGACY (details-based breakdown) — NOT USED (HTML is div-based)
+@media (min-width: 769px){
+  #income-examples details.income-breakdown > summary{ display: none; }
+  #income-examples details.income-breakdown > *:not(summary){ display: block; }
+}
+*/
+/* 既存のあなたの指定 */
+#income-examples .income-breakdown__summary {
+  display: none;
+}
+
+#income-examples .income-breakdown__rows {
+  display: block;
+  border-top: 0;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+
+/* SP：summaryあり、開閉できる */
+@media (max-width: 768px) {
+  #income-examples .income-breakdown__summary {
+    display: grid;
+  }
+}
+
+/* =========================================================
+   SSOT FINAL: INCOME_EXAMPLES PHOTO (SP)
+   policy:
+   - cover fixed (stable)
+   - no layout / position change
+========================================================= */
+@media (max-width: 768px) {
+  #income-examples .income-card__photo {
+    background-size: cover !important;
+  }
+}
+
+/* =========================
+   SSOT FINAL: INCOME_EXAMPLES PHOTO
+   - one source of truth
+   - no !important
+========================= */
+
+/* base */
+#income-examples .income-card {
+  --photo-pos: 50% 16%;
+  --photo-zoom: 106%;
+}
+
+/* renderer */
+#income-examples .income-card__photo {
+  background-position: var(--photo-pos);
+}
+
+/* =========================================================
+   SSOT PATCH (SP) — income breakdown
+   - bottom-sheet(fixed) は不採用
+   - SPは card-in-place（static open）を正とする
+   - 旧fixed定義は保持（互換/履歴）
+   v1 / 2026-02-05
+========================================================= */
+@media (max-width: 768px) {
+
+  /* 1) bottom-sheet fixed を強制終了（後勝ち＋importantで確殺） */
+  #income-examples .income-breakdown.is-open .income-breakdown__rows {
+    position: static !important;
+    inset: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    z-index: auto !important;
+
+    max-height: none !important;
+    overflow: visible !important;
+
+    padding: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+
+  /* 2) 暗幕（fixed前提）を消す */
+  /* SSOT: backdrop (div版) */
+  .income-breakdown-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 9990;
+    background: rgba(16, 34, 53, .32);
+    backdrop-filter: blur(6px);
+  }
+
+  #income-examples .income-breakdown.is-open {
+    position: relative;
+    z-index: 9991;
+  }
+
+  body.is-breakdown-open {
+    overflow: hidden;
+  }
+
+
+  /* 3) “押してる間だけ開く/閉じる”系の :active 地雷を無効化 */
+  #income-examples .income-breakdown:active {
+    max-height: none !important;
+  }
+}
+
+/* =========================================================
+   SSOT PATCH (SP) — income card: 1-view balance
+   - photo aspect locked
+   - photo breathing space
+   - breakdown padding tighten (slightly)
+========================================================= */
+@media (max-width: 768px) {
+
+  /* ① 写真の縦比を固定（詰まり/近さの原因を潰す） */
+  #income-examples .income-card__media img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    /* ← “横長で上品”な収まりに寄せる */
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ② 写真の上下の“間”をSSOT化（呼吸） */
+  #income-examples .income-card__media {
+    margin-top: 8px;
+    margin-bottom: 12px;
+  }
+
+  /* ③ 内訳ボックスの上下余白を少し締める（1ビュー収まり優先） */
+  #income-examples .income-breakdown__rows {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+}
+
+
+/* =========================================================
+   SSOT KILL (SP) — income breakdown
+   - NO toggle / NO bottom-sheet / ALWAYS open (static)
+   v1 / 2026-02-06
+========================================================= */
+@media (max-width: 768px) {
+
+  /* 内訳は常時表示（閉じない） */
+  #income-examples .income-breakdown__rows,
+  #income-examples .income-breakdown {
+    max-height: none !important;
+    overflow: visible !important;
+    position: static !important;
+    inset: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    z-index: auto !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+
+  /* 暗幕・フェード等は全殺し */
+  #income-examples .income-breakdown::before,
+  #income-examples .income-breakdown::after,
+  #income-examples .income-breakdown__rows::after {
+    content: none !important;
+  }
+
+  /* “押してる間だけ”系の地雷 */
+  #income-examples .income-breakdown:active {
+    max-height: none !important;
+  }
+
+  body.is-breakdown-open {
+    overflow: auto !important;
+  }
+
+  .income-breakdown-backdrop {
+    display: none !important;
+  }
+}
+
+/* =========================================================
+   SSOT FINAL: INCOME_EXAMPLES PHOTO (PC thumb only)
+   - >=769px: thumbnail (round / rounded)
+   - <=768px: keep current large photo
+========================================================= */
+
+/* PC〜タブレット：写真を“小窓”に */
+@media (min-width: 769px) {
+  #income-examples .income-card__top {
+    align-items: center;
+  }
+
+  #income-examples .income-card__photo {
+    width: 112px;
+    height: 112px;
+
+    border-radius: 999px;
+    /* ←丸型（角丸にするなら下を使う） */
+    /* border-radius: 18px; */
+
+    flex: 0 0 auto;
+    margin-left: auto;
+    box-shadow: 0 10px 22px rgba(16, 34, 53, .10);
+
+    background-position: var(--photo-pos);
+    background-size: cover;
+  }
+}
+
+
+/* =========================================================
+   Work SP Fixed CTA (SSOT)
+========================================================= */
+.work-sp-cta {
+  position: fixed;
+  left: 16px;
+  right: 16px;
+  bottom: 14px;
+  z-index: 1200;
+}
+
+@media (min-width: 900px) {
+  .work-sp-cta {
+    display: none;
+  }
+}
+
+
+/* PATCH: WORK title bg "WORK STYLE" — restore TOP-like presence (work only) */
+#workstyle .workstyle-head__bg {
+  text-transform: uppercase;
+  letter-spacing: .18em;
+  font-weight: 800;
+
+  /* size + presence */
+  font-size: clamp(44px, 7.2vw, 92px);
+  line-height: 1;
+  opacity: .10;
+
+  /* layout */
+  display: block;
+  text-align: center;
+  white-space: nowrap;
+
+  /* spacing: reduce “間延び” */
+  margin: 0 0 18px;
+}
+
+/* optional: if it's stuck left due to container rules */
+#workstyle .workstyle-head {
+  position: relative;
+}
+
+/* =========================
+
+/* PATCH: WORK bg text only (no foreground text) */
+.page-work-income #workstyle .workstyle-head {
+  position: relative;
+  overflow: visible;
+}
+
+.page-work-income #workstyle .workstyle-head__bg {
+  position: absolute;
+  inset: 0 0 auto 0;
+  transform: translateY(-10px);
+  text-align: center;
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
+}
+
+
+/* =========================
+   WORK: Income Case2 readability fix (page only)
+   Case2だけ濃すぎる/異形に見えるのを白フレームへ戻す
+========================= */
+
+
+
+
+/* =========================
+   WORK: Income cards per-case tint (page only)
+   “全部同じ水色”に見えるのを上品に差分回復
+========================= */
+
+
+/* PATCH: WORK Case2 separator lines (because Case2 is whitened) */
+
+/* =========================================================
+   SSOT FINAL OVERRIDE: toTop inside bottom-seat must NOT be fixed (SP)
+   - fixes WORK-only "toTop floats upward"
+========================================================= 
+@media (max-width: 899px){
+  .bottom-seat [data-to-top]{
+    position: static !important;
+    inset: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+
+    width: 46px !important;
+    height: 46px !important;
+    min-width: 46px !important;
+    min-height: 46px !important;
+
+    display: grid !important;
+    place-items: center !important;
+
+    margin: 0 !important;
+    transform: none !important;
+  }
+}*/
+/* =========================================================
+   SSOT FINAL: Income photo crop unified (SP)
+   - stop case-by-case visual drift
+========================================================= */
+@media (max-width: 767px) {
+
+  #income-examples .income-card__photo {
+    aspect-ratio: 16 / 6.6 !important;
+    background-position: 50% 20% !important;
+    /* ←顔基準で固定 */
+  }
+
+}
+
+/* =========================================================
+   SSOT: WORK BottomSeat PC fixed seat (safe)
+   - override common policy: body:not(.page-top) bottom-seat static
+========================================================= */
+@media (min-width: 900px) {
+  body.page-work-income .bottom-seat {
+    position: fixed !important;
+    right: 16px !important;
+    bottom: 16px !important;
+    z-index: 1200 !important;
+
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: 12px !important;
+
+    pointer-events: none !important;
+  }
+
+  body.page-work-income .bottom-seat>* {
+    pointer-events: auto !important;
+  }
+
+  /* footer safe area */
+  body.page-work-income footer {
+    padding-bottom: calc(56px + 16px + 24px) !important;
+  }
+}
+
+/* =========================================================
+   SSOT: WORK BottomSeat PC fixed seat (safe)
+   - override common policy that keeps non-TOP static
+========================================================= */
+@media (min-width: 900px) {
+  body.page-work-income .bottom-seat {
+    position: fixed !important;
+    right: 16px !important;
+    bottom: 16px !important;
+    z-index: 1200 !important;
+
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: 12px !important;
+
+    pointer-events: none !important;
+  }
+
+  body.page-work-income .bottom-seat>* {
+    pointer-events: auto !important;
+  }
+
+  /* footer safe area (avoid overlap at the very bottom) */
+  body.page-work-income footer {
+    padding-bottom: calc(56px + 16px + 24px) !important;
+  }
+}
+
+/* =========================================================
+   SSOT: WORK PC CTA -> compact bar (56px) inside work-footer__seat
+========================================================= */
+@media (min-width: 900px) {
+
+  /* seat: CTA + toTop inline */
+  body.page-work-income .work-footer__seat {
+    position: fixed !important;
+    right: 16px !important;
+    bottom: 16px !important;
+    z-index: 1200 !important;
+
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: 12px !important;
+
+    pointer-events: none !important;
+  }
+
+  body.page-work-income .work-footer__seat>* {
+    pointer-events: auto !important;
+  }
+
+  /* PC CTA outer capsule (glass) */
+  body.page-work-income .work-footer__seat .work-float-cta.pc-only {
+    position: static !important;
+    margin: 0 !important;
+
+    height: 56px !important;
+    border-radius: 999px !important;
+    background: rgba(255, 255, 255, .92) !important;
+    border: 1px solid rgba(16, 34, 53, .08) !important;
+    box-shadow: 0 12px 28px rgba(16, 34, 53, .10) !important;
+    backdrop-filter: blur(10px) !important;
+
+    overflow: visible !important;
+    padding: 4px 8px !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  /* kill card padding + make inline */
+  body.page-work-income .work-footer__seat .work-float-cta__card {
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+
+  /* keep copy but compact */
+  body.page-work-income .work-footer__seat .work-float-cta__title,
+  body.page-work-income .work-footer__seat .work-float-cta__sub {
+    margin: 0 !important;
+    white-space: nowrap !important;
+    line-height: 1.05 !important;
+  }
+
+  body.page-work-income .work-footer__seat .work-float-cta__title {
+    font-size: 11px !important;
+    font-weight: 800 !important;
+    opacity: .84 !important;
+  }
+
+  body.page-work-income .work-footer__seat .work-float-cta__sub {
+    font-size: 10px !important;
+    opacity: .66 !important;
+  }
+
+  /* buttons */
+  body.page-work-income .work-footer__seat .work-float-cta__btn {
+    height: 46px !important;
+    padding: 0 20px !important;
+    border-radius: 999px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    white-space: nowrap !important;
+  }
+
+  body.page-work-income .work-footer__seat .work-float-cta__ghost {
+    padding: 0 10px !important;
+    white-space: nowrap !important;
+  }
+
+  /* toTop match (round enough) */
+  body.page-work-income .work-footer__seat [data-to-top] {
+    width: 56px !important;
+    height: 56px !important;
+    border-radius: 999px !important;
+    display: grid !important;
+    place-items: center !important;
+  }
+}
+
+/* =========================================================
+   PATCH: WORK PC CTA width safety (kill sub + clamp title)
+========================================================= */
+@media (min-width: 900px) {
+
+  /* seat itself never overflow viewport */
+  body.page-work-income .work-footer__seat {
+    max-width: calc(100vw - 32px) !important;
+    flex-wrap: nowrap !important;
+  }
+
+  /* CTA max width: (viewport - left/right padding - toTop - gap) */
+  body.page-work-income .work-footer__seat .work-float-cta.pc-only {
+    max-width: calc(100vw - 32px - 56px - 12px) !important;
+  }
+
+  /* hide sub line on PC (keeps elegance + fixes overflow) */
+  body.page-work-income .work-footer__seat .work-float-cta__sub {
+    display: none !important;
+  }
+
+  /* clamp title so it never pushes outside */
+  body.page-work-income .work-footer__seat .work-float-cta__title {
+    max-width: 260px !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+}
+
+/* =========================================================
+   PATCH: WORK seat visual alignment + safe inset
+========================================================= */
+@media (min-width: 900px) {
+
+  /* a little more air from edges (luxury spacing) */
+  body.page-work-income .work-footer__seat {
+    right: 20px !important;
+    bottom: 20px !important;
+  }
+
+  /* hard-center both items by height */
+  body.page-work-income .work-footer__seat {
+    align-items: center !important;
+  }
+
+  /* toTop: make it exactly 56x56 and center the glyph */
+  body.page-work-income .work-footer__seat [data-to-top] {
+    width: 56px !important;
+    height: 56px !important;
+    padding: 0 !important;
+    line-height: 1 !important;
+    display: grid !important;
+    place-items: center !important;
+  }
+
+  /* if arrow is text "↑", nudge to optical center */
+  body.page-work-income .work-footer__seat [data-to-top] {
+    font-size: 18px !important;
+    transform: translateY(-1px) !important;
+  }
+}
+
+/* =========================================================
+   WORK: unify toTop with CTA glass material
+========================================================= */
+@media (min-width: 900px) {
+
+  body.page-work-income .work-footer__seat [data-to-top] {
+    width: 56px !important;
+    height: 56px !important;
+    border-radius: 999px !important;
+
+    /* CTAと同素材 */
+    background: rgba(255, 255, 255, .92) !important;
+    border: 1px solid rgba(16, 34, 53, .08) !important;
+    box-shadow: 0 12px 28px rgba(16, 34, 53, .10) !important;
+    backdrop-filter: blur(10px) !important;
+
+    color: #10426F !important;
+  }
+
+  /* 既存の赤枠殺す */
+  body.page-work-income .work-footer__seat .back-to-top {
+    border: 0 !important;
+  }
+}
+
+/* =========================================================
+   WORK: SVG arrow polish
+========================================================= */
+@media (min-width: 900px) {
+
+  body.page-work-income .work-footer__seat [data-to-top] {
+    display: grid !important;
+    place-items: center !important;
+    padding: 0 !important;
+  }
+
+  body.page-work-income .work-footer__seat [data-to-top] svg {
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  body.page-work-income .work-footer__seat [data-to-top] path {
+    stroke: #AD853F !important;
+    /* 金にするなら */
+  }
+}
+
+/* =========================================================
+   WORK SSOT: bottom-seat is the seat (CTA left, arrow right)
+========================================================= */
+@media (min-width: 900px) {
+
+  body.page-work-income .bottom-seat {
+    position: fixed !important;
+    right: 20px !important;
+    bottom: 20px !important;
+    z-index: 1200 !important;
+
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: 12px !important;
+    flex-wrap: nowrap !important;
+
+    pointer-events: none !important;
+  }
+
+  body.page-work-income .bottom-seat>* {
+    pointer-events: auto !important;
+  }
+
+  /* CTA block */
+  body.page-work-income .bottom-seat .work-float-cta {
+    order: 1 !important;
+    flex: 0 1 auto !important;
+    min-width: 0 !important;
+  }
+
+  /* arrow right */
+  body.page-work-income .bottom-seat [data-to-top] {
+    order: 2 !important;
+    flex: 0 0 56px !important;
+    width: 56px !important;
+    height: 56px !important;
+    display: grid !important;
+    place-items: center !important;
+    margin: 0 !important;
+  }
+}
+
+@media (min-width: 900px) {
+
+  /* ✅ arrow: stop being a free agent (fixed/absolute kill) */
+  body.page-work-income .bottom-seat [data-to-top],
+  body.page-work-income .bottom-seat .back-to-top {
+    position: static !important;
+    inset: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    top: auto !important;
+    transform: none !important;
+    margin: 0 !important;
+  }
+
+  /* ✅ keep arrow on the right */
+  body.page-work-income .bottom-seat .work-float-cta {
+    order: 1 !important;
+  }
+
+  body.page-work-income .bottom-seat [data-to-top] {
+    order: 2 !important;
+  }
+}
+
+@media (min-width: 900px) {
+
+  /* seat position: avoid footer nav (FAQ etc.) */
+  body.page-work-income .bottom-seat {
+    right: 28px !important;
+    /* 16〜32で好み。まず28 */
+    bottom: 28px !important;
+    /* 16〜32で好み。まず28 */
+    max-width: calc(100vw - 56px) !important;
+    /* 画面外はみ出し防止 */
+  }
+
+  /* CTA container: clip to rounded pill and prevent spill */
+  body.page-work-income .bottom-seat .work-float-cta {
+    overflow: hidden !important;
+    border-radius: 999px !important;
+    /* 角丸の外漏れを止める */
+  }
+
+  /* CTA card inside: remove “card padding box” that looks like spill */
+  body.page-work-income .bottom-seat .work-float-cta__card {
+    overflow: hidden !important;
+    border-radius: 999px !important;
+  }
+}
+
+@media (min-width: 900px) {
+  body.page-work-income .bottom-seat {
+    right: 40px !important;
+  }
+}
+
+@media (min-width: 900px) {
+
+  /* make WORK CTA a pill (like TOP) */
+  body.page-work-income .bottom-seat .work-float-cta {
+    border-radius: 999px !important;
+    overflow: hidden !important;
+    background: rgba(255, 255, 255, .92) !important;
+    border: 1px solid rgba(16, 34, 53, .08) !important;
+    box-shadow: 0 12px 28px rgba(16, 34, 53, .10) !important;
+    backdrop-filter: blur(10px) !important;
+  }
+
+  /* kill inner card box look */
+  body.page-work-income .bottom-seat .work-float-cta__card {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+
+  /* keep content inline + nice density */
+  body.page-work-income .bottom-seat .work-float-cta__title,
+  body.page-work-income .bottom-seat .work-float-cta__sub {
+    display: none !important;
+    /* PC bottom-seatは“ボタンだけ”で美しく */
+  }
+
+  /* row layout (btn + ghost) */
+  body.page-work-income .bottom-seat .work-float-cta__btn,
+  body.page-work-income .bottom-seat .work-float-cta__ghost {
+    height: 44px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+    font-weight: 800 !important;
+    letter-spacing: .02em !important;
+  }
+
+  body.page-work-income .bottom-seat .work-float-cta__btn {
+    height: 46px !important;
+    padding: 0 22px !important;
+    background: #AD853F !important;
+    color: #fff !important;
+    border: 0 !important;
+    border-radius: 999px !important;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .26) !important;
+    margin-left: 6px !important;
+    /* 左カーブ密着 */
+  }
+
+  body.page-work-income .bottom-seat .work-float-cta__ghost {
+    background: transparent !important;
+    border: 0 !important;
+    padding: 0 12px !important;
+    color: #AD853F !important;
+  }
+}
+
+@media (min-width: 900px) {
+
+  /* 外枠ピルの左右余白を調整 */
+  body.page-work-income .bottom-seat .work-float-cta {
+    padding-left: 14px !important;
+    /* ← ここを縮める（今より小さく） */
+    padding-right: 8px !important;
+    /* 右はややタイト */
+  }
+
+  /* ボタン群を少し左へ寄せる */
+  body.page-work-income .bottom-seat .work-float-cta__card {
+    margin-left: -4px !important;
+    /* 微調整用。-2〜-6で好み */
+  }
+
+}
+
+@media (min-width: 900px) {
+
+  /* 外ピル：左右に“クッション”を戻す（隠さない） */
+  body.page-work-income .bottom-seat .work-float-cta {
+    overflow: visible !important;
+    border-radius: 999px !important;
+    padding: 0 10px 0 14px !important;
+    /* 上 右 下 左 */
+    box-sizing: border-box !important;
+  }
+
+  /* 内側card：余白はゼロにして、外ピルのクッションだけで制御 */
+  body.page-work-income .bottom-seat .work-float-cta__card {
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 10px !important;
+    width: auto !important;
+    max-width: none !important;
+  }
+
+  /* 念のため：マイナス寄せを禁止（はみ出しの元） */
+  body.page-work-income .bottom-seat .work-float-cta__btn,
+  body.page-work-income .bottom-seat .work-float-cta__ghost {
+    margin: 0 !important;
+    transform: none !important;
+  }
+}
+
+@media (min-width: 900px) {
+
+  /* WORK PC: stop click stealing (FAQ click opens register) */
+  body.page-work-income .bottom-seat .work-float-cta__btn,
+  body.page-work-income .bottom-seat .work-float-cta__ghost {
+    position: relative !important;
+    inset: auto !important;
+    transform: none !important;
+    z-index: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  /* もし登録が全面に被さってたら強制で“自分の幅だけ”にする */
+  body.page-work-income .bottom-seat .work-float-cta__btn {
+    width: auto !important;
+  }
+
+  /* 念のため：カードの疑似要素がクリックを奪わないように */
+  body.page-work-income .bottom-seat .work-float-cta__card::before,
+  body.page-work-income .bottom-seat .work-float-cta__card::after {
+    pointer-events: none !important;
+  }
+}
+
+/* =========================================================
+   LUX FIX: dock floating CTA when footer is in view
+========================================================= */
+@media (min-width: 900px) {
+  body.page-work-income .work-float-cta {
+    transition: transform .22s ease, opacity .22s ease;
+  }
+
+  body.page-work-income.is-footer-dock .work-float-cta {
+    transform: translateY(140px);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  body.page-work-income.is-footer-dock [data-to-top] {
+    transform: translateY(140px);
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+/* =========================================================
+   WORK: Dock 2-step (soft=clickable / hard=hidden)
+========================================================= */
+@media (min-width: 960px) {
+
+  body.page-work-income aside.work-float-cta,
+  body.page-work-income [data-to-top] {
+    transition: opacity .18s ease;
+  }
+
+  /* soft: 薄くするが押せる */
+  body.page-work-income.is-footer-dock-soft aside.work-float-cta,
+  body.page-work-income.is-footer-dock-soft [data-to-top] {
+    opacity: .35;
+    pointer-events: auto;
+    transform: none;
+  }
+
+  /* hard: 完全に消して触れない */
+  body.page-work-income.is-footer-dock aside.work-float-cta,
+  body.page-work-income.is-footer-dock [data-to-top] {
+    opacity: 0;
+    pointer-events: none;
+    transform: none;
+  }
+}
+
+/* =========================================
+   PATCH: WORK docked CTA must stay visible
+   - is-docked でも opacity:0 に落ちないようにする
+   - 押し出し(transform)もここで殺す
+========================================= */
+body.page-work-income .floating-cta.is-docked {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  transform: none !important;
+}
+
+body.page-work-income .floating-cta {
+  transform: none !important;
+}
+
+/* =========================================================
+   SSOT OVERRIDE (WORK): floating CTA visibility must win
+   - is-visible なのに opacity=0 になる事故を潰す
+   - 押し込み transform も同時に止血
+========================================================= */
+body.page-work-income .floating-cta.is-visible {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  transform: none !important;
+}
+
+/* フッター付近で is-docked が付いても「沈めない」 */
+body.page-work-income .floating-cta.is-docked {
+  position: fixed !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  transform: none !important;
+  margin: 0 !important;
+}
+
+/* =========================================================
+   SSOT: Back to top must be visible & fixed
+========================================================= */
+[data-to-top] {
+  position: fixed !important;
+  right: 22px !important;
+  bottom: 22px !important;
+  opacity: 1 !important;
+  display: grid !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  z-index: 1300 !important;
+}
+
+/* =========================================================
+   SSOT FINAL (WORK): toTop must be fixed even inside seats
+   - beats .bottom-seat/.work-footer__seat static!important rules
+========================================================= */
+@media (min-width:900px) {
+
+  body.page-work-income .bottom-seat [data-to-top],
+  body.page-work-income .work-footer__seat [data-to-top],
+  body.page-work-income footer.work-footer [data-to-top] {
+    position: fixed !important;
+    inset: auto !important;
+    right: calc(22px + var(--cta-w, 0px) + 12px) !important;
+    bottom: 22px !important;
+  }
+
+}
+
+@media (max-width:899px) {
+
+  body.page-work-income .bottom-seat [data-to-top] {
+    position: static !important;
+    right: auto !important;
+    bottom: auto !important;
+  }
+
+}
+
+/* =========================================================
+   WORK SSOT: avoid overlap (toTop sits next to CTA)
+   - follow CTA width via CSS var
+========================================================= */
+body.page-work-income {
+  --cta-w: 0px;
+  /* JSで入れる */
+  --seat-gap: 12px;
+  /* CTAと矢印の間隔 */
+}
+
+/* 右下の矢印を「CTAの左側」へ逃がす（被りゼロ） */
+body.page-work-income [data-to-top] {
+  right: calc(22px + var(--cta-w) + var(--seat-gap)) !important;
+}
+
+/* =========================================================
+   WORK SSOT: reserve space for toTop (avoid overlap)
+   - keep toTop fixed at right-bottom
+   - shift CTA left by arrow size + gap
+========================================================= */
+@media (min-width: 960px) {
+
+  body.page-work-income .bottom-seat .work-float-cta,
+  body.page-work-income .bottom-seat .floating-cta {
+    margin-right: 68px !important;
+    /* 56(toTop) + 12(gap) */
+    max-width: calc(100vw - 32px - 68px) !important;
+  }
+
+  /* 念のため：矢印は常に最前面＆席固定 */
+  body.page-work-income [data-to-top] {
+    right: 22px !important;
+    bottom: 22px !important;
+    z-index: 2000 !important;
+  }
+}
+
+/* =========================================================
+   WORK FINAL FIX: prevent overlap + keep clickable
+   - toTop inside .bottom-seat must be IN-FLOW (static)
+   - disable dock-hide behavior for WORK
+========================================================= */
+@media (min-width: 900px) {
+
+  /* bottom-seat内のtoTopはフローに戻して「被り」を根絶 */
+  body.page-work-income .bottom-seat [data-to-top] {
+    position: static !important;
+    inset: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+}
+
+/* dock時に消すルールが残ってても、WORKでは消さない */
+body.page-work-income.is-footer-dock [data-to-top],
+body.page-work-income.is-footer-dock-soft [data-to-top],
+body.page-work-income.is-footer-dock .work-float-cta,
+body.page-work-income.is-footer-dock-soft .work-float-cta {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  transform: none !important;
+}
+
+/* ==========================================
+   WORK: anchor landing fix (FAQ visible)
+========================================== */
+#money-faq {
+  scroll-margin-top: calc(var(--header-h, 89px) + 20px);
+}
+
+/* WORK: ensure FAQ link is on top + clickable */
+body.page-work-income .work-float-cta__btn,
+body.page-work-income .work-float-cta__ghost {
+  position: relative !important;
+}
+
+body.page-work-income .work-float-cta__btn {
+  z-index: 1 !important;
+}
+
+body.page-work-income .work-float-cta__ghost {
+  z-index: 2 !important;
+  pointer-events: auto !important;
+}
+
+/* もし装飾レイヤーが踏んでるなら */
+body.page-work-income .work-float-cta__btn::before,
+body.page-work-income .work-float-cta__btn::after {
+  pointer-events: none !important;
+}
+
+/* kill CTA capsule (WORK SP) */
+body.page-work-income .bottom-seat aside.work-float-cta {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+/* ===== WORK page: WorkStyle nav (match TOP) ===== */
+body.page-work-income .workstyle-cards__rail-wrap {
+  position: relative;
+}
+
+body.page-work-income .workstyle-cards__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  border: 1px solid rgba(16, 66, 111, .14);
+  background: rgba(255, 255, 255, .92);
+  box-shadow: 0 8px 24px rgba(16, 34, 53, .08);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease;
+}
+
+body.page-work-income .workstyle-cards__rail-wrap:hover .workstyle-cards__nav,
+body.page-work-income .workstyle-cards__nav:hover {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+body.page-work-income .workstyle-cards__nav--prev {
+  left: -16px;
+}
+
+body.page-work-income .workstyle-cards__nav--next {
+  right: -16px;
+}
+
+body.page-work-income .workstyle-cards__rail::after {
+  content: "ドラッグできます →";
+  position: absolute;
+  right: 16px;
+  bottom: 8px;
+  font-size: 12px;
+  opacity: .5;
+}
+
+/* ===== WORK: income photo placement tweak (PC) ===== */
+@media (min-width: 769px) {
+  #income-examples .income-card__photo {
+    margin-left: auto;
+    margin-right: 10px;
+    /* まずは 8〜12px で調整 */
+  }
+}
+
+@media (min-width: 769px) {
+  #income-examples .income-card__top {
+    grid-template-columns: clamp(350px, 28vw, 380px) 92px;
+    justify-content: start !important;
+    column-gap: 10px !important;
+  }
+
+  #income-examples .income-card__photo {
+    margin-left: 0 !important;
+    justify-self: start !important;
+  }
+}

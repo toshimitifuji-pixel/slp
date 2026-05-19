@@ -1,0 +1,4394 @@
+/* =========================================================
+   bbj-common.css (SSOT)
+   Scope:
+   - bj-primary (A)
+   - bj-help / bj-card (B/C)
+   - bj-disc (circle media)
+   Notes:
+   - start-card / cta-primary__avatar はこのファイルから分離（別SSOTへ）
+========================================================= */
+
+/* -------------------------
+   0) Tokens
+------------------------- */
+:root {
+  --bj-ink: #102235;
+  --bj-navy: #10426F;
+  --bj-peach: #FFCFC2;
+  --bj-peach-soft: #FFE4DE;
+  --bj-gold: #EEB039;
+  --bj-card: #fff;
+
+  --bj-line: rgba(16, 34, 53, .08);
+  --bj-shadow: 0 18px 44px rgba(16, 34, 53, .10);
+
+  --bj-radius-lg: 28px;
+  --bj-radius-md: 26px;
+  --bj-radius-sm: 18px;
+
+  --bj-gap: 22px;
+
+  /* disc sizes */
+  --bj-disc: 200px;
+  /* primary default */
+  --bj-disc-card: 180px;
+  /* B/C */
+  --bj-disc-sp: 160px;
+  /* --- Layout vars (SSOT) --- */
+  --cta-float-w: 0px;
+  /* PC浮遊CTAの幅（JSが更新） */
+  --bbj-seat-h: 0px;
+  /* SP固定CTA(Seat)の高さ（JSが更新してもOK） */
+}
+
+/* -------------------------
+   1) Base typography helpers
+------------------------- */
+.bj-block {
+  margin: 0 0 26px;
+}
+
+.bj-kicker {
+  margin: 0 0 8px;
+  font-size: 12px;
+  letter-spacing: .04em;
+  opacity: .78;
+}
+
+.bj-title {
+  margin: 0 0 8px;
+  font-size: 28px;
+  line-height: 1.15;
+  font-weight: 800;
+}
+
+.bj-en {
+  margin: 0 0 14px;
+  font-size: 12px;
+  letter-spacing: .04em;
+  opacity: .62;
+}
+
+.bj-body {
+  margin: 0 0 18px;
+  font-size: 13px;
+  line-height: 1.75;
+  opacity: .86;
+  max-width: 40em;
+}
+
+/* -------------------------
+   2) Buttons
+------------------------- */
+.bj-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  padding: 12px 18px;
+  min-width: 220px;
+  min-height: 48px;
+
+  font-weight: 800;
+  text-decoration: none;
+  white-space: nowrap;
+
+  border: 1px solid var(--bj-line);
+}
+
+.bj-btn--primary {
+  background: #E88B7A;
+  color: #fff;
+  border-color: transparent;
+}
+
+.bj-btn--soft {
+  background: var(--bj-gold);
+  color: var(--bj-ink);
+  border-color: transparent;
+}
+
+.bj-btn--ghost {
+  background: #fff;
+  color: var(--bj-ink);
+}
+
+/* -------------------------
+   3) Disc (circle media)
+------------------------- */
+.bj-disc {
+  width: var(--bj-disc);
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+}
+
+.bj-disc__label {
+  font-weight: 900;
+  letter-spacing: .10em;
+}
+
+.bj-disc--gold {
+  background: rgba(238, 176, 57, .55);
+  box-shadow: inset 0 0 0 1px rgba(16, 34, 53, .06);
+}
+
+.bj-disc--ink {
+  background: rgba(255, 255, 255, .22);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .16);
+}
+
+.bj-disc--img {
+  background: var(--disc-img) center / contain no-repeat;
+  background-color: #fff;
+  box-shadow: none;
+}
+
+.bj-disc--img::after {
+  content: none;
+}
+
+/* -------------------------
+   4) A: Primary card
+------------------------- */
+.bj-primary {
+  border-radius: var(--bj-radius-lg);
+  background: var(--bj-peach-soft);
+  border: 1px solid rgba(16, 34, 53, .06);
+  box-shadow: var(--bj-shadow);
+  overflow: hidden;
+}
+
+.bj-primary__inner {
+  padding: 26px 26px;
+  display: grid;
+  grid-template-columns: 240px 1fr 360px;
+  gap: var(--bj-gap);
+  align-items: center;
+  min-width: 0;
+}
+
+.bj-note {
+  background: rgba(255, 255, 255, .65);
+  border: 1px solid var(--bj-line);
+  border-radius: var(--bj-radius-sm);
+  padding: 14px 16px;
+  font-size: 12px;
+  line-height: 1.7;
+  margin: 0 0 14px;
+}
+
+/* === bj-note layout extend === */
+.bj-note__inner {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.bj-note__text {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.bj-note__text p {
+  margin: 0;
+}
+
+.bj-note__illust {
+  flex: 0 0 96px;
+  width: 96px;
+}
+
+.bj-note__illust img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* -------------------------
+   5) B/C: Help grid + cards
+------------------------- */
+.bj-help__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--bj-gap);
+  align-items: stretch;
+  min-width: 0;
+}
+
+.bj-card {
+  border-radius: var(--bj-radius-md);
+  border: 1px solid rgba(16, 34, 53, .06);
+  box-shadow: var(--bj-shadow);
+  overflow: hidden;
+  min-width: 0;
+}
+
+.bj-card__inner {
+  padding: 24px 24px;
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: var(--bj-gap);
+  align-items: center;
+  min-height: 260px;
+  min-width: 0;
+}
+
+.bj-card--light {
+  background: #FFF6F3;
+}
+
+.bj-card--dark {
+  background: #123A60;
+  color: #fff;
+  border-color: rgba(255, 255, 255, .10);
+}
+
+.bj-card--dark .bj-kicker,
+.bj-card--dark .bj-en,
+.bj-card--dark .bj-body {
+  opacity: .78;
+}
+
+.bj-card--dark .bj-title {
+  color: #fff;
+}
+
+/* B/C のdiscは少し小さく */
+.bj-card .bj-disc {
+  width: var(--bj-disc-card);
+}
+
+/* FAQは白ディスクにする */
+.bj-card[data-bj-card="faq"] .bj-disc {
+  background: rgba(255, 255, 255, .96);
+  color: var(--bj-ink);
+  box-shadow: 0 14px 30px rgba(16, 34, 53, .12);
+}
+
+/* text cut / grid shrink safety */
+.bj-card__text {
+  min-width: 0;
+}
+
+.bj-card__text .bj-body {
+  max-width: none;
+}
+
+/* -------------------------
+   6) Responsive
+   ※ブレイクポイントは “サイト共通” に寄せるのが安全
+------------------------- */
+@media (max-width: 959px) {
+
+  .bj-primary__inner {
+    grid-template-columns: 1fr;
+    text-align: left;
+  }
+
+  .bj-help__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bj-card__inner {
+    grid-template-columns: 1fr;
+    min-height: unset;
+  }
+
+  .bj-disc {
+    width: var(--bj-disc-sp);
+  }
+
+  .bj-card .bj-disc {
+    width: var(--bj-disc-sp);
+  }
+
+  .bj-btn {
+    min-width: 0;
+    width: 100%;
+  }
+}
+
+/* =========================
+   FLOATING CTA (SSOT)
+========================= */
+.floating-cta {
+  z-index: 50;
+  width: 320px;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 18px 44px rgba(16, 34, 53, .18);
+  background: rgba(255, 255, 255, .92);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(16, 34, 53, .10);
+}
+
+/* PCだけ出す（TOWAもTOPも共通で使える） */
+@media (max-width: 899px) {
+  .floating-cta {
+    display: none;
+  }
+}
+
+/* 右追従CTAが“読む邪魔”しないよう少しだけ薄く */
+.floating-cta:hover {
+  transform: translateY(-1px);
+}
+
+/* ===== Safe area：右追従が本文と被る時用 ===== */
+.has-floating-cta {
+  padding-right: 360px;
+  /* 320 + 余白 */
+}
+
+@media (max-width: 1200px) {
+  .has-floating-cta {
+    padding-right: 0;
+  }
+
+  /* 狭い時は被り許容 or CTA非表示運用 */
+}
+
+/* =========================
+   WORKSTYLE — RAIL & MINI (SSOT)
+   Shared across pages (work / TOP / TOWA)
+========================= */
+
+/* rail wrapper */
+.workstyle-cards {
+  margin-top: 22px;
+  overflow-x: visible;
+}
+
+.workstyle-cards__rail {
+  width: 100dvw;
+  margin-left: calc(50% - 50dvw);
+  margin-right: calc(50% - 50dvw);
+  overflow: visible;
+}
+
+/* NOTE: below is legacy base. FINAL OVERRIDE section is the source of truth. */
+
+/* PC rail scroller (ONLY scroller) */
+#workstyle .js-ws-cards {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 18px;
+  align-items: stretch;
+
+  overflow-x: auto;
+  overflow-y: visible;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+
+  scroll-snap-type: none !important;
+  scroll-behavior: auto;
+
+  padding: 36px 24px 22px;
+  scroll-padding-left: 24px;
+
+  scrollbar-width: none;
+}
+
+#workstyle .js-ws-cards::-webkit-scrollbar {
+  height: 0;
+}
+
+#workstyle .js-ws-cards>.ws-card {
+  flex: 0 0 360px;
+  width: 360px;
+  min-width: 360px;
+  max-width: 360px;
+  scroll-snap-align: start;
+}
+
+/* =========================================
+   PATCH: WS Card — luxury readability (SSOT)
+   CSS only / no HTML change
+========================================= */
+#workstyle .js-ws-cards>.ws-card {
+  padding: 14px 16px;
+  min-height: 108px;
+  text-align: left;
+
+  font-size: 13px;
+  line-height: 1.58;
+  letter-spacing: .02em;
+
+  border: 1px solid rgba(16, 66, 111, 0.16);
+  border-radius: 18px;
+
+  box-shadow:
+    0 10px 24px rgba(16, 66, 111, 0.08),
+    0 1px 0 rgba(255, 255, 255, 0.55) inset;
+
+  -webkit-tap-highlight-color: transparent;
+}
+
+#workstyle .js-ws-cards>.ws-card:hover {
+  border-color: rgba(16, 66, 111, 0.24);
+  box-shadow:
+    0 14px 34px rgba(16, 66, 111, 0.10),
+    0 1px 0 rgba(255, 255, 255, 0.6) inset;
+}
+
+#workstyle .js-ws-cards>.ws-card:active {
+  transform: translateY(1px);
+  box-shadow:
+    0 8px 18px rgba(16, 66, 111, 0.10),
+    0 1px 0 rgba(255, 255, 255, 0.55) inset;
+}
+
+@media (max-width: 899px) {
+  #workstyle .js-ws-cards>.ws-card {
+    padding: 15px 16px;
+    min-height: 116px;
+    border-radius: 20px;
+  }
+}
+
+
+/* SP adjustments */
+@media (max-width: 899px) {
+  #workstyle .js-ws-cards {
+    padding: 28px 18px 18px;
+    scroll-padding-left: 18px;
+    gap: 14px;
+    scroll-snap-type: x proximity;
+  }
+
+  #workstyle .js-ws-cards>.ws-card {
+    flex-basis: 320px;
+    width: 320px;
+    min-width: 320px;
+    max-width: 320px;
+  }
+}
+
+/* mini rail */
+.workstyle-mini {
+  display: none;
+  margin-top: 14px;
+  overflow-x: hidden;
+  overflow-y: visible;
+  gap: 10px;
+  scroll-snap-type: none !important;
+  -webkit-overflow-scrolling: touch;
+  padding: 6px 2px 10px;
+}
+
+.ws-mini {
+  min-width: 180px;
+  scroll-snap-align: start;
+  border-radius: 16px;
+  border: 1px solid rgba(16, 34, 53, .12);
+  background: #fff;
+  padding: 10px;
+  text-align: left;
+}
+
+.ws-mini__label {
+  font-size: 12px;
+  font-weight: 900;
+  color: #102235;
+}
+
+.ws-mini__value {
+  margin-top: 8px;
+  font-weight: 900;
+  font-size: 14px;
+  color: #102235;
+}
+
+@media (max-width: 899px) {
+  .workstyle-mini {
+    display: flex;
+    margin-top: 10px;
+    gap: 8px;
+    padding: 6px 14px 10px;
+    scroll-padding-left: 14px;
+
+    overflow-x: auto;
+  }
+
+  .ws-mini {
+    min-width: 168px;
+    padding: 8px 10px;
+    border-radius: 14px;
+  }
+
+  .ws-mini__label {
+    font-size: 11px;
+  }
+
+  .ws-mini__value {
+    margin-top: 6px;
+    font-size: 13px;
+    line-height: 1.25;
+  }
+}
+
+/* mini variants */
+.ws-mini--aqua {
+  background: rgba(147, 225, 240, .12);
+}
+
+.ws-mini--peach {
+  background: rgba(255, 207, 194, .18);
+}
+
+.ws-mini--mint {
+  background: rgba(125, 220, 210, .12);
+}
+
+.ws-mini--sand {
+  background: rgba(255, 222, 160, .14);
+}
+
+.ws-mini--royal {
+  background: rgba(24, 54, 150, .10);
+}
+
+.ws-mini--navy {
+  background: rgba(16, 66, 111, .92);
+}
+
+.ws-mini--navy .ws-mini__label,
+.ws-mini--navy .ws-mini__value {
+  color: rgba(255, 255, 255, .90);
+}
+
+/* weekday chips (if used) */
+#workstyle .ws-days {
+  display: flex;
+  gap: 6px;
+  flex-wrap: nowrap;
+}
+
+#workstyle .ws-day {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+  min-width: 28px;
+  padding: 0 8px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  border-radius: 16px;
+  white-space: nowrap;
+}
+
+/* 端でブラウザの戻る/進むスワイプに吸われるのを抑える */
+.js-ws-cards {
+  overscroll-behavior-x: contain;
+  overscroll-behavior-y: auto;
+}
+
+/* さらに強め（ページ全体にも効かせるなら） */
+html,
+/* NOTE: WORKSTYLE SSOT — below "FINAL OVERRIDE" wins. Above is legacy/base; avoid editing unless you know precedence. */
+/* NOTE: When adjusting snap/padding/card width, edit ONLY within this FINAL OVERRIDE block. */
+
+/* NOTE: snap rules are intentionally defined here (SSOT). PC snap OFF, SP snap ON. */
+
+
+body {
+  overscroll-behavior-x: none;
+}
+
+
+/* =========================================================
+   SSOT: WS Card Theme (restore colored cards on PC/SP)
+   - depends on classes: .ws-card--aqua/navy/peach/mint/sand/royal
+   - keep in bbj-common.css so TOP + work_income stay identical
+========================================================= */
+
+/* card surface */
+#workstyle .ws-card {
+  border: 1px solid rgba(16, 66, 111, 0.14);
+  border-radius: 22px;
+  box-shadow:
+    0 18px 44px rgba(16, 34, 53, 0.10),
+    0 1px 0 rgba(255, 255, 255, .65) inset;
+}
+
+/* theme backgrounds */
+
+/* text contrast for dark card */
+#workstyle .ws-card--navy,
+#workstyle .ws-card--navy * {
+  color: #F6FDFF;
+}
+
+#workstyle .ws-card--navy .ws-day {
+  border-color: rgba(255, 255, 255, .22);
+}
+
+#workstyle .ws-card--navy .ws-day.is-on {
+  background: rgba(255, 255, 255, .92);
+  color: #10426F;
+}
+
+/* badge strip */
+#workstyle .ws-card__badge {
+  border-radius: 999px;
+  border: 1px solid rgba(16, 66, 111, .12);
+  background: rgba(255, 255, 255, .60);
+}
+
+#workstyle .ws-card__badge--navy {
+  background: rgba(255, 255, 255, .18);
+  border-color: rgba(255, 255, 255, .22);
+}
+
+/* photo ring a bit “premium” */
+#workstyle .ws-card__photo {
+  border: 8px solid rgba(255, 255, 255, .55);
+  box-shadow: 0 10px 24px rgba(16, 34, 53, .12);
+}
+
+#workstyle .ws-card--navy .ws-card__photo {
+  border-color: rgba(255, 255, 255, .28);
+}
+
+/* =========================================================
+   PATCH (SSOT): WORKSTYLE rail background — kill gray layer
+========================================================= */
+/* NOTE: SP also uses BIG RAIL (mini is disabled) */
+
+
+/* card background */
+#workstyle .ws-card--navy {
+  color: #fff;
+}
+
+/* badge background (pill) */
+#workstyle .ws-card__badge {
+  border-radius: 999px;
+}
+
+
+/* navy: badge + meta readability */
+body #workstyle .ws-card--navy .ws-card__meta,
+body #workstyle .ws-card--navy .ws-card__persona,
+body #workstyle .ws-card--navy .ws-card__label {
+  color: rgba(255, 255, 255, .92);
+}
+
+body #workstyle .ws-card--navy .ws-day {
+  color: rgba(255, 255, 255, .92);
+  border-color: rgba(255, 255, 255, .22);
+}
+
+body #workstyle .ws-card--navy .ws-day.is-on {
+  background: rgba(255, 255, 255, .92);
+  color: rgba(16, 66, 111, .95);
+}
+
+/* light themes: keep text dark */
+body #workstyle .ws-card--aqua,
+#workstyle .ws-card--mint,
+#workstyle .ws-card--peach,
+#workstyle .ws-card--sand,
+#workstyle .ws-card--royal {
+  color: inherit;
+}
+
+/* =========================================================
+   WORKSTYLE — PC 3-cards view (FINAL VISUAL)
+   - Left padding only / Right edge flush
+   - Works with JS infinite rail (snap OFF on PC)
+========================================================= */
+
+@media (min-width: 900px) {
+
+  /* SSOT FIX: PC snap OFF (infinite rail relies on jump) */
+  #workstyle .js-ws-cards {
+    scroll-snap-type: none !important;
+  }
+
+  #workstyle .js-ws-cards>.ws-card {
+    scroll-snap-align: none !important;
+  }
+
+
+  /* scroller */
+  #workstyle .js-ws-cards {
+    padding-left: 24px;
+    /* 左だけ余白 */
+    padding-right: 0;
+    /* 右はゼロ */
+    gap: 18px;
+
+    /* 念押し：PCはsnap完全OFF */
+    scroll-snap-type: none;
+  }
+
+  /* card size: 3枚見えの基準 */
+  #workstyle .js-ws-cards>.ws-card {
+    flex: 0 0 calc((100vw - 24px - 36px) / 3);
+    width: calc((100vw - 24px - 36px) / 3);
+    min-width: 360px;
+    /* 下限（狭すぎ防止） */
+    max-width: 420px;
+    /* 上限（広すぎ防止） */
+  }
+}
+
+/* SPは既存mini railを尊重（ここは触らない） */
+
+/* =========================
+   Button / Pill (shared)
+========================= */
+.btn-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 220px;
+  /* 文字数に関係なく最小幅 */
+  padding: 12px 26px;
+
+  border-radius: 16px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: .04em;
+
+  color: #AD853F;
+  background: #fff;
+  border: 1px solid #AD853F;
+
+  text-decoration: none;
+  white-space: nowrap;
+
+  transition: background-color .18s ease,
+    box-shadow .18s ease,
+    transform .06s ease;
+}
+
+.btn-pill:hover {
+  background: #FFF6F2;
+  box-shadow: 0 6px 16px rgba(173, 133, 63, .18);
+}
+
+.btn-pill:active {
+  transform: translateY(1px);
+}
+
+@media (max-width: 480px) {
+  .btn-pill {
+    min-width: 200px;
+  }
+}
+
+/* CTA位置（TOPの締め用） */
+.steps__cta,
+.sim-box__cta,
+.features__cta {
+  margin-top: 24px;
+  text-align: center;
+}
+
+
+/* ===== WORKSTYLE SIM (2h / 4weeks / fee 23.6%) — TOP HTML MATCH ===== */
+#workstyle-sim {
+  margin: 56px auto 56px;
+  padding: 32px 40px 34px;
+  border-radius: 24px;
+  background: #fffaf0;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, .06);
+  max-width: 1100px;
+}
+
+#workstyle-sim .sim-box__title {
+  margin: 0 0 10px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  color: var(--c-navy, #102235);
+}
+
+#workstyle-sim .sim-box__note {
+  margin: 0 0 18px;
+  text-align: center;
+  font-size: 12px;
+  color: rgba(16, 34, 53, .70);
+  line-height: 1.6;
+  white-space: nowrap;
+}
+
+/* grid → sim-eq にそのまま移植 */
+#workstyle-sim .sim-eq {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) auto minmax(0, 1.15fr) auto minmax(0, 1.30fr);
+  column-gap: 18px;
+  row-gap: 14px;
+  align-items: center;
+}
+
+#workstyle-sim .sim-eq__cell {
+  min-width: 0;
+}
+
+#workstyle-sim .sim-eq__label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #333;
+}
+
+#workstyle-sim .sim-eq__field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 14px;
+  background: #fff;
+  border: 1px solid #e5d6b8;
+  padding: 10px 18px 10px 16px;
+}
+
+#workstyle-sim .sim-eq__input {
+  flex: 1 1 auto;
+  min-width: 0;
+  border: none;
+  padding: 6px 4px;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: right;
+  background: transparent;
+  color: var(--c-navy, #102235);
+}
+
+#workstyle-sim .sim-eq__input:focus {
+  outline: none;
+}
+
+#workstyle-sim .sim-eq__unit {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  font-size: 13px;
+  color: #777;
+  margin-left: 8px;
+}
+
+#workstyle-sim .sim-eq__op {
+  font-size: 24px;
+  font-weight: 800;
+  color: #b28c47;
+  justify-self: center;
+  line-height: 1;
+}
+
+#workstyle-sim .sim-eq__result {
+  padding: 16px 18px;
+  border-radius: 18px;
+  border: 1px solid #efe0c2;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+#workstyle-sim .sim-eq__result-sub {
+  margin: 0;
+  font-size: 13px;
+  color: #666;
+}
+
+#workstyle-sim .sim-eq__result-main {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--c-navy, #102235);
+  letter-spacing: .01em;
+}
+
+#workstyle-sim .sim-eq__result-main small {
+  font-size: 14px;
+  margin-left: 6px;
+  font-weight: 700;
+}
+
+#workstyle-sim .sim-box__foot {
+  margin: 14px 0 0;
+  font-size: 12px;
+  color: rgba(16, 34, 53, .55);
+  line-height: 1.7;
+  white-space: nowrap;
+  grid-column: 1 / -1;
+}
+
+/* SP */
+@media (max-width: 960px) {
+  #workstyle-sim {
+    padding: 24px 18px 22px;
+    margin-top: 40px;
+  }
+
+  #workstyle-sim .sim-box__title {
+    font-size: 18px;
+  }
+
+  #workstyle-sim .sim-box__note {
+    white-space: normal;
+  }
+
+  #workstyle-sim .sim-box__foot {
+    white-space: normal;
+  }
+
+  #workstyle-sim .sim-eq {
+    grid-template-columns: 1fr;
+    row-gap: 14px;
+    align-items: flex-start;
+  }
+
+  #workstyle-sim .sim-eq__op {
+    justify-self: center;
+  }
+}
+
+/* =========================================
+   SSOT: footer-cta-slot baseline
+   - PC: hide (avoid in-flow text leak)
+   - SP: show only when seated in bottom-seat
+========================================= */
+.footer-cta-slot {
+  display: none;
+}
+
+@media (max-width: 899px) {
+  .footer-cta-slot {
+    /*position: fixed;*/
+    left: 12px;
+    right: calc(12px + var(--cta-float-w, 0px));
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 10px);
+    z-index: 900;
+
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+
+    border-radius: 16px;
+    background: rgba(255, 255, 255, .90);
+    border: 1px solid rgba(16, 66, 111, .08);
+    box-shadow: 0 12px 34px rgba(16, 66, 111, .10);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .footer-cta__btn {
+    height: 46px;
+    padding: 0 16px;
+    border-radius: 16px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1 1 0;
+
+    font-weight: 700;
+    letter-spacing: .01em;
+    line-height: 1;
+    text-decoration: none;
+  }
+
+  .footer-cta__btn.is-primary {
+    background: #10426F;
+    color: #fff;
+    border: 1px solid #10426F;
+  }
+
+  .footer-cta__btn.is-secondary {
+    background: rgba(255, 255, 255, .96);
+    color: #10426F;
+    border: 1px solid rgba(16, 66, 111, .16);
+  }
+
+  body {
+    padding-bottom: calc(var(--bbj-seat-h, 0px) + 24px);
+  }
+}
+
+/* ToTop SSOT */
+[data-to-top] {
+  position: fixed;
+  right: calc(18px + var(--cta-float-w, 0px));
+  bottom: 18px;
+
+  width: 46px;
+  height: 46px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+
+  background: rgba(255, 255, 255, .86);
+  border: 1px solid rgba(255, 207, 194, .75);
+  box-shadow: 0 10px 24px rgba(16, 34, 53, .10);
+  color: #10426F;
+
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(4px);
+  transition: opacity .18s ease, transform .18s ease;
+
+  z-index: 1200;
+}
+
+[data-to-top].is-show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+@media (max-width: 899px) {
+  [data-to-top] {
+    right: 12px;
+    bottom: max(16px, var(--seat-bottom, calc(var(--bbj-seat-h, 0px) + 16px)));
+  }
+}
+
+@media (min-width: 900px) {
+  [data-to-top] {
+    right: calc(12px + var(--cta-float-w, 0px));
+    bottom: max(16px, var(--seat-bottom, calc(var(--bbj-seat-h, 0px) + 16px)));
+  }
+}
+
+
+@media (max-width: 899px) {
+  .work-sp-cta {
+    display: block !important;
+  }
+}
+
+/* =========================
+   BACK TO TOP (SSOT)
+   - used by TOP / TOWA / work
+   - selector: [data-to-top]
+========================= */
+
+/* legacy kill（data-to-top が無い昔の .back-to-top だけ殺す） */
+.back-to-top:not([data-to-top]) {
+  display: none !important;
+}
+
+/* =========================================================
+   INCOME EXAMPLES (SSOT)
+   - shared by TOP / TOWA / Work
+   - SP: no bottom-sheet / no layout jump
+========================================================= */
+@media (max-width: 768px) {
+
+  /* 1) 旧bottom-sheet(fixed)残骸を“常に無効化” */
+  #income-examples .income-breakdown__rows {
+    position: static !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    z-index: auto !important;
+
+    max-height: none !important;
+    overflow: visible !important;
+
+    padding: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+
+  /* 2) details版の残骸も一括で封じる（将来またdetailsに戻っても安全） */
+  #income-examples details.income-breakdown[open] .income-breakdown__rows {
+    position: static !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  #income-examples details.income-breakdown[open]::before {
+    content: none !important;
+  }
+
+  /* 3) “押した瞬間だけ動く” :active を殺す（ぐにゅ再発防止） */
+  #income-examples .income-breakdown:active,
+  #income-examples .income-card:active,
+  #income-examples .income-examples__viewport:active {
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+
+/* =========================================================
+   INCOME EXAMPLES (CORE UI)
+   - layout / rail / card / breakdown / total
+   - SSOT: shared by TOP / TOWA / Work
+========================================================= */
+.income-examples {
+  /*padding: 88px 0 96px;*/
+  background: linear-gradient(180deg, #ffffff 0%, #fff7ee 35%, #f7fbff 100%);
+  position: relative;
+}
+
+/* INCOME BG TEXT — WorkStyle style */
+.income-examples__script {
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  font-family: inherit;
+  font-weight: 800;
+  font-size: clamp(60px, 9vw, 140px);
+  letter-spacing: .12em;
+  color: rgba(16, 66, 111, .05);
+  rotate: 0deg;
+  white-space: nowrap;
+  z-index: 0;
+}
+
+.income-examples__head {
+  text-align: center;
+  margin-bottom: 26px;
+}
+
+.income-examples__title {
+  margin: 0;
+  font-family: "Noto Sans JP", serif;
+  letter-spacing: .06em;
+  color: #10426F;
+  font-size: 26px;
+}
+
+.income-examples__sub {
+  margin: 6px 0 0;
+  font-size: 12px;
+  color: rgba(16, 34, 53, .55);
+  letter-spacing: .12em;
+}
+
+/* =========================
+   INCOME EXAMPLES — RAIL
+   (replaces .income-examples__grid)
+========================= */
+.income-examples__rail {
+  position: relative;
+}
+
+.income-card {
+  width: 100%;
+}
+
+/* viewport */
+/* viewport（既存のままでOK。ここに追記/調整だけ） */
+.income-examples__viewport {
+  display: grid;
+  grid-auto-flow: column;
+  gap: 18px;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+
+  padding: 8px 2px 18px;
+}
+
+.income-examples__viewport>* {
+  scroll-snap-align: start;
+  min-width: 0;
+}
+
+/* レールだけ full-bleed */
+.income-examples__rail {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+/* viewport の左右余白を container 基準に */
+.income-examples__viewport {
+  padding-left: max(20px, calc((100vw - 1120px) / 2));
+  padding-right: max(20px, calc((100vw - 1120px) / 2));
+}
+
+/* ジャンプ中 / 操作中は snap 無効化 */
+.income-examples__viewport.is-jump,
+.income-examples__viewport.is-drag {
+  scroll-snap-type: none !important;
+}
+
+
+/* SP: 1枚 + チラ見え */
+@media (max-width: 767px) {
+  .income-examples__viewport {
+    grid-auto-columns: 86%;
+    padding-right: calc(max(20px, calc((100vw - 1120px) / 2)) + 12%);
+  }
+}
+
+/* Tablet: 2枚（ぴったり） */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .income-examples__viewport {
+    grid-auto-columns: calc((100% - 18px) / 2);
+    padding-right: max(20px, calc((100vw - 1120px) / 2));
+  }
+}
+
+@media (min-width: 1024px) {
+  .income-examples__viewport {
+    grid-auto-columns: calc((min(1120px, 100vw) - 40px - 36px) / 2);
+    padding-right: max(20px, calc((100vw - 1120px) / 2));
+  }
+}
+
+/* Nav buttons (PC only) */
+/* railを基準に矢印を置く */
+.income-examples__rail {
+  position: relative;
+}
+
+/* nav base */
+.income-examples__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 42px;
+  height: 42px;
+  border-radius: 16px;
+
+  border: 1px solid rgba(16, 34, 53, .10);
+  background: rgba(255, 255, 255, .75);
+  box-shadow: 0 10px 26px rgba(16, 34, 53, .08);
+
+  display: grid;
+  place-items: center;
+
+  /* ✅ 普段は“ほぼ消す” */
+  opacity: .06;
+  transition: opacity .18s ease, transform .18s ease, background .18s ease;
+}
+
+/* ✅ マウスで近づいた時だけ出る（レール or ボタン自身） */
+.income-examples__rail:hover .income-examples__nav,
+.income-examples__nav:hover,
+.income-examples__nav:focus-visible {
+  opacity: 1;
+}
+
+/* ✅ 被らない位置へ：カード外に“ちょい逃がし” */
+.income-examples__nav--prev {
+  left: -18px;
+}
+
+.income-examples__nav--next {
+  right: -18px;
+}
+
+/* hover時の気持ちいい微妙な浮き */
+.income-examples__nav:hover {
+  transform: translateY(-50%) scale(1.03);
+  background: rgba(255, 255, 255, .92);
+}
+
+/* SPは常時出さない＆誤タップ防止（必要なら） */
+@media (max-width: 767px) {
+  .income-examples__nav {
+    display: none;
+  }
+}
+
+/* card */
+.income-card {
+  min-width: 0;
+}
+
+.income-card__frame {
+  border: 1.5px solid rgba(173, 133, 63, .70);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, .92);
+  box-shadow: 0 16px 40px rgba(16, 34, 53, .06);
+  padding: 18px 18px 16px;
+  height: 100%;
+}
+
+.income-card__case {
+  text-align: center;
+  color: #AD853F;
+  font-weight: 700;
+  letter-spacing: .08em;
+  margin-bottom: 8px;
+}
+
+.income-card__title {
+  margin: 0;
+  text-align: center;
+  color: #10426F;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.income-card__sub {
+  margin: 4px 0 14px;
+  text-align: center;
+  font-size: 10px;
+  color: rgba(16, 34, 53, .45);
+}
+
+/* top: tags + photo */
+.income-card__top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 110px;
+  gap: 12px;
+  align-items: start;
+  margin-bottom: 14px;
+}
+
+/* DISABLED (dup SSOT vars) — keep only SSOT at 1830s*/
+/* DISABLED (dup photo zoom) — use SSOT FINAL at 3397+*/
+
+
+/* ===== income photo SSOT vars ===== */
+.income-card {
+  --photo-pos: 50% 16%;
+  --photo-zoom: cover;
+}
+
+@media (max-width: 520px) {
+  .income-card {
+    --photo-pos: 50% 16%;
+    --photo-zoom: 118%;
+  }
+}
+
+#income-examples .income-card__photo {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 6.6;
+  /* 昨日の“横長”の意味はコレ */
+  border-radius: 16px;
+  overflow: hidden;
+
+  background-repeat: no-repeat;
+  background-position: var(--photo-pos);
+}
+
+/* SP: photo window taller (reduce crop) */
+@media (max-width: 768px) {
+  #income-examples .income-breakdown {
+    margin-top: 6px;
+    padding: 8px 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  #income-examples .income-card__photo {
+    aspect-ratio: 16 / 9.0;
+    min-height: 140px;
+    max-height: 110px;
+  }
+}
+
+
+/* SP: photo window a bit taller (reduce crop) */
+@media (max-width: 768px) {
+  #income-examples .income-card__photo {
+    aspect-ratio: 16 / 7.6;
+    /* 7.2〜8.0で微調整OK */
+  }
+}
+
+
+/* 余韻：内訳カードの器 */
+#income-examples .income-breakdown {
+  margin-top: 10px;
+  border-radius: 16px;
+  background: rgba(255, 207, 194, .22);
+  /* うっすら */
+  border: 1px solid rgba(173, 133, 63, .14);
+  padding: 10px 12px;
+}
+
+/* summary：見出し行（押せる雰囲気） */
+#income-examples .income-breakdown__summary {
+  list-style: none;
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 10px;
+  align-items: center;
+
+  padding: 2px 0;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Safari marker kill */
+#income-examples .income-breakdown__summary::-webkit-details-marker {
+  display: none;
+}
+
+/* 左：内訳ラベル */
+#income-examples .income-breakdown__summaryText {
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: .10em;
+  color: rgba(16, 34, 53, .78);
+  white-space: nowrap;
+}
+
+/* 真ん中：ヒント（空気） */
+#income-examples .income-breakdown__hint {
+  justify-self: end;
+  font-size: 11px;
+  letter-spacing: .08em;
+  opacity: .52;
+  white-space: nowrap;
+}
+
+/* 右：シェブロン（CSSで描く） */
+#income-examples .income-breakdown__chev {
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid rgba(16, 34, 53, .42);
+  border-bottom: 2px solid rgba(16, 34, 53, .42);
+  transform: rotate(-45deg);
+  /* 閉じ：下向き */
+  transition: transform .18s ease, opacity .18s ease;
+  opacity: .72;
+}
+
+/* open：矢印回転 + ヒント消す */
+#income-examples details[open] .income-breakdown__chev {
+  transform: rotate(135deg);
+  /* 開：上向き */
+  opacity: .9;
+}
+
+#income-examples details[open] .income-breakdown__hint {
+  opacity: .0;
+}
+
+/* rows：開閉する本体 */
+#income-examples .income-breakdown__rows {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(16, 34, 53, .06);
+}
+
+/* 閉じ状態は “見切れ＋フェードで察させる” */
+#income-examples details:not([open]) .income-breakdown__rows {
+  max-height: 42px;
+  /* 1行ちょいだけ見える */
+  overflow: hidden;
+  position: relative;
+}
+
+#income-examples details:not([open]) .income-breakdown__rows::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 28px;
+  background: linear-gradient(to bottom,
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, .9));
+  pointer-events: none;
+}
+
+/* 内訳 row の主従（上品に） */
+#income-examples .income-breakdown__row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  padding: 4px 0;
+}
+
+#income-examples .income-breakdown__label {
+  font-size: 12px;
+  opacity: .72;
+}
+
+#income-examples .income-breakdown__value {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .01em;
+  opacity: .88;
+  white-space: nowrap;
+}
+
+/* 合計は“常に見える”＆主役 */
+#income-examples .income-card__total {
+  margin-top: 10px;
+  border-radius: 16px;
+  background: rgba(255, 207, 194, .18);
+  border: 1px solid rgba(173, 133, 63, .14);
+  padding: 10px 12px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+#income-examples .income-card__total .income-breakdown__label {
+  font-weight: 700;
+  font-size: 11.5px;
+  letter-spacing: .10em;
+  opacity: .62;
+  white-space: nowrap;
+}
+
+#income-examples .income-card__total .income-breakdown__value {
+  font-weight: 900;
+  font-size: 16px;
+  letter-spacing: .01em;
+  color: #AD853F;
+  opacity: .96;
+}
+
+
+/* case別（必要なら） */
+.income-card[data-case="1"] {
+  --photo-pos: 50% 16%;
+}
+
+.income-card[data-case="2"] {
+  --photo-pos: 55% 35%;
+}
+
+.income-card[data-case="3"] {
+  --photo-pos: 50% 16%;
+}
+
+.income-card[data-case="4"] {
+  --photo-pos: 50% 16%;
+}
+
+.income-card[data-case="5"] {
+  --photo-pos: 48% 34%;
+}
+
+/* ===== income-card photo render SSOT ===== */
+.income-card__photo {
+  background-repeat: no-repeat;
+  background-position: var(--photo-pos);
+  background-size: cover;
+}
+
+.income-card__photo {
+  width: clamp(92px, 10vw, 110px);
+  height: clamp(92px, 10vw, 110px);
+  border-radius: 16px;
+  aspect-ratio: 1 / 1;
+
+  overflow: hidden;
+  background-color: rgba(255, 207, 194, .25);
+}
+
+/* caseごとにPNG差し替え（画像がある時はピンクを消す） */
+.income-card[data-case="1"] .income-card__photo {
+  background-image: url("./bbj-images/income-case1-master-600.webp");
+  background-color: transparent;
+}
+
+.income-card[data-case="2"] .income-card__photo {
+  background-image: url("./bbj-images/income-case2-master-600.webp");
+  background-color: transparent;
+}
+
+.income-card[data-case="3"] .income-card__photo {
+  background-image: url("./bbj-images/income-case3-master-600.webp");
+  background-color: transparent;
+}
+
+.income-card[data-case="4"] .income-card__photo {
+  background-image: url("./bbj-images/income-case4-master-600.webp");
+  background-color: transparent;
+}
+
+.income-card[data-case="5"] .income-card__photo {
+  background-image: url("./bbj-images/income-case5-master-600.webp");
+  background-color: transparent;
+}
+
+/* SSOT FIX (B): reserve card height to prevent CLS on tab switch */
+#income-examples .income-card {
+  min-height: 244px;
+}
+
+
+/* tags */
+.income-tags {
+  margin: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.income-tags__row {
+  display: grid;
+  grid-template-columns: 86px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+}
+
+.income-tags__badge {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: 20px;
+  border-radius: 16px;
+  background: rgba(238, 176, 57, .28);
+  color: #10426F;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .06em;
+}
+
+.income-tags__val {
+  margin: 0;
+  font-weight: 800;
+  color: #102235;
+  font-size: 14px;
+  min-width: 0;
+}
+
+.income-tags__unit {
+  font-weight: 600;
+  font-size: 11px;
+  color: rgba(16, 34, 53, .55);
+}
+
+/* breakdown */
+.income-breakdown {
+  background: rgba(255, 204, 175, .28);
+  border-radius: 12px;
+  padding: 12px 12px 10px;
+}
+
+.income-breakdown__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 6px 6px;
+  font-size: 12px;
+  color: rgba(16, 34, 53, .80);
+}
+
+.income-breakdown__value--minus {
+  color: rgba(16, 34, 53, .70);
+}
+
+.income-breakdown__total {
+  margin-top: 8px;
+  padding: 10px 10px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, .65);
+  display: flex;
+  justify-content: space-between;
+  font-weight: 900;
+  color: #AD853F;
+}
+
+.income-tags__icons {
+  display: inline-flex;
+  gap: 6px;
+  margin-left: 8px;
+  transform: translateY(-1px);
+}
+
+.income-tags__icon {
+  width: 16px;
+  height: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  /* 絵文字運用 */
+  opacity: .78;
+}
+
+/* =========================================================
+   SSOT: income-examples photo (SP first)
+   - このセクションは「横長1枚」前提で固定
+========================================================= */
+#income-examples .income-card {
+  --photo-pos: 50% 16%;
+  --photo-zoom: cover;
+}
+
+@media (max-width: 520px) {
+  #income-examples .income-card {
+    --photo-pos: 50% 16%;
+    --photo-zoom: 118%;
+  }
+}
+
+/* 写真枠（横長） */
+#income-examples .income-card__photo {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 6.6;
+
+  border-radius: 16px;
+  overflow: hidden;
+
+  background-repeat: no-repeat;
+  background-position: var(--photo-pos);
+  background-size: cover;
+}
+
+
+/* =========================================================
+   PATCH A: SP rail card — no vertical scroll, "more" hint
+   scope: <=520px
+========================================================= */
+@media (max-width: 520px) {
+
+  /* 0) レール：1枚＋チラ見せを気持ち良く */
+  .income-examples__viewport {
+    grid-auto-columns: 88%;
+    /* 92%→88%：窮屈さ解消 + 次カードが見える */
+    padding-right: 14%;
+    /* チラ見せ量を確保 */
+  }
+
+  /* 1) カードの余白を少し締める（縦スク回避の本丸） */
+  .income-card__frame {
+    padding: 14px 14px 12px;
+    /* 18px→圧縮 */
+  }
+
+  /* 2) 上段：2カラムをやめて縦積み（タイトル→写真→項目の順で美しく） */
+  .income-card__top {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  /* 3) 写真：横長＆角丸。高さは少しだけ圧縮（貧相にならないライン） */
+  .income-card__photo {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 6.6;
+    /* 16/7.5 より少しだけ低く */
+    border-radius: 16px;
+    /* 上品角丸 */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: var(--photo-pos);
+  }
+
+  /* 4) タグ行：詰めて縦を稼ぐ */
+  .income-tags {
+    gap: 6px;
+  }
+
+  .income-tags__row {
+    grid-template-columns: 78px 1fr;
+    /* 86→78：ちょい圧縮 */
+    gap: 8px;
+  }
+
+  .income-tags__badge {
+    height: 18px;
+    font-size: 10.5px;
+  }
+
+  .income-tags__val {
+    font-size: 13px;
+  }
+
+  /* 5) 内訳：全部見せない（=縦スク不要 + "もっとある" を察させる） */
+  .income-breakdown {
+    padding: 10px 10px 8px;
+  }
+
+  /* 内訳の行は1〜2行ぶんだけ見せる */
+  .income-breakdown__row {
+    padding: 4px 4px;
+    font-size: 11.5px;
+  }
+
+  .income-breakdown__row:nth-of-type(n+3) {
+    display: none;
+    /* 3行目以降は隠す */
+  }
+
+  /* 6) 合計：下品にしない（ラベル＞金額のヒエラルキーを再調整） */
+  .income-breakdown__total {
+    margin-top: 8px;
+    padding: 9px 10px;
+    border-radius: 12px;
+  }
+
+  /* ラベル（左） */
+  .income-breakdown__total> :first-child {
+    font-weight: 800;
+    opacity: .82;
+    letter-spacing: .02em;
+  }
+
+
+  /* 金額（右）を “デカすぎ” から戻す */
+  .income-breakdown__total> :last-child {
+    font-weight: 900;
+    opacity: .78;
+    white-space: nowrap;
+  }
+
+}
+
+/* =========================================================
+   SSOT FINAL: INCOME EXAMPLES RAIL (>=521px)
+   - keep SP(<=520px) patch as-is
+   - enforce rail base + column sizing for Tablet/PC
+========================================================= */
+
+/* base: always horizontal rail */
+#income-examples .income-examples__viewport {
+  display: grid;
+  grid-auto-flow: column;
+  gap: 18px;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+
+  scroll-snap-type: x mandatory;
+}
+
+/* children */
+#income-examples .income-examples__viewport>.income-card {
+  scroll-snap-align: start;
+  min-width: 0;
+}
+
+/* jump/drag only: snap off */
+#income-examples .income-examples__viewport.is-jump,
+#income-examples .income-examples__viewport.is-drag {
+  scroll-snap-type: none !important;
+}
+
+/* Tablet+ : 2 cards */
+@media (min-width: 521px) and (max-width: 1023px) {
+  #income-examples .income-examples__viewport {
+    grid-auto-columns: calc((100% - 18px) / 2);
+    padding-right: max(20px, calc((100vw - 1120px) / 2));
+  }
+}
+
+/* PC : 3 cards */
+@media (min-width: 1024px) {
+  #income-examples .income-examples__viewport {
+    grid-auto-columns: calc((min(1120px, 100vw) - 40px - 36px) / 2);
+    padding-right: max(20px, calc((100vw - 1120px) / 2));
+  }
+}
+
+/* =========================================================
+   SSOT FINAL: SP bottom-seat glass base (CTA + toTop)
+   - applies to TOP / TOWA / work
+========================================================= */
+@media (max-width: 899px) {
+
+  .bottom-seat .footer-cta-slot,
+  .bottom-seat .work-sp-cta {
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(10px) saturate(110%);
+    -webkit-backdrop-filter: blur(10px) saturate(110%);
+    border-radius: 16px;
+    padding: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .08);
+  }
+
+}
+
+.bottom-seat {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 10020;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-end;
+
+  /* seat itself doesn't block page */
+  pointer-events: none;
+}
+
+.bottom-seat>* {
+  pointer-events: auto;
+}
+
+@media (max-width: 899px) {
+
+  /* when seated: children should NOT be fixed individually */
+  .bottom-seat .floating-cta {
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    top: auto !important;
+    transform: none !important;
+  }
+}
+
+/* =========================================================
+   SSOT FINAL: SP bottom-seat is ROW (CTA + toTop in one line)
+   - applies to TOP / TOWA / work
+========================================================= */
+@media (max-width: 899px) {
+  .bottom-seat {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+
+  /* =========================================================
+   SSOT: SP — hide footer-cta-slot while floating CTA is visible
+   - prevents left in-flow text leak on footer reach
+   - keeps "footer stop" behavior when floating CTA is NOT visible
+========================================================= 
+/* order: CTA first, toTop second */
+  .bottom-seat .floating-cta,
+  .bottom-seat .work-sp-cta,
+  .bottom-seat .footer-cta-slot {
+    order: 1;
+  }
+
+  .bottom-seat [data-to-top] {
+    order: 2;
+  }
+}
+
+@media (max-width: 899px) {
+
+  /* SSOT: make CTA buttons stack (2 rows) inside floating-cta */
+  .bottom-seat .floating-cta__row {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  /* make each button full-width in the stack */
+  .bottom-seat .floating-cta__btn {
+    width: 100%;
+  }
+}
+
+/* =========================================================
+   SSOT FINAL: SP footer-cta-slot is 2 rows (primary over secondary)
+   - applies to TOP / TOWA / work
+========================================================= */
+@media (max-width: 899px) {
+  .footer-cta-slot {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .footer-cta__btn {
+    width: 100%;
+    flex: 0 0 auto;
+    /* kill flex:1 row behavior */
+  }
+}
+
+/* =========================================================
+   SSOT FINAL: SP bottom-seat = CTA(row) + toTop (no overlap)
+========================================================= */
+@media (max-width: 899px) {
+
+  .bottom-seat .footer-cta-slot,
+  .bottom-seat .work-sp-cta {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .bottom-seat .footer-cta-slot {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: calc(100vw - 16px - 46px - 10px - 16px);
+  }
+
+  .bottom-seat .footer-cta__btn {
+    flex: 0 0 auto;
+  }
+}
+
+/* =========================================================
+   SSOT FINAL: SP CTA layout
+   - WORK  : 1 row (keep)
+   - TOP/TOWA: 2 rows (stack), keep toTop separated
+========================================================= */
+@media (max-width: 899px) {
+
+  /* TOP + TOWA only: stack CTA buttons (2 rows) */
+  body.page-top .footer-cta-slot,
+  body:not(.page-top):not(.page-work-income) .footer-cta-slot {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+
+    /* prevent capsule from covering toTop seat */
+    flex: 0 0 auto;
+    width: min(78vw, 360px);
+  }
+
+  body.page-top .footer-cta__btn,
+  body:not(.page-top):not(.page-work-income) .footer-cta__btn {
+    width: 100%;
+    flex: 0 0 auto;
+  }
+
+  /* WORK only: force 1 row (safety lock) */
+  body.page-work-income .work-sp-cta {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+}
+
+/* =========================================================
+   SSOT FINAL OVERRIDE: TOP/TOWA CTA = 1 row like work (no overlap)
+   - fixes "too big capsule" and keeps toTop seat clean
+========================================================= */
+@media (max-width: 899px) {
+
+  /* TOP + TOWA only: force CTA back to 1 row */
+  body.page-top .footer-cta-slot,
+  body:not(.page-top):not(.page-work-income) .footer-cta-slot {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+
+    /* key: do NOT stretch under toTop */
+    flex: 0 0 auto;
+    width: auto;
+    max-width: calc(100vw - 16px - 46px - 10px - 16px);
+  }
+
+  /* kill legacy stretch that makes capsule huge */
+  body.page-top .footer-cta__btn,
+  body:not(.page-top):not(.page-work-income) .footer-cta__btn {
+    flex: 0 0 auto;
+    width: auto;
+  }
+}
+
+
+/* =========================================================
+   SSOT FINAL TUNE: Glass CTA (more transparent, lighter)
+   - unify TOP / TOWA / work
+========================================================= */
+@media (max-width: 899px) {
+
+  /* glass base (CTA only, not toTop) */
+  .bottom-seat .footer-cta-slot,
+  .bottom-seat .work-sp-cta {
+    background: rgba(255, 255, 255, 0.38);
+    /* ← 透明寄せ */
+    backdrop-filter: blur(12px) saturate(105%);
+    -webkit-backdrop-filter: blur(12px) saturate(105%);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .06);
+    /* ← 影を軽く */
+    border-radius: 16px;
+  }
+
+}
+
+/* =========================================================
+   SSOT FINAL: WORK footer-cta-slot align to TOP/TOWA (SP)
+   - keep CTA row, prevent stretch, keep toTop seat clean
+========================================================= */
+@media (max-width: 899px) {
+
+  /* WORK only */
+  body.page-work-income .footer-cta-slot {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+
+    flex: 0 0 auto;
+    width: auto;
+    max-width: calc(100vw - 16px - 46px - 10px - 16px);
+  }
+
+  body.page-work-income .footer-cta__btn {
+    width: auto;
+    flex: 0 0 auto;
+  }
+
+  /* secondary CTA slightly smaller (same rule as others) */
+}
+
+/* =========================================================
+   SSOT FINAL TUNE: Glass more transparent (TOP/TOWA/work)
+========================================================= */
+@media (max-width: 899px) {
+
+  .footer-cta-slot,
+  .work-sp-cta {
+    background: rgba(255, 255, 255, 0.34);
+    backdrop-filter: blur(14px) saturate(105%);
+    -webkit-backdrop-filter: blur(14px) saturate(105%);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .05);
+  }
+}
+
+/* =========================================================
+   SSOT TUNE: WORK glass edge (white background readability)
+========================================================= */
+@media (max-width: 899px) {
+  body.page-work-income .footer-cta-slot {
+    border: 1px solid rgba(16, 66, 111, 0.08);
+  }
+}
+
+/* =========================================================
+   SSOT FINAL: WORK glass matches TOP/TOWA (white background support)
+========================================================= */
+@media (max-width: 899px) {
+  body.page-work-income .footer-cta-slot {
+    border: 1px solid rgba(16, 66, 111, 0.08);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.35),
+      0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+}
+
+/* =========================================================
+   SSOT FINAL: WORK footer-cta-slot = capsule (match TOP/TOWA)
+========================================================= */
+@media (max-width: 899px) {
+  body.page-work-income .footer-cta-slot {
+    position: fixed;
+    left: 16px;
+    right: auto;
+    /* kill full-width bar */
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 16px);
+    z-index: 900;
+
+    display: flex;
+    gap: 10px;
+    padding: 6px;
+
+    width: fit-content;
+    max-width: calc(100vw - 16px - 46px - 10px - 16px);
+    /* keep toTop seat */
+    border-radius: 16px;
+
+    background: rgba(255, 255, 255, 0.34);
+    backdrop-filter: blur(14px) saturate(105%);
+    -webkit-backdrop-filter: blur(14px) saturate(105%);
+    border: 1px solid rgba(16, 66, 111, 0.08);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+
+  body.page-work-income .footer-cta__btn {
+    flex: 0 0 auto;
+    /* kill flex:1 bar behavior */
+    width: auto;
+  }
+}
+
+/* =========================================================
+   SSOT HOTFIX: WORK footer-cta-slot -> capsule (force win)
+========================================================= */
+@media (max-width: 899px) {
+  body.page-work-income .footer-cta-slot {
+    right: auto !important;
+    left: 16px !important;
+
+    width: fit-content !important;
+    /* ←バー殺し本命 */
+    max-width: calc(100vw - 16px - 46px - 10px - 16px) !important;
+
+    padding: 6px !important;
+    /* ←板感を消す */
+    border-radius: 999px !important;
+
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 10px !important;
+
+    background: rgba(255, 255, 255, 0.34) !important;
+    backdrop-filter: blur(14px) saturate(105%) !important;
+    -webkit-backdrop-filter: blur(14px) saturate(105%) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+    border: 1px solid rgba(16, 66, 111, 0.08) !important;
+  }
+
+  body.page-work-income .footer-cta__btn {
+    width: auto !important;
+    flex: 0 0 auto !important;
+  }
+}
+
+/* =========================================================
+   SSOT FIX: WORK footer-cta-slot must follow bottom-seat
+========================================================= */
+@media (max-width: 899px) {
+  body.page-work-income .footer-cta-slot {
+    position: static !important;
+    /* ← body基準のfixedを殺す */
+    inset: auto !important;
+  }
+
+}
+
+/* =========================================================
+   SSOT FINAL: WORK SP CTA (work-sp-cta) matches footer-cta glass capsule
+========================================================= */
+@media (max-width: 899px) {
+  body.page-work-income .bottom-seat .work-sp-cta {
+    background: rgba(255, 255, 255, 0.34);
+    backdrop-filter: blur(14px) saturate(105%);
+    -webkit-backdrop-filter: blur(14px) saturate(105%);
+    border: 1px solid rgba(16, 66, 111, 0.08);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border-radius: 16px;
+    padding: 6px;
+  }
+
+  body.page-work-income .work-float-cta__row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  body.page-work-income .work-float-cta__btn {
+    flex: 0 0 auto;
+  }
+
+  /* secondary CTA slightly smaller */
+}
+
+/* =========================================================
+   SSOT FINAL: WORK SP CTA (work-sp-cta) matches footer-cta glass capsule
+========================================================= */
+@media (max-width: 899px) {
+  body.page-work-income .bottom-seat .work-sp-cta {
+    background: rgba(255, 255, 255, 0.34);
+    backdrop-filter: blur(14px) saturate(105%);
+    -webkit-backdrop-filter: blur(14px) saturate(105%);
+    border: 1px solid rgba(16, 66, 111, 0.08);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border-radius: 16px;
+    padding: 6px;
+  }
+
+  body.page-work-income .work-float-cta__row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  body.page-work-income .work-float-cta__btn {
+    flex: 0 0 auto;
+  }
+}
+
+/* =========================================================
+   SSOT FINAL: WORK SP CTA (work-sp-cta) = glass capsule like TOP/TOWA
+========================================================= */
+@media (max-width: 899px) {
+
+  /* glass capsule base */
+  body.page-work-income .bottom-seat .work-sp-cta {
+    background: rgba(255, 255, 255, 0.34);
+    backdrop-filter: blur(14px) saturate(105%);
+    -webkit-backdrop-filter: blur(14px) saturate(105%);
+    border: 1px solid rgba(16, 66, 111, 0.08);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border-radius: 16px;
+    padding: 6px;
+  }
+
+  /* keep only buttons row (compact capsule) */
+  body.page-work-income .work-float-cta__card> :not(.work-float-cta__row) {
+    display: none;
+  }
+
+  /* row layout */
+  body.page-work-income .work-float-cta__row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  /* button sizing */
+  body.page-work-income .work-float-cta__btn,
+  body.page-work-income .work-float-cta__ghost {
+    flex: 0 0 auto;
+    width: auto;
+  }
+
+}
+
+
+/* =========================================================
+   SSOT: WORK buttons match footer-cta buttons (look parity)
+========================================================= */
+@media (max-width: 899px) {
+
+  /* unify button base */
+  body.page-work-income .work-float-cta__btn,
+  body.page-work-income .work-float-cta__ghost {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    height: 46px !important;
+    padding: 0 18px !important;
+    border-radius: 999px !important;
+
+    font-weight: 700 !important;
+    letter-spacing: .02em !important;
+    white-space: nowrap !important;
+
+    text-decoration: none !important;
+    box-shadow: none !important;
+    /* inner buttons should be flat like TOP/TOWA */
+  }
+
+  /* primary = filled navy */
+  body.page-work-income .work-float-cta__btn {
+    background: #10426F !important;
+    color: #fff !important;
+    border: 1px solid #10426F !important;
+  }
+
+  /* secondary = outlined */
+  body.page-work-income .work-float-cta__ghost {
+    background: #fff !important;
+    color: #10426F !important;
+    border: 1px solid rgba(16, 66, 111, 0.28) !important;
+  }
+
+  /* keep same size (no scale) */
+  body.page-work-income .work-float-cta__ghost {
+    transform: none !important;
+  }
+}
+
+/* =========================================================
+   FINAL TUNE: WORK glass base should be subtler (match finished look)
+========================================================= */
+@media (max-width: 899px) {
+  body.page-work-income .bottom-seat .work-sp-cta {
+    background: rgba(255, 255, 255, 0.28) !important;
+    /* thinner */
+    backdrop-filter: blur(16px) saturate(108%) !important;
+    -webkit-backdrop-filter: blur(16px) saturate(108%) !important;
+
+    border: 1px solid rgba(16, 66, 111, 0.06) !important;
+    /* softer edge */
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.035) !important;
+    /* lighter shadow */
+  }
+}
+
+/* =========================================================
+   FINAL FIX: WORK CTA base must be SINGLE (kill inner capsule)
+========================================================= */
+@media (max-width: 899px) {
+
+  /* keep OUTER capsule (work-sp-cta) as the only glass base */
+  body.page-work-income .bottom-seat .work-sp-cta {
+    background: rgba(255, 255, 255, 0.34) !important;
+    backdrop-filter: blur(14px) saturate(105%) !important;
+    -webkit-backdrop-filter: blur(14px) saturate(105%) !important;
+    border: 1px solid rgba(16, 66, 111, 0.08) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+    border-radius: 999px !important;
+    padding: 6px !important;
+  }
+
+  /* KILL inner capsule */
+  body.page-work-income .work-float-cta__card {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+  }
+}
+
+/* =========================================================
+   HOTFIX: WORK double capsule killer (leave only outer glass)
+========================================================= */
+@media (max-width: 899px) {
+
+  /* outer glass only */
+  body.page-work-income .bottom-seat .work-sp-cta {
+    background: rgba(255, 255, 255, 0.34) !important;
+    backdrop-filter: blur(14px) saturate(105%) !important;
+    -webkit-backdrop-filter: blur(14px) saturate(105%) !important;
+    border: 1px solid rgba(16, 66, 111, 0.08) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+    border-radius: 999px !important;
+    padding: 6px !important;
+  }
+
+  /* kill any inner base that could look like a second capsule */
+  body.page-work-income .work-sp-cta *,
+  body.page-work-income .work-sp-cta *::before,
+  body.page-work-income .work-sp-cta *::after {
+    background: transparent !important;
+    box-shadow: none !important;
+    filter: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  /* but keep actual buttons style (re-apply) */
+  body.page-work-income .work-float-cta__btn {
+    background: #10426F !important;
+    color: #fff !important;
+    border: 1px solid #10426F !important;
+  }
+
+  body.page-work-income .work-float-cta__ghost {
+    background: #fff !important;
+    color: #10426F !important;
+    border: 1px solid rgba(16, 66, 111, 0.28) !important;
+  }
+}
+
+/* =========================================================
+   FINAL TUNE: WORK glass capsule — less “capsule”, more “glass”
+========================================================= */
+@media (max-width: 899px) {
+  body.page-work-income .bottom-seat .work-sp-cta {
+    backdrop-filter: blur(10px) saturate(104%) !important;
+    -webkit-backdrop-filter: blur(10px) saturate(104%) !important;
+    padding: 4px !important;
+    /* 6 → 4 */
+  }
+}
+
+/* =========================================================
+   FINAL LOOK: WORK CTA glass seat should match TOP
+   - keep 46px metrics, fix density + glass quality
+========================================================= */
+@media (max-width: 899px) {
+
+  /* 1) Kill leftover density drift (work-only paddings) */
+  body.page-work-income .work-float-cta__btn,
+  body.page-work-income .work-float-cta__ghost {
+    padding: 0 16px !important;
+    /* ← 18px系を統一（TOP寄せ） */
+    height: 46px !important;
+    min-height: 46px !important;
+    border-radius: 999px !important;
+  }
+
+  body.page-work-income .work-float-cta__ghost {
+    padding-inline: 16px !important;
+    /* ← 2394-2398の ghost padding を無力化 */
+    transform: none !important;
+    /* ← 念のため scale/transform 系も無力化 */
+  }
+
+  /* 2) Make the capsule base “TOP-like glass” */
+  .bottom-seat .work-sp-cta {
+    padding: 8px !important;
+    border-radius: 999px !important;
+
+    background: rgba(255, 255, 255, .78) !important;
+    border: 1px solid rgba(255, 255, 255, .62) !important;
+
+    -webkit-backdrop-filter: blur(14px) saturate(140%) !important;
+    backdrop-filter: blur(14px) saturate(140%) !important;
+
+    box-shadow:
+      0 10px 26px rgba(16, 66, 111, .16),
+      0 1px 0 rgba(255, 255, 255, .55) inset !important;
+  }
+
+  /* 3) Rail density inside capsule */
+  body.page-work-income .work-float-cta__row {
+    height: 46px !important;
+    align-items: center !important;
+    gap: 10px !important;
+  }
+}
+
+/* =========================================================
+   SSOT LOCK: WORK SP CTA — force 46px box parity (FINAL)
+========================================================= */
+@media (max-width: 899px) {
+  body.page-work-income .bottom-seat .work-sp-cta .work-float-cta__row {
+    align-items: center !important;
+    /* 戻す：flex-startは事故る */
+  }
+
+  body.page-work-income .bottom-seat .work-sp-cta .work-float-cta__btn,
+  body.page-work-income .bottom-seat .work-sp-cta .work-float-cta__ghost {
+    height: 46px !important;
+    min-height: 46px !important;
+
+    box-sizing: border-box !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    line-height: 1 !important;
+    /* 行高暴れ止め */
+    transform: none !important;
+    /* 念のため */
+  }
+}
+
+/* SSOT LOCK: kill ghost margin drift (WORK SP CTA) */
+@media (max-width: 899px) {
+  body.page-work-income .bottom-seat .work-sp-cta .work-float-cta__ghost {
+    margin-top: 0 !important;
+  }
+}
+
+/* =========================================================
+   SSOT LOCK: toTop button visual baseline (WORK SP)
+========================================================= */
+@media (max-width: 899px) {
+  body.page-work-income .bottom-seat [data-to-top] {
+    width: 46px !important;
+    height: 46px !important;
+    min-width: 46px !important;
+    min-height: 46px !important;
+
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+    box-sizing: border-box !important;
+    line-height: 1 !important;
+  }
+}
+
+/* =========================================================
+   SSOT LOCK FINAL: kill ghost 1–2px drift (WORK SP)
+========================================================= */
+@media (max-width: 899px) {
+  body.page-work-income .bottom-seat .work-sp-cta .work-float-cta__row {
+    align-items: center !important;
+  }
+
+  body.page-work-income .bottom-seat .work-sp-cta .work-float-cta__btn,
+  body.page-work-income .bottom-seat .work-sp-cta .work-float-cta__ghost {
+    align-self: center !important;
+  }
+
+  body.page-work-income .bottom-seat .work-sp-cta .work-float-cta__ghost {
+    margin: 0 !important;
+
+    /* 位置オフセット全殺し */
+    position: relative !important;
+    top: 0 !important;
+    bottom: auto !important;
+    left: auto !important;
+    right: auto !important;
+
+    transform: none !important;
+    translate: 0 0 !important;
+    /* ←ここが地味に効く */
+  }
+}
+
+/* =========================================================
+   SSOT FINAL: WORK glass radius tune (SP)
+========================================================= */
+@media (max-width: 899px) {
+  body.page-work-income .bottom-seat .work-sp-cta {
+    border-radius: 16px !important;
+    /* ← ここが勝ち値 */
+  }
+}
+
+/* =========================================================
+   SSOT FIX (B): prevent CLS by reserving image space
+   - income examples / cards
+========================================================= */
+#income-examples img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  /* ←まずはここ。もし違うなら後で実寸に合わせる */
+  object-fit: cover;
+}
+
+/* =========================================================
+   SSOT FIX: kill scroll anchoring jitter on tab switch
+========================================================= */
+#income-examples,
+#income-examples * {
+  overflow-anchor: none;
+}
+
+/* =========================================================
+   SSOT FIX: isolate income-examples from page reflow perception
+========================================================= */
+#income-examples {
+  contain: layout paint;
+}
+
+/* SSOT FINAL: kill subpixel illusion (tab switch) */
+#income-examples,
+#income-examples * {
+  transform: none !important;
+  will-change: auto !important;
+}
+
+/* =========================================================
+   SSOT FINAL: WORK CTA stability pack (SP) — no scale, no drift
+========================================================= */
+@media (max-width: 899px) {
+
+  /* TOP: align all fixed UI to the same seat baseline (reduce tab-switch drift) */
+  body.page-top .footer-cta-slot {
+    right: 12px !important;
+    bottom: 10px !important;
+  }
+
+  /*
+  body.page-top .floating-cta {
+    right: 12px !important;
+    bottom: 10px !important;
+  }
+  body.page-top [data-to-top] {
+    right: 12px !important;
+    bottom: 10px !important;
+  }
+*/
+}
+
+@media (max-width: 899px) {
+
+  /* prevent subpixel / compositing drift on tab switch */
+  body.page-top .footer-cta-slot,
+  body.page-top .floating-cta,
+  body.page-top [data-to-top] {
+    transform: translateZ(0) !important;
+    will-change: auto !important;
+    backface-visibility: hidden;
+  }
+}
+
+@media (max-width: 899px) {
+  body.page-top .floating-cta {
+    display: none !important;
+  }
+}
+
+/* =========================================================
+   PATCH (SSOT): WORKSTYLE on SP uses BIG RAIL (not mini)
+========================================================= */
+@media (max-width: 899px) {
+
+  /* ✅SPでも大レールを出す */
+  #workstyle .workstyle-cards__rail {
+    display: block !important;
+  }
+
+  /* ✅ミニは消す（重複と情報過多を防ぐ） */
+  .workstyle-mini {
+    display: none !important;
+  }
+}
+
+/* =========================================================
+   PATCH (SSOT): WORKSTYLE BIG RAIL on SP — luxe tuning
+   - 1 card + peek
+   - keep shadow breathing
+   - snap feels premium
+========================================================= */
+@media (max-width: 899px) {
+
+  /* SPでも大レールを出す（B仕様） */
+  #workstyle .workstyle-cards__rail {
+    display: block !important;
+  }
+
+  .workstyle-mini {
+    display: none !important;
+  }
+
+  /* viewport（scroller）を“気持ちいい”レールに */
+  #workstyle .js-ws-cards {
+    gap: 14px;
+    padding: 18px 16px 22px;
+    /* 下に影の余韻 */
+    scroll-padding-left: 16px;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    scroll-snap-type: none !important;
+    /* ✅SPはバチっと止める */
+    -webkit-overflow-scrolling: touch;
+
+    /* 端スワイプ事故を減らす */
+    overscroll-behavior-x: contain;
+    touch-action: pan-x;
+  }
+
+  /* 1枚＋チラ見え：幅を“品よく” */
+  #workstyle .js-ws-cards>.ws-card {
+    flex: 0 0 86%;
+    width: 86%;
+    min-width: 280px;
+    max-width: 360px;
+
+    scroll-snap-align: start;
+  }
+
+  /* 影が切れないように、レール外側も許可 */
+  #workstyle .workstyle-cards,
+  #workstyle .workstyle-cards__rail {
+    overflow: visible;
+  }
+}
+
+/* =========================================================
+   PATCH (SSOT): WORKSTYLE BIG RAIL on SP — glass finish
+========================================================= */
+@media (max-width: 899px) {
+
+  /* レール面：グレーをやめて“薄いガラス”へ */
+  #workstyle .workstyle-cards__rail {
+    background: linear-gradient(180deg,
+        rgba(246, 253, 255, .00) 0%,
+        rgba(246, 253, 255, .72) 35%,
+        rgba(255, 255, 255, .92) 100%);
+  }
+
+  /* レール端：上品なフェード（チラ見えが高級に見える） */
+  #workstyle .workstyle-cards__rail {
+    -webkit-mask-image: linear-gradient(90deg,
+        transparent 0,
+        #000 26px,
+        #000 calc(100% - 26px),
+        transparent 100%);
+    mask-image: linear-gradient(90deg,
+        transparent 0,
+        #000 26px,
+        #000 calc(100% - 26px),
+        transparent 100%);
+  }
+
+  /* スクロールバーは消す（見えると一気に生活感） */
+  #workstyle .js-ws-cards {
+    scrollbar-width: none;
+  }
+
+  #workstyle .js-ws-cards::-webkit-scrollbar {
+    height: 0;
+  }
+
+  /* カードの影：SPは“柔らかく長め”にしてガラス感を出す */
+  #workstyle .js-ws-cards>.ws-card {
+    filter: drop-shadow(0 14px 26px rgba(16, 34, 53, .10));
+  }
+}
+
+/* =========================================================
+   PATCH (SSOT): WORKSTYLE PC — 3 cards luxe layout
+========================================================= */
+@media (min-width: 900px) {
+
+  /* 左だけ余白、右は流れ */
+  #workstyle .js-ws-cards {
+    padding-left: 48px;
+    padding-right: 0;
+    gap: 28px;
+
+    scroll-snap-type: none !important;
+  }
+
+  /* 3枚見えの黄金比 */
+  #workstyle .js-ws-cards>.ws-card {
+    flex: 0 0 calc((min(1120px, 100vw) - 96px - 56px) / 3);
+    max-width: 420px;
+    min-width: 340px;
+
+    scroll-snap-align: start;
+
+    /* 柔らかいガラス影 */
+    filter: drop-shadow(0 18px 40px rgba(16, 34, 53, .12));
+  }
+
+  /* レール下地を透明寄りに */
+  #workstyle .workstyle-cards__rail {
+    background: linear-gradient(180deg,
+        rgba(246, 253, 255, 0) 0%,
+        rgba(255, 255, 255, .65) 60%,
+        rgba(255, 255, 255, .92) 100%);
+  }
+
+}
+
+/* =========================================================
+   SSOT VISUAL: INCOME CARD — Premium big card style
+   - CSS only / no HTML change / no JS touch
+========================================================= */
+
+#income-examples .income-card {
+  --card-r: 26px;
+  --card-pad: 16px;
+  --card-gap: 14px;
+
+  /* theme defaults (case별に上書き) */
+  --card-bg: rgba(147, 225, 240, .22);
+  --card-stroke: rgba(16, 66, 111, .14);
+  --card-ink: rgba(16, 34, 53, .92);
+  --card-sub: rgba(16, 34, 53, .62);
+
+  --total-bg: rgba(255, 255, 255, .55);
+  --total-stroke: rgba(16, 66, 111, .10);
+  --pill-bg: rgba(255, 255, 255, .72);
+  --pill-stroke: rgba(16, 66, 111, .18);
+}
+
+/* card surface */
+#income-examples .income-card__frame {
+  background: var(--card-bg);
+  border: 1px solid var(--card-stroke);
+  border-radius: var(--card-r);
+  box-shadow:
+    0 18px 46px rgba(16, 66, 111, .10),
+    0 1px 0 rgba(255, 255, 255, .55) inset;
+  padding: var(--card-pad);
+  overflow: hidden;
+}
+
+/* top layout (tags + photo) */
+#income-examples .income-card__top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 92px;
+  gap: 8px;
+  align-items: start;
+  margin-bottom: var(--card-gap);
+}
+
+/* photo circle + white ring */
+#income-examples .income-card__photo {
+  width: 112px;
+  height: 112px;
+  border-radius: 999px;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 10px 24px rgba(16, 66, 111, .12);
+  outline: 10px solid rgba(255, 255, 255, .70);
+  outline-offset: -10px;
+  /* “白縁”を内側に */
+}
+
+/* tags typography */
+#income-examples .income-tags__badge {
+  height: 22px;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 11px;
+  letter-spacing: .06em;
+  color: rgba(16, 34, 53, .84);
+  background: rgba(255, 255, 255, .60);
+  border: 1px solid rgba(16, 66, 111, .12);
+}
+
+#income-examples .income-tags__val {
+  color: var(--card-ink);
+  font-weight: 800;
+}
+
+/* weekday pills (曜日の丸ピル) */
+#income-examples .ws-days,
+#income-examples .income-days,
+#income-examples .days,
+#income-examples .weekday-chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: nowrap;
+}
+
+#income-examples .ws-day,
+#income-examples .day,
+#income-examples .income-day {
+  height: 28px;
+  min-width: 28px;
+  padding: 0 10px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 800;
+  color: rgba(16, 34, 53, .82);
+  background: var(--pill-bg);
+  border: 1px solid var(--pill-stroke);
+}
+
+/* breakdown spacing (読みやすく) */
+#income-examples .income-breakdown {
+  margin-top: 10px;
+}
+
+#income-examples .income-breakdown__row {
+  padding: 8px 0;
+  border-top: 1px solid rgba(16, 66, 111, .10);
+}
+
+#income-examples .income-breakdown__label {
+  color: var(--card-sub);
+  letter-spacing: .03em;
+}
+
+#income-examples .income-breakdown__value {
+  color: var(--card-ink);
+  font-weight: 900;
+}
+
+/* total bar (下段の別面) */
+#income-examples .income-card__total {
+  margin-top: 14px;
+  padding: 16px 18px;
+  border-radius: 18px;
+  background: var(--total-bg);
+  border: 1px solid var(--total-stroke);
+}
+
+#income-examples .income-card__total .income-breakdown__label {
+  font-size: 12px;
+  opacity: .72;
+}
+
+#income-examples .income-card__total .income-breakdown__value {
+  font-size: 22px;
+  font-weight: 1000;
+  letter-spacing: .01em;
+  color: rgba(16, 34, 53, .92);
+}
+
+/* ===== case themes (スクショの3色) ===== */
+#income-examples .income-card[data-case="1"] {
+  --card-bg: rgba(147, 225, 240, .26);
+  /* aqua */
+}
+
+#income-examples .income-card[data-case="3"] {
+  --card-bg: rgba(255, 207, 194, .30);
+  /* peach */
+}
+
+#income-examples .income-card[data-case="4"] {
+  --card-bg: rgba(255, 222, 160, .22);
+  /* sand */
+}
+
+#income-examples .income-card[data-case="5"] {
+  --card-bg: rgba(125, 220, 210, .18);
+  /* mint */
+}
+
+
+/* SP tune */
+@media (max-width: 768px) {
+  #income-examples .income-card__frame {
+    padding: 18px;
+    border-radius: 22px;
+  }
+
+  #income-examples .income-card__top {
+    grid-template-columns: minmax(0, 1fr) 96px;
+  }
+
+  #income-examples .income-card__photo {
+    width: 96px;
+    height: 96px;
+    outline-width: 9px;
+    outline-offset: -9px;
+  }
+
+  #income-examples .income-card__total {
+    padding: 14px 16px;
+  }
+}
+
+
+/* WORKSTYLE: kill disc-img layer */
+#workstyle .ws-card {
+  background-image: none !important;
+}
+
+/* =========================
+   SSOT PATCH: WORKSTYLE photo must be a circle (no repeat)
+   - fixes "striped repeating photo" bug
+========================= */
+#workstyle .ws-card__photo {
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  flex: 0 0 auto;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+/* =========================
+   SSOT FINAL: WORKSTYLE theme backgrounds must win
+   - do NOT touch income
+   - do NOT change CSS load order
+========================= */
+#workstyle .js-ws-cards>.ws-card.ws-card--aqua {
+  background: rgba(147, 225, 240, .18) !important;
+}
+
+#workstyle .js-ws-cards>.ws-card.ws-card--mint {
+  background: rgba(125, 220, 210, .16) !important;
+}
+
+#workstyle .js-ws-cards>.ws-card.ws-card--peach {
+  background: rgba(255, 207, 194, .22) !important;
+}
+
+#workstyle .js-ws-cards>.ws-card.ws-card--sand {
+  background: rgba(255, 222, 160, .18) !important;
+}
+
+#workstyle .js-ws-cards>.ws-card.ws-card--royal {
+  background: rgba(24, 54, 150, .10) !important;
+}
+
+#workstyle .js-ws-cards>.ws-card.ws-card--navy {
+  background: rgba(16, 66, 111, .92) !important;
+  color: #fff;
+}
+
+#workstyle .ws-card__photo {
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: cover !important;
+}
+
+/* =========================
+   SSOT PATCH: WS avatar fallback (no image = pink circle)
+========================= */
+
+/* 右上固定（すでに入れてるなら重複OK：勝った方が採用） */
+#workstyle .ws-card {
+  position: relative;
+}
+
+#workstyle .ws-card__photo {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+
+  border: 0 !important;
+  box-shadow: none !important;
+
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: cover !important;
+}
+
+/* ✅ 画像が無い時だけ：線なしピンク丸 */
+#workstyle .ws-card__photo:not([style*="background-image"]) {
+  background: rgba(255, 207, 194, .90) !important;
+  /* ピンク丸 */
+}
+
+/* （保険）背景が変に漏れてる時は強制で切る */
+#workstyle .ws-card__photo:not([style*="background-image"]) {
+  background-image: none !important;
+}
+
+/* =========================
+   SSOT FINAL: WORKSTYLE avatar = larger + vertically centered (match ref)
+   - keep colors separate
+========================= */
+#workstyle .ws-card__top {
+  position: relative;
+  padding-right: 108px;
+  /* 画像(72) + 余白(18*2) くらい */
+}
+
+/* 右上→右側センター寄せ / サイズUP */
+#workstyle .ws-card__photo {
+  position: absolute !important;
+  top: 56px !important;
+  /* ←まずはここが“高い”問題の主因。後で微調整OK */
+  right: 18px !important;
+
+  width: 72px !important;
+  height: 72px !important;
+  border-radius: 999px !important;
+
+  /* 画像②寄せの“上品リング” */
+  border: 8px solid rgba(255, 255, 255, .55) !important;
+  box-shadow: 0 10px 24px rgba(16, 34, 53, .12) !important;
+
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: cover !important;
+}
+
+/* 画像が無いとき：線なしピンク丸（前の仕様を維持） */
+#workstyle .ws-card__photo:not([style*="background-image"]) {
+  border: 0 !important;
+  box-shadow: none !important;
+  background: rgba(255, 207, 194, .90) !important;
+  background-image: none !important;
+}
+
+/* SSOT TUNE: WORKSTYLE avatar vertical position (raise a bit) */
+#workstyle .ws-card__photo {
+  top: 44px !important;
+}
+
+/* SSOT TUNE: WORKSTYLE days readability (clear ON/OFF) */
+#workstyle .ws-day {
+  opacity: .45;
+  border-color: rgba(16, 34, 53, .18);
+}
+
+#workstyle .ws-day.is-on {
+  opacity: 1;
+  background: rgba(255, 255, 255, .92);
+  border-color: rgba(16, 66, 111, .28);
+  color: rgba(16, 34, 53, .92);
+  font-weight: 700;
+}
+
+/* navy card keeps its special contrast */
+#workstyle .ws-card--navy .ws-day {
+  opacity: .7;
+  border-color: rgba(255, 255, 255, .22);
+  color: rgba(255, 255, 255, .92);
+}
+
+#workstyle .ws-card--navy .ws-day.is-on {
+  opacity: 1;
+  background: rgba(255, 255, 255, .92);
+  color: rgba(16, 66, 111, .95);
+}
+
+/* SSOT TUNE: WORKSTYLE avatar raise slightly */
+#workstyle .ws-card__photo {
+  top: 38px !important;
+}
+
+
+/* SSOT TUNE: WORKSTYLE total emphasis */
+#workstyle .ws-card__total,
+#workstyle .income-card__total,
+#workstyle .income-total {
+  font-size: 28px !important;
+  font-weight: 800 !important;
+  letter-spacing: .03em;
+  color: #0f2740;
+}
+
+/* 円/月の補助文字は少し控えめ */
+#workstyle .ws-card__total small,
+#workstyle .income-card__total small {
+  font-size: 14px;
+  font-weight: 600;
+  opacity: .7;
+}
+
+
+/* SSOT TUNE: WORKSTYLE avatar slightly bigger */
+#workstyle .ws-card__photo {
+  width: 80px !important;
+  height: 80px !important;
+  border-width: 8px !important;
+}
+
+/* 右側の逃げ（テキスト被り防止）も少し増やす */
+#workstyle .ws-card__top {
+  padding-right: 120px;
+}
+
+
+/* =========================
+   SSOT TUNE: WORKSTYLE badge -> speech bubble
+========================= */
+#workstyle .ws-card__badge {
+  position: relative;
+  border-radius: 999px;
+}
+
+/* tail */
+#workstyle .ws-card__badge::after {
+  content: "";
+  position: absolute;
+  left: 18px;
+  /* ←尻尾の位置（好みで調整） */
+  bottom: -7px;
+  /* ←尻尾を外に出す */
+  width: 14px;
+  height: 14px;
+  background: inherit;
+  /* バッジと同じ色 */
+  transform: rotate(45deg);
+  border-radius: 3px;
+  box-shadow: 0 6px 14px rgba(16, 34, 53, .10);
+}
+
+
+/* HOTFIX: kill previous bubble tail (was diamond artifact) */
+#workstyle .ws-card__badge::after {
+  content: none !important;
+}
+
+
+/* =========================
+   SSOT FINAL: WORKSTYLE badge -> speech bubble (stable)
+========================= */
+#workstyle .ws-card__badge {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-weight: 800;
+  /* ←目立たせる */
+  letter-spacing: .02em;
+  line-height: 1;
+  box-shadow: 0 8px 18px rgba(16, 34, 53, .10);
+}
+
+/* 背景色を変数に揃える（尻尾が確実に同色になる） */
+#workstyle .ws-card__badge--aqua {
+  --ws-badge-bg: rgba(147, 225, 240, .34);
+  background: var(--ws-badge-bg) !important;
+}
+
+#workstyle .ws-card__badge--mint {
+  --ws-badge-bg: rgba(125, 220, 210, .30);
+  background: var(--ws-badge-bg) !important;
+}
+
+#workstyle .ws-card__badge--peach {
+  --ws-badge-bg: rgba(255, 207, 194, .40);
+  background: var(--ws-badge-bg) !important;
+}
+
+#workstyle .ws-card__badge--sand {
+  --ws-badge-bg: rgba(255, 222, 160, .34);
+  background: var(--ws-badge-bg) !important;
+}
+
+#workstyle .ws-card__badge--royal {
+  --ws-badge-bg: rgba(24, 54, 150, .20);
+  background: var(--ws-badge-bg) !important;
+}
+
+#workstyle .ws-card__badge--navy {
+  --ws-badge-bg: rgba(255, 255, 255, .14);
+  background: var(--ws-badge-bg) !important;
+}
+
+
+
+/* =========================
+   SSOT FINAL: WORKSTYLE total (make it hero)
+========================= */
+#workstyle .ws-sumbox {
+  margin-top: 12px;
+}
+
+#workstyle .ws-sumbox__value {
+  font-size: 36px !important;
+  font-weight: 900 !important;
+  letter-spacing: .01em;
+  line-height: 1.05;
+}
+
+#workstyle .ws-sumbox__unit {
+  font-size: 14px;
+  font-weight: 800;
+  opacity: .65;
+  margin-left: 6px;
+}
+
+#workstyle .ws-sumbox__note {
+  margin-top: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  opacity: .70;
+}
+
+
+/* ===== WORKSTYLE total – subtle luxury tune ===== */
+#workstyle .ws-sumbox {
+  margin-top: 12px;
+  padding: 16px 18px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, .55);
+  border: 1px solid rgba(16, 66, 111, .06);
+  backdrop-filter: blur(4px);
+}
+
+#workstyle .ws-sumbox__value {
+  font-size: 27px !important;
+  font-weight: 900 !important;
+  color: rgba(16, 34, 53, .88);
+}
+
+#workstyle .ws-sumbox__unit {
+  font-size: 13px;
+  font-weight: 700;
+  opacity: .65;
+}
+
+
+/* ===== WORKSTYLE total – presence boost (still luxe) ===== */
+#workstyle .ws-sumbox {
+  background: rgba(255, 255, 255, .62);
+  border-color: rgba(16, 66, 111, .08);
+  box-shadow:
+    0 10px 24px rgba(16, 34, 53, .10),
+    0 1px 0 rgba(255, 255, 255, .70) inset;
+}
+
+#workstyle .ws-sumbox__value {
+  color: rgba(16, 34, 53, .92);
+}
+
+#workstyle .ws-sumbox__note {
+  opacity: .78;
+}
+
+
+/* ===== WORKSTYLE weekdays: keep 7 pills in one line (PC) ===== */
+@media (min-width: 900px) {
+  #workstyle .ws-days {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 6px;
+    white-space: nowrap;
+  }
+
+  #workstyle .ws-day {
+    flex: 0 0 auto;
+    min-width: 28px;
+    height: 28px;
+    font-size: 11px;
+  }
+}
+
+
+/* ===== WORKSTYLE weekdays: keep 7 pills in one line (PC) ===== */
+@media (min-width: 900px) {
+  #workstyle .ws-card__days {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 6px;
+    white-space: nowrap;
+  }
+
+  #workstyle .ws-card__days .ws-day {
+    flex: 0 0 auto;
+    min-width: 28px;
+    height: 28px;
+    font-size: 11px;
+  }
+}
+
+
+/* ===== WORKSTYLE weekdays: avoid photo overlap (PC) ===== */
+@media (min-width: 900px) {
+
+  /* photoが被さる分だけ曜日列を右で退避 */
+  #workstyle .ws-card__days {
+    padding-right: 96px;
+    /* まずはこれで被り止め */
+    max-width: calc(100% - 96px);
+    box-sizing: border-box;
+  }
+}
+
+
+/* ===== WORKSTYLE weekdays: hard stop overlap (PC) ===== */
+@media (min-width: 900px) {
+  #workstyle .ws-card__days {
+    padding-right: 120px;
+    max-width: calc(100% - 120px);
+  }
+
+  #workstyle .ws-card__days {
+    gap: 4px;
+  }
+
+  #workstyle .ws-card__days .ws-day {
+    min-width: 26px;
+    height: 26px;
+    font-size: 11px;
+  }
+}
+
+
+/* ===== WORKSTYLE weekdays: +a bit more breathing room (PC) ===== */
+@media (min-width: 900px) {
+  #workstyle .ws-card__days {
+    padding-right: 132px;
+    max-width: calc(100% - 132px);
+    position: relative;
+  }
+
+  /* visual breathing room (fade out near photo) */
+  #workstyle .ws-card__days::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 18px;
+    height: 100%;
+    pointer-events: none;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, .75));
+  }
+
+  /* navy card uses dark fade */
+  #workstyle .ws-card--navy .ws-card__days::after {
+    background: linear-gradient(90deg, rgba(16, 66, 111, 0), rgba(16, 66, 111, .70));
+  }
+}
+
+
+/* ===== WORKSTYLE weekday pills: kill white squares on OFF days ===== */
+#workstyle .ws-card__days .ws-day {
+  border-radius: 999px !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+/* ONだけ主張（既存があってもOK、最終形を固定） */
+#workstyle .ws-card__days .ws-day.is-on {
+  background: rgba(255, 255, 255, .92) !important;
+}
+
+/* navy上のOFFは “薄いガラス” だけ残す（四角化しない） */
+#workstyle .ws-card--navy .ws-card__days .ws-day:not(.is-on) {
+  background: rgba(255, 255, 255, .10) !important;
+  border: 1px solid rgba(255, 255, 255, .22) !important;
+}
+
+
+/* ===== WORKSTYLE photo: +2px right for breathing room ===== */
+@media (min-width: 900px) {
+  #workstyle .ws-card__photo {
+    transform: translateX(2px);
+  }
+}
+
+
+/* ===== WORKSTYLE: hierarchy (make "note/assumption" feel different) ===== */
+#workstyle .ws-card__meta-line {
+  font-weight: 600;
+  opacity: .92;
+}
+
+#workstyle .ws-sumbox__note {
+  font-size: 12px;
+  font-weight: 600;
+  opacity: .72;
+  /* ← “想定”っぽい差 */
+  letter-spacing: .04em;
+  /* ← 少しドライに */
+}
+
+/* ===== WORKSTYLE: weekday pills FINAL (kill square artifacts) ===== */
+#workstyle .ws-card__days .ws-day {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 26px;
+  height: 26px;
+
+  border-radius: 999px !important;
+  background: transparent !important;
+  /* ←OFFは透明 */
+  box-shadow: none !important;
+
+  border: 1px solid rgba(16, 66, 111, .16);
+  color: rgba(16, 34, 53, .50);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* ONだけ主役 */
+#workstyle .ws-card__days .ws-day.is-on {
+  background: rgba(255, 255, 255, .92) !important;
+  border-color: rgba(16, 66, 111, .18);
+  color: rgba(16, 34, 53, .92);
+}
+
+/* navy上のOFFはガラス、ONは白 */
+#workstyle .ws-card--navy .ws-card__days .ws-day {
+  border-color: rgba(255, 255, 255, .22);
+  color: rgba(255, 255, 255, .85);
+}
+
+#workstyle .ws-card--navy .ws-card__days .ws-day:not(.is-on) {
+  background: rgba(255, 255, 255, .10) !important;
+}
+
+#workstyle .ws-card--navy .ws-card__days .ws-day.is-on {
+  background: rgba(255, 255, 255, .92) !important;
+  color: rgba(16, 66, 111, .95);
+}
+
+
+/* ===== WORKSTYLE: persona line hierarchy (age/role vs details) ===== */
+#workstyle .ws-card__persona {
+  font-size: 14px;
+  /* 1段だけ主役 */
+  font-weight: 900;
+  letter-spacing: .02em;
+  line-height: 1.25;
+  margin-bottom: 6px;
+}
+
+#workstyle .ws-card__meta-line {
+  font-size: 13px;
+  /* 本文側に落とす */
+  font-weight: 600;
+  opacity: .86;
+  line-height: 1.55;
+}
+
+/* navy card: keep readability */
+#workstyle .ws-card--navy .ws-card__meta-line {
+  opacity: .90;
+}
+
+/* =========================
+   PATCH (SSOT): kill weekday white blocks
+   - remove stray bg image / tap highlight / pseudo overlays
+========================= */
+#workstyle .ws-card__days,
+#workstyle .ws-day {
+  background-image: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+#workstyle .ws-card__days::before,
+#workstyle .ws-card__days::after,
+#workstyle .ws-day::before,
+#workstyle .ws-day::after {
+  content: none !important;
+}
+
+/* pill shape harden (avoid “square” artifacts) */
+#workstyle .ws-day {
+  border-radius: 999px !important;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* =========================================================
+   HOTFIX: WORKSTYLE weekday chips — kill mystery white squares
+   - remove any pseudo artifacts on day pills / day row
+========================================================= */
+#workstyle .ws-card__days::before,
+#workstyle .ws-card__days::after,
+#workstyle .ws-day::before,
+#workstyle .ws-day::after {
+  content: none !important;
+  display: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+#workstyle .ws-day {
+  -webkit-tap-highlight-color: transparent;
+  background-clip: padding-box;
+}
+
+/* ===== Case2 tone refinement (navy but not gloomy) ===== */
+#income-examples .income-card[data-case="2"] {
+  /* light-blue (brighter) */
+  --card-bg: rgba(168, 205, 232, .58);
+  --card-stroke: rgba(16, 66, 111, .14);
+  --card-ink: rgba(16, 34, 53, .92);
+  --card-sub: rgba(16, 34, 53, .62);
+
+  --pill-bg: rgba(255, 255, 255, .72);
+  --pill-stroke: rgba(16, 66, 111, .18);
+  --total-bg: rgba(255, 255, 255, .55);
+  --total-stroke: rgba(16, 66, 111, .10);
+}
+
+/* =========================================================
+   SSOT FINAL OVERRIDE: INCOME (SP) photo must be HORIZONTAL
+   - stop layout loop / keep other sections untouched
+========================================================= */
+@media (max-width: 767px) {
+
+  /* SP: stack layout (photo becomes horizontal) */
+  #income-examples .income-card__top {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* SP: photo = horizontal banner */
+  #income-examples .income-card__photo {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+
+    aspect-ratio: 16 / 9 !important;
+    /* ←横固定 */
+    min-height: clamp(160px, 34vw, 240px) !important;
+    border-radius: 16px !important;
+
+    /* ここが“丸/縦”を殺す本命 */
+    outline: 0 !important;
+    box-shadow: none !important;
+
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-position: var(--photo-pos, 50% 16%) !important;
+    overflow: hidden !important;
+  }
+
+  /* if photo uses <img> */
+  #income-examples .income-card__photo img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: var(--photo-pos, 50% 16%) !important;
+    display: block !important;
+    border-radius: inherit !important;
+  }
+
+  /* =========================================================
+   PATCH: INCOME photo-pos per case (SP/PC) — crop alignment
+   - fixes "some cases look shifted" without touching layout
+========================================================= */
+  #income-examples .income-card[data-case="3"] {
+    --photo-pos: 50% 28%;
+  }
+
+  #income-examples .income-card[data-case="5"] {
+    --photo-pos: 50% 18%;
+  }
+}
+
+@media (max-width: 899px) {
+
+  /* in-flow は基本見せない（座席に座ったのだけ見せる） */
+  body.page-top .footer-cta-slot,
+  body.page-towa .footer-cta-slot,
+  body.page-work-income .footer-cta-slot {
+    display: none !important;
+  }
+
+  /* seated だけ revive */
+  body.page-top .bottom-seat .footer-cta-slot,
+  body.page-towa .bottom-seat .footer-cta-slot,
+  body.page-work-income .bottom-seat .footer-cta-slot {
+    display: flex !important;
+  }
+}
+
+/* =========================================================
+   SSOT FORCE WIN: footer-cta-slot in-flow must be invisible (NOT none)
+========================================================= */
+@media (max-width: 899px) {
+
+  body.page-top .footer-cta-slot,
+  body.page-towa .footer-cta-slot,
+  body.page-work-income .footer-cta-slot {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    height: 1px !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  body.page-top .bottom-seat .footer-cta-slot,
+  body.page-towa .bottom-seat .footer-cta-slot,
+  body.page-work-income .bottom-seat .footer-cta-slot {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+}
+
+/* =========================================================
+   SSOT FINAL: BottomSeat usage policy
+   - TOP (PC): bottom-seat is the only fixed seat (CTA + toTop inline)
+   - Others (PC): keep original (do NOT force seat fixed)
+========================================================= */
+
+/* TOPだけ：右下で CTA + ↑ を横並び固定 */
+@media (min-width: 900px) {
+  body.page-top .bottom-seat {
+    position: fixed !important;
+    right: 16px !important;
+    bottom: 16px !important;
+    z-index: 1200 !important;
+
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: flex-end !important;
+    justify-content: flex-end !important;
+    gap: 10px !important;
+
+    pointer-events: none !important;
+  }
+
+  body.page-top .bottom-seat>* {
+    pointer-events: auto !important;
+  }
+
+  /* =========================================================
+   SSOT: Back to Top arrow color (ALL pages)
+   - text arrow + svg arrow both supported
+========================================================= */
+  [data-to-top],
+  [data-to-top] .back-to-top__icon {
+    color: #AD853F !important;
+  }
+
+  /* if some pages use svg arrows */
+  [data-to-top] svg,
+  [data-to-top] svg * {
+    stroke: #AD853F !important;
+  }
+
+  [data-to-top] svg path {
+    fill: none !important;
+  }
+
+/* seat内は fixed を殺して同席（TOPのみ）
+   ※ TOPの floating-cta は元の fixed を尊重する */
+body.page-top .bottom-seat .footer-cta-slot,
+body.page-top .bottom-seat .work-sp-cta,
+body.page-top .bottom-seat [data-to-top] {
+  position: static !important;
+  inset: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+  top: auto !important;
+  transform: none !important;
+  margin: 0 !important;
+}
+
+/* 並び順：SP用CTA → ↑ */
+body.page-top .bottom-seat .footer-cta-slot,
+body.page-top .bottom-seat .work-sp-cta {
+  order: 1 !important;
+}
+
+body.page-top .bottom-seat [data-to-top] {
+  order: 2 !important;
+}
+  body.page-top .bottom-seat [data-to-top] {
+    order: 2 !important;
+  }
+
+  /* === FIX: TOP CTA click area === */
+  body.page-top .bottom-seat .floating-cta__body,
+  body.page-top .bottom-seat .floating-cta__row {
+    position: relative !important;
+  }
+
+  body.page-top .bottom-seat .floating-cta__btn {
+    position: relative !important;
+    z-index: 1 !important;
+    width: auto !important;
+    pointer-events: auto !important;
+  }
+
+  body.page-top .bottom-seat .floating-cta::before,
+  body.page-top .bottom-seat .floating-cta::after,
+  body.page-top .bottom-seat .floating-cta__row::before,
+  body.page-top .bottom-seat .floating-cta__row::after {
+    pointer-events: none !important;
+  }
+}
+
+/* TOP以外：bottom-seat を固定席にしない（オリジナル尊重） */
+@media (min-width: 900px) {
+  body:not(.page-top) .bottom-seat {
+    position: static !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    top: auto !important;
+    transform: none !important;
+    pointer-events: auto !important;
+  }
+}
+
+/* =========================================================
+   PATCH: Footer safe area vs BottomSeat (TOP only)
+   - prevent footer text from being covered by fixed bottom-seat
+========================================================= */
+@media (min-width: 900px) {
+  body.page-top footer {
+    padding-bottom: calc(56px + 16px + 24px) !important;
+    /* 56=CTA/toTop size, 16=bottom offset, 24=breathing room */
+  }
+}
+
+/* BACK TO TOP + WORK CTA SSOT */
+[data-to-top],
+aside.work-float-cta {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+}
+
+body.is-footer-dock [data-to-top],
+body.is-footer-dock aside.work-float-cta {
+  opacity: 0;
+  pointer-events: none;
+  transform: none;
+}
+
+/* =========================================================
+   SSOT: Footer Dock behavior (fade only / no push)
+   - hide CTA + toTop while footer is in view
+========================================================= */
+body.is-footer-dock aside.work-float-cta,
+body.is-footer-dock [data-to-top] {
+  opacity: 0;
+  pointer-events: none;
+  transform: none;
+}
+
+/* =========================================================
+   SSOT: RoleGate overlay must NEVER steal clicks when hidden
+========================================================= */
+.role-gate-overlay {
+  pointer-events: none;
+}
+
+.role-gate-overlay.is-on {
+  pointer-events: auto;
+}
+
+@media (min-width: 960px) {
+
+  body.page-work-income .floating-cta.is-docked~[data-to-top],
+  body.page-work-income .floating-cta.is-docked+[data-to-top] {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transform: none !important;
+  }
+}
+
+/* =========================================================
+   SSOT: Back to top (fixed seat)
+========================================================= */
+[data-to-top] {
+  position: fixed !important;
+  right: 22px !important;
+  bottom: 22px !important;
+  z-index: 1300 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+
+/* SSOT: RoleGate overlay must NEVER steal clicks when hidden */
+.role-gate-overlay {
+  pointer-events: none !important;
+}
+
+.role-gate-overlay.is-on {
+  pointer-events: auto !important;
+}
+
+[data-to-top] {
+  position: fixed !important;
+  right: 22px !important;
+  bottom: 22px !important;
+  z-index: 1300 !important;
+}
+
+/* =========================================================
+   PATCH: footer-cta-slot when seated in bottom-seat (SP)
+   - fixed前提の座標を無効化
+   - bottom-seat内で“軽いメニュー”に整形
+========================================================= */
+@media (max-width: 899px) {
+
+  /* bottom-seat の中に入ったら、slot自体は“ただの横並び”にする */
+  .bottom-seat .footer-cta-slot {
+    position: static !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+
+    gap: 10px !important;
+  }
+
+  /* ボタンを小さめに整える（デカすぎ事故を止める） */
+  .bottom-seat .footer-cta__btn {
+    height: 44px !important;
+    padding: 0 14px !important;
+    border-radius: 14px !important;
+    font-size: 13px !important;
+  }
+
+  /* 2段のときも潰れにくく */
+  .bottom-seat .footer-cta-slot.is-2rows {
+    flex-wrap: wrap !important;
+    row-gap: 8px !important;
+  }
+}
+
+/* =========================================
+   SSOT FINAL PATCH: SP bottom-seat 2-col (CTA left + toTop right)
+   - Seat内では footer-cta-slot / toTop の "fixed" を必ず殺す
+========================================= */
+@media (max-width: 899px) {
+  .bottom-seat {
+    position: fixed;
+    right: 12px;
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 10px);
+    z-index: 950;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    pointer-events: none;
+  }
+
+  .bottom-seat>* {
+    pointer-events: auto;
+  }
+
+  /* CTA: seat内では static で“左に伸びる” */
+  .bottom-seat .footer-cta-slot {
+    display: flex !important;
+    flex: 1 1 auto;
+    min-width: 0;
+    /* 潜り込み防止の要 */
+    position: static !important;
+    /* ← fixedを必ず殺す（ここが勝ち） */
+    inset: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+
+    padding: 6px !important;
+    /* 10pxだと太りがちなので控えめ推奨 */
+  }
+
+  /* ↑: seat右側で固定サイズ */
+  .bottom-seat [data-to-top] {
+    position: static !important;
+    inset: auto !important;
+    flex: 0 0 auto;
+    margin: 0 !important;
+    transform: none !important;
+  }
+
+  .bottom-seat .footer-cta__btn {
+    white-space: nowrap;
+  }
+}
+
+/* =========================================
+   PATCH: bottom-seat subtle glass base (make CTA visible on dark sections)
+========================================= */
+@media (max-width: 899px) {
+
+  .bottom-seat {
+    padding: 6px;
+
+    border-radius: 16px;
+    /* ←ここをボタンと同じにする */
+
+    background: rgba(255, 255, 255, .62);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    border: 1px solid rgba(16, 66, 111, .18);
+    box-shadow: 0 12px 30px rgba(16, 34, 53, .18);
+  }
+
+}
+
+/* =========================================
+   PATCH: WORK CTA inside bottom-seat (treat as footer slot)
+========================================= */
+@media (max-width: 899px) {
+
+  /* seat内のWORK CTAを “seat子” として扱う（fixed殺す） */
+  .bottom-seat .work-float-cta {
+    display: flex !important;
+    flex: 1 1 auto;
+    min-width: 0;
+
+    position: static !important;
+    inset: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+
+    width: auto !important;
+    z-index: auto !important;
+  }
+
+  /* WORK CTA内のカードも、seatの横並びに馴染ませる */
+  .bottom-seat .work-float-cta__card {
+    width: auto !important;
+    border-radius: inherit;
+    /* 台座と揃えたいなら効く */
+  }
+
+  .bottom-seat .work-float-cta {
+    display: flex !important;
+
+    flex: 1 1 auto;
+    /* ←これ追加 */
+
+    min-width: 0;
+    position: static !important;
+    inset: auto !important;
+    width: auto !important;
+  }
+
+  .bottom-seat {
+    left: 12px;
+    /* ←追加：横幅を作る */
+    right: 12px;
+    /* 既にあるならOK（両方あるのが大事） */
+    justify-content: flex-end;
+    /* ←追加：右端基準で並べる（↑は右に残る） */
+  }
+}
+
+@media (max-width: 899px) {
+
+  /* seat内の↑だけ、CTAと同じ高さに揃える（勝者保証） */
+  .bottom-seat .back-to-top[data-to-top] {
+    height: 48px !important;
+    width: 48px !important;
+
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    line-height: 1 !important;
+    box-sizing: border-box !important;
+  }
+
+  /* もしアイコンがSVG/疑似要素なら、中央寄せの保険 */
+  .bottom-seat .back-to-top[data-to-top] svg {
+    display: block;
+  }
+}
+
+@media (max-width:899px) {
+
+  .bottom-seat .back-to-top {
+    height: 46px !important;
+    width: 46px !important;
+
+    padding: 0 !important;
+    /* ←これ重要 */
+    border-width: 1px !important;
+
+    box-sizing: border-box !important;
+
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+
+}
+
+/* =========================================================
+   SSOT FIX: bottom-seat should NOT stretch on SP (fit-content like TOWA)
+========================================================= */
+@media (max-width: 899px) {
+  .bottom-seat {
+    left: auto !important;
+    /* ← 伸びの原因を止める */
+    right: 12px !important;
+    width: max-content !important;
+    /* 内容幅 */
+    max-width: calc(100vw - 24px) !important;
+    justify-content: flex-end !important;
+  }
+
+  /* CTAは“伸びない”。横に広げるなら別ルールでやる */
+  .bottom-seat .footer-cta-slot,
+  .bottom-seat .work-float-cta {
+    flex: 0 0 auto !important;
+    min-width: 0;
+  }
+}
+
+.bj-disc--img::after {
+  content: none !important;
+}
+
+/* PATCH: consult icon only */
+body.page-top .bj-card[data-bj-card="consult"] .bj-disc--img {
+  background-size: 82% auto !important;
+  background-position: 50% 56% !important;
+  background-repeat: no-repeat !important;
+}
+
+/* =========================
+   FAQ CARD (SSOT)
+   - shared by TOP / TOWA
+========================= */
+
+.bj-card[data-bj-card="faq"] {
+  background: #123A60;
+  color: #fff;
+}
+
+.bj-card[data-bj-card="faq"] .bj-card__inner {
+  grid-template-columns: 220px 1fr;
+  min-height: 260px;
+}
+
+.bj-card[data-bj-card="faq"] .bj-disc {
+  width: clamp(150px, 16vw, 190px);
+  aspect-ratio: 1 / 1;
+}
+
+.bj-disc--faq {
+  background: rgba(255, 255, 255, .96);
+  border-radius: 50%;
+  box-shadow: 0 14px 30px rgba(16, 34, 53, .12);
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.bj-disc__icon--faq {
+  width: 78%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.bj-card[data-bj-card="faq"] .bj-kicker {
+  color: rgba(255, 255, 255, .86);
+  letter-spacing: .03em;
+}
+
+.bj-card[data-bj-card="faq"] .bj-title {
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.bj-card[data-bj-card="faq"] .bj-en {
+  color: rgba(255, 255, 255, .62);
+  margin-bottom: 14px;
+}
+
+.bj-faq-snippet {
+  display: grid;
+  gap: 6px;
+  margin: 0 0 18px;
+}
+
+.bj-faq-snippet p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, .88);
+}
+
+.bj-card[data-bj-card="faq"] .bj-btn--ghost {
+  background: #fff;
+  color: #102235;
+  border-color: transparent;
+}
+
+@media (max-width: 959px) {
+  .bj-card[data-bj-card="faq"] .bj-card__inner {
+    grid-template-columns: 1fr;
+    text-align: left;
+    min-height: unset;
+  }
+
+  .bj-card[data-bj-card="faq"] .bj-disc {
+    width: clamp(132px, 42vw, 168px);
+    margin-inline: auto;
+  }
+
+  .bj-faq-snippet p {
+    font-size: 12.5px;
+  }
+}
+
+/* PATCH: consult / faq CTA bottom align */
+.bj-help .bj-card__inner {
+  align-items: stretch;
+}
+
+.bj-help .bj-card__text {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.bj-help .bj-btn {
+  margin-top: auto;
+}
+
+/* ===== SSOT: START CTA (from TOWA winner) ===== */
+
+/* --- base --- */
+.start-cta {
+  position: relative;
+  margin-top: 40px;
+  padding-top: 72px;
+}
+
+.start-cta::before {
+  content: "";
+  position: absolute;
+  top: -46px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 84%;
+  height: 1px;
+  background: rgba(16, 34, 53, .07);
+}
+
+.start-cta__bg-title {
+  position: absolute;
+  left: 50%;
+  top: -62px;
+  transform: translateX(-50%);
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+  z-index: 0;
+
+  font-family: var(--font-sans);
+  font-weight: 800;
+  letter-spacing: .06em;
+  line-height: 1;
+
+  font-size: clamp(42px, 6.0vw, 78px);
+  color: rgba(16, 34, 53, .10);
+}
+
+.start-cta__inner {
+  position: relative;
+}
+
+.start-cta__inner>*:not(.start-cta__bg-title) {
+  position: relative;
+  z-index: 1;
+}
+
+/* --- layout --- */
+.start-cta .bj-help__grid {
+  max-width: var(--container, 1160px);
+  margin-left: auto;
+  margin-right: auto;
+  align-items: stretch;
+}
+
+.start-cta .bj-card__inner {
+  align-items: stretch;
+  min-height: 260px;
+}
+
+.start-cta .bj-card__text {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.start-cta .bj-btn {
+  margin-top: auto;
+}
+
+/* --- faq --- */
+.start-cta .bj-disc--faq {
+  background: rgba(255, 255, 255, .96);
+  border-radius: 50%;
+  box-shadow: 0 14px 30px rgba(16, 34, 53, .12);
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.start-cta .bj-disc__icon--faq {
+  width: 78%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.start-cta .bj-faq-snippet {
+  display: grid;
+  gap: 6px;
+  margin: 0 0 18px;
+}
+
+.start-cta .bj-faq-snippet p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, .88);
+}

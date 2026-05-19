@@ -1,0 +1,208 @@
+/* =========================================================
+   bbj-base.css — SITE BASE (SSOT)
+   Scope:
+   - Tokens
+   - Base reset
+   - Layout foundation (.page / .container)
+   - Media defaults
+   NOTE:
+   - Header/Darwer/Lang helpers are in bbj_header.css
+========================================================= */
+
+/* =========================
+   TOKENS (shared)
+========================= */
+:root {
+  --c-white: #fff;
+  --c-ivory: #f6fdff;
+
+  --c-salmon: #e88b7a;
+  --c-peach: #ffcfc2;
+  --c-mustard: #eeb039;
+  --c-navy: #10426f;
+  --c-gold: #ad853f;
+
+  --c-text: #333;
+  --c-muted: #555;
+
+  --font-sans: "Noto Sans JP", system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  --font-serif: "Zen Antique", serif;
+  --font-script: "Zapfino", cursive;
+
+  --r-xxl: 32px;
+  --r-xl: 24px;
+  --r-pill: 999px;
+
+  --shadow-soft: 0 12px 28px rgba(0, 0, 0, .10);
+  --shadow-mid: 0 18px 45px rgba(0, 0, 0, .06);
+  --shadow-strong: 0 18px 40px rgba(0, 0, 0, .18);
+
+  --border: rgba(16, 66, 111, .18);
+
+  /* layout */
+  --container: 1160px;
+  --container-pad: clamp(16px, 3vw, 28px);
+}
+
+/* =========================
+   BASE
+========================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--c-text);
+  background: var(--c-white);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+.page {
+  min-height: 100vh;
+  background: var(--c-white);
+}
+
+/* =========================
+   CONTAINER
+========================= */
+/* bbj-base.css */
+.container {
+  width: 100%;
+  max-width: var(--container, 1160px);
+  margin: 0 auto;
+  padding-left: var(--container-pad, clamp(16px, 3vw, 28px));
+  padding-right: var(--container-pad, clamp(16px, 3vw, 28px));
+}
+
+/* optional: generic button base (使うなら) */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 24px;
+  border-radius: var(--r-pill);
+  border: 1px solid transparent;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .15s ease, background-color .15s ease, color .15s ease;
+}
+
+
+/* =========================
+   FOOTER LEAD / FOOTER
+========================= */
+.footer-lead {
+  padding: 32px 0 16px;
+  background: linear-gradient(180deg, #fff 0%, #f3e8d7 60%, #b09262 100%);
+}
+
+.footer-lead__inner {
+  text-align: center;
+}
+
+.lp-message-block {
+  text-align: center;
+  margin: 8px auto 64px;
+}
+
+.lp-message-block__line {
+  width: 120px;
+  height: 1px;
+  margin: 0 auto 10px;
+  background: #d6c29b;
+}
+
+.lp-message {
+  margin: 0;
+  font-size: 18px;
+  letter-spacing: .18em;
+  color: #6b5430;
+}
+
+.site-footer {
+  padding: 28px 16px 32px;
+  background: #8d7046;
+  color: #f7f2e7;
+}
+
+.site-footer__inner {
+  text-align: center;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.site-footer__logo img {
+  height: 54px;
+  width: auto;
+  margin-bottom: 12px;
+}
+
+.site-footer__nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  font-size: 12px;
+  margin-bottom: 12px;
+}
+
+.site-footer__nav a {
+  color: #f7f2e7;
+  text-decoration: none;
+}
+
+.site-footer__nav a:hover {
+  text-decoration: underline;
+}
+
+.site-footer__description {
+  margin: 0 auto 12px;
+  max-width: 880px;
+  font-size: 11px;
+  line-height: 1.8;
+  color: #f2e7d6;
+}
+
+.site-footer__copy {
+  margin: 0;
+  font-size: 11px;
+  opacity: .9;
+}
+
+/* =========================
+   Utility: SP line break
+   - Use <br class="sp-br"> to break only on small screens
+========================= */
+.sp-br {
+  display: none;
+}
+
+@media (max-width:640px) {
+  .sp-br {
+    display: inline;
+  }
+}

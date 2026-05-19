@@ -1,0 +1,869 @@
+:root {
+  --wf-ink: #102235;
+  --wf-navy: #10426F;
+
+  --wf-paper: #F7F4EF;
+  --wf-panel: rgba(255, 255, 255, .72);
+
+  --wf-peach: #F4A36B;
+  --wf-gold: #D6A45A;
+  --wf-blue: #77AFC8;
+
+  --wf-line: rgba(16, 34, 53, .12);
+  --wf-shadow: 0 22px 60px rgba(16, 34, 53, .14);
+  --wf-shadow2: 0 10px 22px rgba(16, 34, 53, .10);
+
+  --wf-radius: 26px;
+}
+
+body.bbj-workflow {
+  background:
+    radial-gradient(900px 520px at 50% -80px, rgba(244, 163, 107, .14), rgba(244, 163, 107, 0) 70%),
+    radial-gradient(900px 520px at 70% 120px, rgba(119, 175, 200, .10), rgba(119, 175, 200, 0) 68%),
+    #F3F6F9;
+  color: var(--wf-ink);
+}
+
+.wf {
+  min-height: 100dvh;
+  padding: clamp(110px, 10vw, 160px) 14px 60px;
+}
+
+.wf-hero {
+  padding: 10px 0 18px;
+  text-align: center;
+}
+
+.wf-hero__inner {
+  max-width: 980px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.wf-hero__script {
+  font-family: "Zapfino", "Snell Roundhand", "Apple Chancery", cursive;
+  font-size: 38px;
+  letter-spacing: .02em;
+  color: rgba(244, 163, 107, .24);
+  line-height: 1;
+  margin: 0 0 6px;
+  user-select: none;
+}
+
+.wf-hero__ttl {
+  margin: 0;
+  font-size: 22px;
+  letter-spacing: .08em;
+  color: rgba(16, 34, 53, .88);
+}
+
+.wf-hero__sub {
+  margin: 6px 0 0;
+  font-size: 12px;
+  letter-spacing: .08em;
+  color: rgba(16, 34, 53, .50);
+}
+
+.wf-tabs {
+  margin: 14px auto 0;
+  display: inline-flex;
+  gap: 0;
+  border-radius: 999px;
+  padding: 6px;
+  background: rgba(255, 255, 255, .60);
+  border: 1px solid rgba(16, 34, 53, .10);
+  box-shadow: 0 10px 26px rgba(16, 34, 53, .08);
+}
+
+.wf-tab {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-weight: 800;
+  letter-spacing: .06em;
+  color: rgba(16, 34, 53, .55);
+  cursor: pointer;
+}
+
+.wf-tab.is-on {
+  background: linear-gradient(180deg, rgba(244, 163, 107, .92), rgba(244, 163, 107, .70));
+  color: rgba(255, 255, 255, .95);
+  box-shadow: 0 10px 22px rgba(16, 34, 53, .10);
+}
+
+.wf-panel {
+  max-width: 980px;
+  margin: 16px auto 0;
+}
+
+.wf-panel__inner {
+  background: rgba(255, 255, 255, .58);
+  border: 1px solid rgba(16, 34, 53, .10);
+  border-radius: var(--wf-radius);
+  box-shadow: var(--wf-shadow);
+  padding: 22px 18px 18px;
+}
+
+.wf-sec {
+  display: none;
+}
+
+.wf-sec.is-on {
+  display: block;
+}
+
+.wf-sec__head {
+  text-align: center;
+  padding: 10px 6px 8px;
+}
+
+.wf-sec__ttl {
+  margin: 0;
+  font-size: 18px;
+  letter-spacing: .08em;
+  color: rgba(16, 34, 53, .86);
+}
+
+.wf-sec__sub {
+  margin: 6px 0 0;
+  font-size: 12px;
+  letter-spacing: .06em;
+  color: rgba(16, 34, 53, .46);
+}
+
+.wf-grid {
+  display: grid;
+  gap: 18px;
+  padding: 14px 6px 10px;
+}
+
+.wf-grid--3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.wf-card {
+  position: relative;
+  border-radius: 22px;
+  overflow: hidden;
+
+  background: rgba(255, 255, 255, .74);
+  border: 1px solid rgba(16, 34, 53, .10);
+  box-shadow: var(--wf-shadow2);
+
+  padding: 18px 18px 16px;
+  text-align: center;
+}
+
+.wf-stepcap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  padding: 0 18px;
+  border-radius: 999px;
+  font-weight: 900;
+  letter-spacing: .08em;
+  font-size: 13px;
+  color: rgba(255, 255, 255, .96);
+  box-shadow: 0 10px 18px rgba(16, 34, 53, .10);
+}
+
+.wf-stepcap--peach {
+  background: linear-gradient(180deg, rgba(244, 163, 107, .98), rgba(244, 163, 107, .74));
+}
+
+.wf-stepcap--gold {
+  background: linear-gradient(180deg, rgba(214, 164, 90, .98), rgba(214, 164, 90, .74));
+}
+
+.wf-stepcap--blue {
+  background: linear-gradient(180deg, rgba(119, 175, 200, .98), rgba(119, 175, 200, .74));
+}
+
+.wf-card__ttl {
+  margin: 14px 0 0;
+  font-size: 18px;
+  letter-spacing: .06em;
+  color: rgba(16, 34, 53, .88);
+  font-weight: 900;
+}
+
+.wf-card__lead {
+  margin: 8px 0 0;
+  font-size: 12px;
+  color: rgba(16, 34, 53, .56);
+  letter-spacing: .03em;
+}
+
+.wf-ill {
+  height: 160px;
+  display: grid;
+  place-items: center;
+  margin-top: 12px;
+}
+
+.wf-ill__img {
+  width: min(190px, 92%);
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 16px 22px rgba(16, 34, 53, .14));
+}
+
+.wf-foot {
+  margin-top: 8px;
+  padding: 14px 8px 4px;
+  border-top: 1px solid rgba(16, 34, 53, .10);
+  text-align: center;
+}
+
+.wf-foot__txt {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.8;
+  letter-spacing: .02em;
+  color: rgba(16, 34, 53, .54);
+}
+
+.wf-summary {
+  max-width: 720px;
+  margin: 30px auto 10px;
+  font-size: 14px;
+  line-height: 1.9;
+  color: rgba(16, 34, 53, .72);
+  text-align: left;
+}
+
+@media (max-width:900px) {
+
+  .wf-summary {
+    font-size: 13px;
+    line-height: 2;
+    max-width: 340px;
+  }
+
+}
+
+.wf-cta {
+  margin: 14px auto 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  padding: 12px 18px;
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, .70);
+  border: 1px solid rgba(214, 164, 90, .36);
+
+  color: rgba(16, 34, 53, .78);
+  font-weight: 900;
+  letter-spacing: .06em;
+  text-decoration: none;
+
+  box-shadow: 0 12px 22px rgba(16, 34, 53, .10);
+}
+
+.wf-cta__arrow {
+  font-size: 18px;
+  opacity: .75;
+}
+
+/* ===== SP ===== */
+@media (max-width: 900px) {
+  .wf {
+    padding: 18px 12px 44px;
+  }
+
+  .wf-hero__script {
+    font-size: 30px;
+  }
+
+  .wf-hero__ttl {
+    font-size: 20px;
+  }
+
+  .wf-panel__inner {
+    padding: 18px 14px 14px;
+  }
+
+  .wf-grid--3 {
+    grid-template-columns: 1fr;
+  }
+
+  .wf-ill {
+    margin-bottom: 14px;
+    height: 150px;
+  }
+
+  .wf-ill__img {
+    width: min(220px, 92%);
+  }
+}
+
+.wf-detail {
+  margin-top: 18px;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.wf-detail summary {
+  margin-top: 6px;
+  text-align: center;
+  font-weight: 600;
+  color: #10426F;
+  cursor: pointer;
+}
+
+
+/* STEP詳細 */
+.wf-detail p {
+  text-align: left;
+  max-width: 260px;
+  margin: 14px auto 0;
+  line-height: 1.8;
+}
+
+.wf-card {
+  min-height: 420px;
+}
+
+/* ===== PATCH: details open で同じ行のカードが伸びる事故を止める ===== */
+.wf-grid {
+  align-items: start;
+  /* or flex-start でもOK */
+}
+
+.wf-card {
+  align-self: start;
+  /* 念押し（環境差で効く） */
+}
+
+/* ===== PATCH: STEPカードの“空白だまり”を削る ===== */
+.wf-card {
+  min-height: auto;
+  /* ← これで画像②みたいな間延びを止める */
+  padding-bottom: 18px;
+  /* 下の呼吸だけ残して締める */
+}
+
+/* タイトル〜画像〜「詳細を見る」間の間延びを軽く締める */
+.wf-card__lead {
+  margin-bottom: 10px;
+}
+
+/* 値は既存に合わせて微調整OK */
+.wf-ill {
+  margin: 10px auto 14px;
+}
+
+/* 画像下の空白を減らす */
+.wf-detail {
+  margin-top: 10px;
+}
+
+/* 「詳細を見る」の上も詰める */
+
+/* (3) Detail spacing: make lower area breathe */
+.wf-detail {
+  margin-top: 10px;
+}
+
+.wf-detail>p {
+  margin: 10px 0 0;
+}
+
+.wf-tip {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(16, 34, 53, .08);
+}
+
+/* (2) TIP summary: lighter hierarchy */
+.wf-tip>summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 800;
+  color: rgba(16, 34, 53, .58);
+  letter-spacing: .04em;
+}
+
+.wf-tip__icon {
+  opacity: .70;
+}
+
+/* Optional: marker unify */
+.wf-tip>summary::-webkit-details-marker {
+  display: none;
+}
+
+.wf-tip>summary::marker {
+  content: "";
+}
+
+/* 電球は小さく、彩度も控えめ */
+.wf-tip__icon {
+  font-size: 13px;
+  line-height: 1;
+  opacity: .75;
+}
+
+/* (1) ONE POINT: card look OFF -> quiet note */
+.wf-tip__body {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  padding: 8px 0 0 !important;
+  border-radius: 0 !important;
+}
+
+.wf-tip__kicker {
+  margin: 0 0 6px !important;
+}
+
+.wf-tip__text {
+  margin: 0 !important;
+}
+
+/* ===== WF ONEPOINT: force (header left + sky color + icon stronger) ===== */
+.wf-onepoint {
+  text-align: left !important;
+}
+
+/* header row */
+.wf-onepoint .wf-onepoint__head {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 8px !important;
+
+  margin: 10px 0 8px !important;
+  text-align: left !important;
+}
+
+/* icon: more presence */
+.wf-onepoint .wf-onepoint__icon {
+  width: 18px !important;
+  height: 18px !important;
+  opacity: 1 !important;
+  filter: saturate(1.15) contrast(1.05) !important;
+}
+
+/* label: sky color + small */
+.wf-onepoint .wf-onepoint__label {
+  font-size: 12px !important;
+  font-weight: 900 !important;
+  letter-spacing: .06em !important;
+  color: #7fb6d6 !important;
+  /* 空色 */
+}
+
+/* kicker(title): smaller than body title, left aligned */
+.wf-onepoint .wf-onepoint__kicker {
+  font-size: 12px !important;
+  /* ← タイトル小さく */
+  font-weight: 800 !important;
+  color: rgba(16, 34, 53, .72) !important;
+  margin: 0 !important;
+}
+
+/* body text: weaker than kicker */
+.wf-onepoint p {
+  font-size: 12px !important;
+  line-height: 1.85 !important;
+  color: rgba(16, 34, 53, .62) !important;
+  margin: 0 !important;
+}
+
+/* optional: a little separator to calm */
+.wf-onepoint {
+  margin-top: 12px !important;
+  padding-top: 10px !important;
+  border-top: 1px solid rgba(16, 34, 53, .08) !important;
+}
+
+/* ===== WF TIP (One Point) redesign: bulb + left align + sky label ===== */
+
+/* details全体：本文の“次の段階”として馴染ませる */
+.wf-tip {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(16, 34, 53, .08);
+}
+
+/* summary：左寄せ、色は空色、電球は主張 */
+.wf-tip>summary {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+
+  list-style: none;
+  cursor: pointer;
+
+  text-align: left;
+  font-weight: 900;
+  letter-spacing: .06em;
+
+  color: #77AFC8;
+  /* 空色（--wf-blue） */
+  font-size: 12px;
+  /* “ワンポイント”は小さめ */
+}
+
+.wf-tip>summary::-webkit-details-marker {
+  display: none;
+}
+
+.wf-tip>summary::marker {
+  content: "";
+}
+
+/* 電球：もう少し主張（サイズ＋彩度） */
+.wf-tip__icon {
+  font-size: 16px;
+  /* 13→16 */
+  line-height: 1;
+  opacity: 1;
+  filter: saturate(1.15) contrast(1.05);
+}
+
+/* 本文エリア：カード感を消して“本文の続き”へ */
+.wf-tip__body {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  padding: 10px 0 0;
+  border-radius: 0;
+}
+
+/* タイトル（kicker）：説明より小さく、主張差をつくる */
+.wf-tip__kicker {
+  margin: 0 0 6px;
+  font-size: 12px;
+  /* タイトル小さめ */
+  font-weight: 800;
+  color: rgba(16, 34, 53, .74);
+}
+
+/* 説明文：さらに軽く */
+.wf-tip__text {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.9;
+  color: rgba(16, 34, 53, .60);
+}
+
+/* summaryを普通に表示（今まで通り） */
+.wf-detail summary {
+  text-align: center;
+  cursor: pointer;
+}
+
+/* 画像をクリックしたい：透明の当たり判定を画像の上に作る */
+.wf-ill {
+  position: relative;
+}
+
+.wf-ill::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  cursor: pointer;
+}
+
+.wf-tip__kicker {
+  text-align: left;
+  font-weight: 700;
+  color: #10426F;
+  margin-bottom: 4px;
+}
+
+.wf-cta--sub {
+  border-width: 1.5px;
+}
+
+/* 登録（メイン） */
+.wf-cta--primary {
+  background: #AD853F;
+  color: #fff;
+  border: none;
+}
+
+/* 相談（サブ） */
+.wf-cta--sub {
+  background: #fff;
+  color: #10426F;
+  border: 1.5px solid #AD853F;
+}
+
+.wf-cta__arrow {
+  font-size: 18px;
+  opacity: .7;
+}
+
+/* CTA 2ボタンを「中央で仲良く」 */
+.wf-cta-wrap {
+  margin-top: 20px;
+  display: inline-flex;
+  justify-content: center;
+  gap: 26px;
+  flex-wrap: wrap;
+}
+
+.wf-cta--sub {
+  padding: 11px 16px;
+  /* 相談だけ少し控えめ */
+}
+
+/* PCは軽く揃えると高級感 */
+@media (min-width: 901px) {
+  .wf-cta-wrap .wf-cta {
+    min-width: 200px;
+    /* 同じ強さに見える */
+  }
+}
+
+@media (max-width:900px) {
+
+  .wf-tabs {
+    margin-bottom: 12px;
+  }
+
+  .wf-panel {
+    margin-top: 0;
+  }
+
+  .wf-cta-wrap {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .wf-cta {
+    width: 90%;
+    max-width: 320px;
+  }
+
+  .wf-cta-wrap {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .wf-cta-wrap .wf-cta {
+    width: min(92%, 360px);
+  }
+
+  .wf-grid {
+    gap: 24px;
+  }
+
+  /* 1) カード内を縦レイアウトで“下に行く順番”を固定 */
+  .wf-card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* 2) イラストは縮めて、下に余白を保証 */
+  .wf-ill {
+    height: auto;
+    margin: 10px 0 10px;
+  }
+
+  .wf-ill__img {
+    width: min(210px, 88%);
+    filter: drop-shadow(0 10px 14px rgba(16, 34, 53, .10));
+  }
+
+  /* 3) 「詳細を見る」をカード最下段に固定＆前面化 */
+  .wf-detail {
+    margin-top: auto;
+    /* ←これが本丸：必ず一番下へ */
+    padding-top: 10px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .wf-detail summary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+
+    padding: 10px 14px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .78);
+    border: 1px solid rgba(16, 34, 53, .10);
+    box-shadow: 0 10px 18px rgba(16, 34, 53, .08);
+
+    font-weight: 800;
+    color: rgba(16, 34, 53, .84);
+  }
+
+  /* 4) 念押し：カードが隠してたら解除 */
+  .wf-card {
+    overflow: visible;
+  }
+}
+
+.bbj-backtop {
+  position: fixed;
+  right: 16px;
+  bottom: 18px;
+
+  width: 42px;
+  height: 42px;
+
+  border-radius: 50%;
+  border: 1px solid rgba(16, 34, 53, .15);
+
+  background: rgba(255, 255, 255, .9);
+  color: #10426F;
+
+  font-size: 18px;
+  font-weight: 700;
+
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 8px 18px rgba(16, 34, 53, .15);
+  z-index: 50;
+}
+
+@media (max-width:900px) {
+  .bbj-backtop {
+    display: flex;
+  }
+}
+
+/* ===== WF FOOT CTA (SP): tidy & premium ===== */
+@media (max-width: 900px) {
+
+  /* 2ボタンを縦に整列（親が .wf-foot なら効く） */
+  .wf-foot .wf-ctas {
+    display: grid;
+    gap: 12px;
+    justify-items: center;
+    margin-top: 12px;
+  }
+
+  /* ボタン：同じ幅・同じ高さ・折り返し禁止 */
+  .wf-foot .wf-cta {
+    width: min(320px, 92%);
+    min-height: 52px;
+
+    padding: 12px 18px;
+    border-radius: 999px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    white-space: nowrap;
+    /* ←「まずは相談」が折れない */
+    letter-spacing: .04em;
+    line-height: 1;
+
+    font-size: 15px;
+    font-weight: 900;
+  }
+
+  /* 矢印もズレないように */
+  .wf-foot .wf-cta__arrow {
+    font-size: 18px;
+    line-height: 1;
+    opacity: .75;
+  }
+}
+
+@media (max-width: 900px) {
+
+  /* 2ボタン横並び：中央寄せ */
+  .wf-foot .wf-ctas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: nowrap;
+    margin-top: 12px;
+  }
+
+  /* 同じ高さ・折り返し禁止 */
+  .wf-foot .wf-cta {
+    height: 52px;
+    padding: 0 18px;
+    border-radius: 999px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    white-space: nowrap;
+    /* ← 改行事故を止める */
+    font-size: 14px;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  /* 横で収まるように、最大幅を軽く制限 */
+  .wf-foot .wf-cta {
+    max-width: 46vw;
+    /* 2つで収まる */
+  }
+}
+
+@media (max-width: 900px) {
+
+  /* SP: 2ボタンを横1列で中央寄せ */
+  .wf-cta-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: nowrap;
+    margin-top: 12px;
+  }
+
+  /* 折り返し事故（まずは相 談）を止める */
+  .wf-cta-wrap .wf-cta {
+    height: 52px;
+    padding: 0 18px;
+    border-radius: 999px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    white-space: nowrap;
+    line-height: 1;
+  }
+
+  /* 2つで収まる上限（保険） */
+  .wf-cta-wrap .wf-cta {
+    max-width: 46vw;
+  }
+}
+
+.bbj-backtop {
+  bottom: 90px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, .16);
+}
+
+.wf-manual-link{
+  text-align:center;
+  margin:18px 0 18px;
+  font-size:13px;
+}
+
+.wf-manual-link a{
+  color:#10426F;
+  text-decoration:underline;
+}
