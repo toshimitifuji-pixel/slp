@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Baby-J｜ご登録・お仕事の流れ</title>
+
+  <!-- 既存SSOTがある前提：common → page の順で勝たせる -->
+  <link rel="stylesheet" href="./bbj_header.css?v=999">
+  <link rel="stylesheet" href="./bbj-base.css?v=999">
+  <link rel="stylesheet" href="./bbj-common.css?v=1000">
+  <link rel="stylesheet" href="./bbj_workflow.css?v=1000">
+</head>
+
+<body class="bbj-page bbj-workflow">
+  <header class="site-header">
+    <div class="site-header__bar">
+      <div class="site-header__bar-inner container">
+
+        <button class="hamburger sp-only" type="button" aria-label="メニューを開く" aria-controls="drawer"
+          aria-expanded="false" data-drawer-open>
+          <span></span><span></span><span></span>
+        </button>
+
+        <a class="site-header__logo" href="index.html">
+          <img src="bbj-images/bbj_rog01.webp" alt="Baby-J">
+        </a>
+
+        <nav class="header-nav pc-only">
+          <ul class="nav-list">
+            <li><a class="nav-link nav-cta" href="#start">今すぐ登録</a></li>
+            <li><a class="nav-link" href="bbj-lp.html#faq">FAQ</a></li>
+            <li><a class="nav-link" href="#">お問い合わせ</a></li>
+          </ul>
+        </nav>
+
+        <div class="sp-only"></div>
+
+      </div>
+    </div>
+  </header>
+
+  <div class="header-spacer"></div>
+
+  <main class="wf" id="workflow">
+    <header class="wf-hero">
+      <div class="wf-hero__inner">
+        <div class="wf-hero__script" aria-hidden="true">Workflow</div>
+        <h1 class="wf-hero__ttl">ご登録・お仕事の流れ</h1>
+        <p class="wf-hero__sub">Steps to Register &amp; Work</p>
+
+        <nav class="wf-tabs" aria-label="フロー切り替え">
+          <button class="wf-tab is-on" type="button" data-wf-tab="register" aria-controls="wf-register"
+            aria-selected="true">
+            登録の流れ
+          </button>
+          <button class="wf-tab" type="button" data-wf-tab="work" aria-controls="wf-work" aria-selected="false">
+            お仕事の流れ
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <section class="wf-panel" aria-label="フロー本体">
+      <div class="wf-panel__inner">
+
+        <!-- REGISTER -->
+        <section class="wf-sec is-on" id="wf-register" data-wf-panel="register">
+          <div class="wf-sec__head">
+            <h2 class="wf-sec__ttl">ご登録までの流れ</h2>
+            <p class="wf-sec__sub">Steps to Register</p>
+          </div>
+
+          <div class="wf-grid wf-grid--3">
+            <!-- STEP 1 -->
+            <article class="wf-card">
+              <div class="wf-stepcap wf-stepcap--peach">STEP 1</div>
+              <h3 class="wf-card__ttl">サイト登録</h3>
+              <p class="wf-card__lead">基本情報入力・本人確認</p>
+              <div class="wf-ill" data-wf-detail-toggle>
+                <img class="wf-ill__img" src="bbj-images/wf01-register.svg" alt="サイト登録のイラスト">
+              </div>
+              <details class="wf-detail">
+                <summary>詳細を見る</summary>
+
+                <p>
+                  応募画面（新規登録画面）より、基本情報・経歴・スキル等の入力をお願いします。<br>
+                  同画面にて資格・研修の証明書類および本人確認書類をアップロードしてください。
+                </p>
+
+              </details>
+            </article>
+
+            <!-- STEP 2 -->
+            <article class="wf-card">
+              <div class="wf-stepcap wf-stepcap--gold">STEP 2</div>
+              <h3 class="wf-card__ttl">書類・面談審査</h3>
+              <p class="wf-card__lead">オンラインで登録・結果はメールで通知</p>
+              <div class="wf-ill" data-wf-detail-toggle>
+                <img class="wf-ill__img" src="bbj-images/wf02-review.svg" alt="審査のイラスト">
+              </div>
+              <details class="wf-detail">
+                <summary>詳細を見る</summary>
+                <p>
+                  ご提出いただいた内容をもとに、弊社にて書類審査を行います。<br>
+                  オンライン面談を実施し、結果はメールにてご連絡いたします。
+                </p>
+              </details>
+            </article>
+
+            <!-- STEP 3 -->
+            <article class="wf-card">
+              <div class="wf-stepcap wf-stepcap--blue">STEP 3</div>
+              <h3 class="wf-card__ttl">プロフィール作成</h3>
+              <p class="wf-card__lead">できること・実績を登録、公開準備</p>
+              <div class="wf-ill" data-wf-detail-toggle>
+                <img class="wf-ill__img" src="bbj-images/wf03-profile.svg" alt="プロフィール作成のイラスト">
+              </div>
+              <details class="wf-detail">
+                <summary>詳細を見る</summary>
+                <p>
+                  マイページにてプロフィールや対応可能オプション、スケジュール等を登録します。<br>
+                  内容確認後、プロフィールが公開されサポーターとして活動を開始できます。
+                </p>
+              </details>
+            </article>
+          </div>
+        </section>
+
+        <!-- WORK -->
+        <section class="wf-sec" id="wf-work" data-wf-panel="work" hidden>
+          <div class="wf-sec__head">
+            <h2 class="wf-sec__ttl">お仕事の流れ</h2>
+            <p class="wf-sec__sub">Steps to Start Working</p>
+          </div>
+
+          <div class="wf-grid wf-grid--3">
+            <!-- STEP 4 -->
+            <article class="wf-card">
+              <div class="wf-stepcap wf-stepcap--peach">STEP 4</div>
+              <h3 class="wf-card__ttl">スケジュール登録</h3>
+              <p class="wf-card__lead">対応可能日時を登録して準備</p>
+              <div class="wf-ill" data-wf-detail-toggle>
+                <img class="wf-ill__img" src="bbj-images/wf04-schedule.svg" alt="スケジュール登録のイラスト">
+              </div>
+              <details class="wf-detail">
+                <summary>詳しく見る</summary>
+
+                <p>
+                  マイページで対応可能な日時を登録すると、依頼を受け付ける状態になります。
+                </p>
+
+                <!-- ▼ ここが “ワンポイント：タイトルクリックで開閉” -->
+                <details class="wf-tip">
+                  <summary><span class="wf-tip__icon" aria-hidden="true">💡</span>ワンポイント</summary>
+
+                  <div class="wf-tip__body">
+                    <div class="wf-tip__kicker">依頼が少ないときは</div>
+                    <p class="wf-tip__text">
+                      依頼が少ないときは、検索機能で地域や資格などの条件を絞って依頼を探すことができます。<br>
+                      また、公募機能を使って条件に合う依頼を募集することも可能です。
+                    </p>
+                  </div>
+                </details>
+              </details>
+            </article>
+
+            <!-- STEP 5 -->
+            <article class="wf-card">
+              <div class="wf-stepcap wf-stepcap--blue">STEP 5</div>
+              <h3 class="wf-card__ttl">見積もり・面談・予約</h3>
+              <p class="wf-card__lead">メッセージで調整、合意後に予約</p>
+              <div class="wf-ill" data-wf-detail-toggle>
+                <img class="wf-ill__img" src="bbj-images/wf05-booking.svg" alt="予約のイラスト">
+              </div>
+              <details class="wf-detail">
+                <summary>詳しく見る</summary>
+
+                <p>
+                  依頼が届いたらメッセージで内容を確認し、見積もりを送付します。
+                  双方の合意後、予約が確定します。
+                </p>
+
+                <details class="wf-tip">
+                  <summary>
+                    <span class="wf-tip__icon">💡</span>
+                    ワンポイント
+                  </summary>
+
+                  <div class="wf-tip__body">
+
+                    <div class="wf-tip__kicker">
+                      初回面談（オンライン／対面）
+                    </div>
+
+                    <p class="wf-tip__text">
+                      初めての保護者さまとは1時間の面談を行います。
+                      オンラインは無料、対面の場合は5,000円＋交通費となります。
+                    </p>
+
+                  </div>
+                </details>
+
+              </details>
+            </article>
+
+            <!-- STEP 6 -->
+            <article class="wf-card">
+              <div class="wf-stepcap wf-stepcap--blue">STEP 6</div>
+              <h3 class="wf-card__ttl">当日サポート</h3>
+              <p class="wf-card__lead">対面/オンラインでサポート実施</p>
+              <div class="wf-ill" data-wf-detail-toggle>
+                <img class="wf-ill__img" src="bbj-images/wf06-support.svg" alt="当日サポートのイラスト">
+              </div>
+              <details class="wf-detail">
+                <summary>詳細を見る</summary>
+                <p>
+                  ご依頼のご家庭へ訪問し、サポートを行います。
+                  サポート終了後は報告書を送信し、決済完了をもってお仕事完了となります。<br><br>
+                  報酬は1ヶ月分をまとめて、翌月15日に銀行口座へお振込みいたします。
+                </p>
+              </details>
+            </article>
+          </div>
+        </section>
+
+        <div class="wf-foot">
+          <p class="wf-foot__txt">
+            看護・教育分野で専門性をお持ちの方へ。多くのご家庭が、その力を必要としています。
+          </p>
+          <div class="wf-cta-wrap">
+
+            <a class="wf-cta wf-cta--primary" href="#entry" data-role-gate="entry">
+              登録する
+              <span class="wf-cta__arrow" aria-hidden="true">›</span>
+            </a>
+
+            <a class="wf-cta wf-cta--sub" href="#contact" data-role-gate="contact">
+              まずは相談
+              <span class="wf-cta__arrow" aria-hidden="true">›</span>
+            </a>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+    <div class="wf-manual-link">
+      <a href="./manual/index.html" target="_blank" rel="noopener">
+        Baby-Jの操作方法はこちら →
+      </a>
+    </div>
+    <div class="wf-summary">
+      <p>
+        Baby-Jでお仕事を始めるには、まず登録にてお申し込みください。
+        登録後はオンライン面談のご案内を行います。<br><br>
+        ご希望の面談日時を登録後、面談を行います。
+        情報登録が完了すると、Baby-Jサポーターとしてお仕事がスタートします。
+      </p>
+    </div>
+    <button class="bbj-backtop" aria-label="ページ上部へ戻る">↑</button>
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <p>© Baby-J</p>
+    </div>
+  </footer>
+
+  <script src="bbj_header.js" defer></script>
+  <script src="bbj_components.js" defer></script>
+  <script src="bbj_role_gate.js" defer></script>
+  <script src="bbj_workflow.js" defer></script>
+
+</body>
+
+</html>

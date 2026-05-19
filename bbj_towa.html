@@ -1,0 +1,961 @@
+<!-- bbj_towa.html -->
+<!doctype html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- ===== SEO（TOPと同等の粒度） ===== -->
+  <title>Baby-J｜共に歩む（Towa）</title>
+  <meta name="description" content="Baby-J（ベビー・ジェイ）のサポーター募集ページ（遷移先）です。働き方・給与体系・業務フローをご案内します。" />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://example.com/bbj_towa.html" />
+
+  <!-- OGP（TOPと同様運用に合わせて差し替えOK） -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Baby-J｜共に歩む（Towa）" />
+  <meta property="og:description" content="Baby-Jのサポーター募集ページ。働き方・給与体系・業務フローをご案内します。" />
+  <meta property="og:locale" content="ja_JP" />
+
+  <!-- TOPの共通CSS（ヘッダー/フッター含む） -->
+  <link rel="stylesheet" href="./bbj_header.css?v=999">
+  <link rel="stylesheet" href="./bbj-base.css?v=999">
+  <link rel="stylesheet" href="./bbj-common.css?v=1000">
+
+  <!-- このページ固有CSS -->
+  <link rel="stylesheet" href="./bbj_towa.css?v=999">
+</head>
+
+<body class="page-towa" data-header-silk="always">
+  <div class="page">
+
+    <!-- ================= HEADER（shared） ================= -->
+    <header class="site-header">
+      <!-- ===== HEADER BAR ===== -->
+      <div class="site-header__bar">
+        <div class="site-header__bar-inner container">
+
+          <button class="hamburger sp-only" type="button" aria-label="メニューを開く" aria-controls="drawer"
+            aria-expanded="false" data-drawer-open>
+            <span></span><span></span><span></span>
+          </button>
+
+          <!-- ロゴ：TOPへ戻す -->
+          <a class="site-header__logo" href="index.html">
+            <img src="bbj-images/bbj_rog01.webp" alt="Baby-J" />
+          </a>
+
+          <!-- PC NAV -->
+          <nav class="header-nav pc-only" aria-label="ヘッダーナビ">
+            <ul class="nav-list">
+              <!-- CTA：TOPの#startへ -->
+              <li><a class="nav-link nav-cta" href="#">今すぐ登録</a></li><!-- TODO: 本サイト登録URL -->
+              <li><a class="nav-link" href="./bbj-lp.html#faq">FAQ</a></li>
+              <li><a class="nav-link" href="#">お問い合わせ</a></li>
+
+              <!-- Translate（shared safe） -->
+              <li class="lang">
+                <button class="nav-link nav-translate" type="button" data-lang-toggle aria-expanded="false"
+                  aria-controls="lang-panel">
+                  翻訳
+                </button>
+                <div class="lang__panel" data-lang-panel role="menu" aria-label="翻訳メニュー" hidden>
+
+                  <button type="button" data-lang="en">English</button>
+                  <button type="button" data-lang="zh-CN">中文（简体）</button>
+                  <button type="button" data-lang="ko">한국어</button>
+                </div>
+              </li>
+            </ul>
+          </nav>
+
+          <!-- 右余白（バランス用） -->
+          <div class="sp-only"></div>
+        </div>
+      </div>
+    </header>
+
+    <div class="header-spacer" aria-hidden="true"></div>
+
+    <!-- ===== Drawer (SP menu) ===== -->
+    <div id="drawer" class="drawer" aria-hidden="true">
+      <div class="drawer__panel" role="dialog" aria-modal="true" aria-label="メニュー">
+        <div class="drawer__head">
+          <div class="drawer__title">Menu</div>
+          <button class="drawer__close" type="button" aria-label="閉じる" data-drawer-close>×</button>
+        </div>
+
+        <div class="drawer__section">
+          <div class="drawer__label">HEADER</div>
+          <ul class="drawer__list">
+            <li><a class="drawer__item drawer__item--cta" href="#">今すぐ登録</a></li><!-- TODO: 本サイト登録URL -->
+            <li><a class="drawer__item" href="./bbj-lp.html#faq">FAQ</a></li>
+            <li><a class="drawer__item" href="#">お問い合わせ</a></li>
+          </ul>
+
+          <div class="drawer__langs" aria-label="翻訳">
+            <button class="drawer__langbtn" type="button" data-lang="en">EN</button>
+            <button class="drawer__langbtn" type="button" data-lang="zh-CN">中文</button>
+            <button class="drawer__langbtn" type="button" data-lang="ko">한국</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <main>
+
+      <!-- =========================
+        HERO
+      ========================= -->
+      <section class="towa-hero">
+        <div class="container towa-hero__inner">
+          <p class="towa-hero__brand">Baby-J</p>
+
+          <h1 class="towa-hero__title">
+            <span class="towa-hero__title-accent">こんな方を</span>求めています
+          </h1>
+
+          <p class="towa-hero__sub">We are looking for someone like this</p>
+
+          <p class="towa-hero__lead">
+            Baby-Jは “丁寧さが、そのまま評価になる” 働き方。<br class="sp-br">
+            経験や資格を活かして、安心できる環境で一緒に。
+          </p>
+        </div>
+      </section>
+
+      <!-- =========================
+        1st：求める人物像
+        SP：ワンカラム
+        ※ここはあなたの貼ってくれた内容のまま（変更なし）
+      ========================= -->
+      <section class="towa-intro" id="intro">
+        <div class="container">
+          <div class="towa-intro__grid">
+            <!-- big cards -->
+            <article class="towa-card towa-card--big towa-card--navy">
+              <div class="towa-big">
+                <div class="towa-big__icon" aria-hidden="true"></div>
+                <div class="towa-big__body">
+                  <p class="towa-card__eyebrow">求める人物像</p>
+                  <h2 class="towa-card__title">誠実で、丁寧に寄り添える方</h2>
+                  <p class="towa-card__text">ご家庭の価値観を尊重し、安心を積み重ねられるコミュニケーション。</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="towa-card towa-card--big towa-card--navy2">
+              <p class="towa-card__eyebrow">こんな方に</p>
+              <h2 class="towa-card__title">プロとしての自立心がある方</h2>
+              <p class="towa-card__text">時間管理・報連相・守秘を徹底し、信頼で選ばれる仕事を。</p>
+            </article>
+
+            <!-- small cards -->
+            <article class="towa-card towa-card--mini towa-card--mini-first">
+              <div class="towa-mini">
+                <div class="towa-mini__icon towa-mini__icon--skill"></div>
+                <div class="towa-mini__body">
+                  <h3 class="towa-mini__title">資格・経験を活かしたい</h3>
+                  <p class="towa-mini__text">保育／看護／教育など、強みがそのまま価値に。</p>
+                </div>
+              </div>
+            </article>
+            <article class="towa-card towa-card--mini">
+              <div class="towa-mini">
+                <div class="towa-mini__icon towa-mini__icon--trust" aria-hidden="true"></div>
+
+                <div class="towa-mini__body">
+                  <h3 class="towa-mini__title">継続して信頼を積みたい</h3>
+                  <p class="towa-mini__text">短期よりも「長く任せたい」に応える設計。</p>
+                </div>
+              </div>
+            </article>
+            <article class="towa-card towa-card--mini">
+              <div class="towa-mini">
+                <div class="towa-mini__icon towa-mini__icon--quality"></div>
+
+                <div class="towa-mini__body">
+                  <h3 class="towa-mini__title">品位ある現場で働きたい</h3>
+                  <p class="towa-mini__text">丁寧な所作・言葉遣いが評価される環境。</p>
+                </div>
+              </div>
+            </article>
+            <article class="towa-card towa-card--mini">
+              <div class="towa-mini">
+                <div class="towa-mini__icon towa-mini__icon--flex"></div>
+
+                <div class="towa-mini__body">
+                  <h3 class="towa-mini__title">柔軟な働き方が欲しい</h3>
+                  <p class="towa-mini__text">ライフスタイルに合わせて無理なく。</p>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- =========================
+  PAY (#pay) — 特徴・お仕事内容
+========================= -->
+      <section id="pay" class="pay">
+        <div class="pay__inner container">
+
+          <!-- セクション見出し（既存の見出しコンポがあれば差し替えOK） -->
+          <header class="towa-section-head pay__head">
+            <p class="towa-section-head__kicker">Features & Work</p>
+            <h2 class="towa-section-head__title">特徴・お仕事内容</h2>
+            <p class="towa-section-head__lead">
+              “家事代行ではない”を明確にしつつ、安心・評価・継続・信頼が一瞬で伝わる設計です。
+            </p>
+          </header>
+
+          <!-- ① 特徴（アーチ4つ） -->
+          <div class="pay-arches" aria-label="特徴">
+            <!-- 1 -->
+            <article class="pay-arch pay-arch--salmon">
+              <div class="pay-arch__top">
+                <img src="bbj-images/value01-heart.svg" alt="" class="pay-work-card__icon">
+              </div>
+              <div class="pay-arch__body">
+                <h3 class="pay-arch__title">安心して働ける</h3>
+                <p class="pay-arch__text">
+                  事前確認・ルール・サポート体制で、現場の不安を最小化。
+                </p>
+              </div>
+            </article>
+
+            <!-- 2 -->
+            <article class="pay-arch pay-arch--navy">
+              <div class="pay-arch__top">
+                <img src="bbj-images/value02-shield.svg" alt="" class="pay-work-card__icon">
+              </div>
+              <div class="pay-arch__body">
+                <h3 class="pay-arch__title">実力が評価される</h3>
+                <p class="pay-arch__text">
+                  丁寧な仕事が、継続依頼・信頼につながる設計。
+                </p>
+              </div>
+            </article>
+
+            <!-- 3 -->
+            <article class="pay-arch pay-arch--mustard">
+              <div class="pay-arch__top">
+                <img src="bbj-images/value03-link.svg" alt="" class="pay-work-card__icon">
+              </div>
+              <div class="pay-arch__body">
+                <h3 class="pay-arch__title">信頼が積み上がる</h3>
+                <p class="pay-arch__text">
+                  積み重ねがプロフィール価値に反映され、次の機会を生む。
+                </p>
+              </div>
+            </article>
+
+            <!-- 4 -->
+            <article class="pay-arch pay-arch--teal">
+              <div class="pay-arch__top">
+                <img src="bbj-images/value04-timecoffee.svg" alt="" class="pay-work-card__icon">
+              </div>
+              <div class="pay-arch__body">
+                <h3 class="pay-arch__title">無理なく続けられる</h3>
+                <p class="pay-arch__text">
+                  稼働スタイルを選びやすく、長く続く前提で組み立て。
+                </p>
+              </div>
+            </article>
+          </div>
+
+          <!-- ② 最低時間（2枚） -->
+          <div class="pay-minhours" aria-label="最低時間">
+            <article class="pay-minhour">
+              <div class="pay-minhour__icon" aria-hidden="true">
+              </div>
+              <div class="pay-minhour__body">
+                <p class="pay-minhour__label">シッティング</p>
+                <p class="pay-minhour__value"><strong>最低 2時間〜</strong></p>
+                <p class="pay-minhour__note">※案件により変動する場合があります</p>
+              </div>
+            </article>
+
+            <article class="pay-minhour">
+              <div class="pay-minhour__icon" aria-hidden="true">
+              </div>
+              <div class="pay-minhour__body">
+                <p class="pay-minhour__label">家庭教師</p>
+                <p class="pay-minhour__value"><strong>最低 1時間〜</strong></p>
+                <p class="pay-minhour__note">※案件により変動する場合があります</p>
+              </div>
+            </article>
+          </div>
+
+          <!-- ③ お仕事内容｜主役3つ（PC横3 / SP縦） -->
+          <!-- ===== subhead (お仕事内容) ===== -->
+          <header class="pay-subhead">
+            <h3 class="pay-subhead__title">お仕事内容</h3>
+          </header>
+
+          <!-- ③ 主役3つ（PC横3） -->
+          <div class="pay-work--main">
+            <article class="pay-work-card pay-work-card--primary">
+              <img class="pay-work-card__icon" src="bbj-images/icon-babysitter.svg" alt="">
+              <div class="pay-work-card__body">
+                <h4 class="pay-work-card__title">ベビーシッター</h4>
+                <p class="pay-work-card__text">お子さまの見守り・遊び・生活サポート。Baby-Jの主軸です。</p>
+              </div>
+            </article>
+
+            <article class="pay-work-card pay-work-card--primary">
+              <img class="pay-work-card__icon" src="bbj-images/icon-sickcare.svg" alt="">
+              <div class="pay-work-card__body">
+                <h4 class="pay-work-card__title">病児・病後児保育</h4>
+                <p class="pay-work-card__text">体調変化に配慮しながら、安心を最優先にケアします。</p>
+              </div>
+            </article>
+
+            <article class="pay-work-card pay-work-card--primary">
+              <img class="pay-work-card__icon" src="bbj-images/icon-pickup.svg" alt="">
+              <div class="pay-work-card__body">
+                <h4 class="pay-work-card__title">送迎</h4>
+                <p class="pay-work-card__text">保育園・習い事などの移動を、安全第一でサポート。</p>
+              </div>
+            </article>
+          </div>
+
+          <!-- ④ 特殊2つ（PC横2） -->
+          <div class="pay-work--sub">
+            <article class="pay-work-card">
+              <img class="pay-work-card__icon" src="bbj-images/icon-postpartum.svg" alt="">
+              <div class="pay-work-card__body">
+                <h4 class="pay-work-card__title">産前産後ケア</h4>
+                <p class="pay-work-card__text">ご家族のリズムに合わせて、負担を軽くするサポート。</p>
+              </div>
+            </article>
+
+            <article class="pay-work-card">
+              <img class="pay-work-card__icon" src="bbj-images/icon-travel.svg" alt="">
+              <div class="pay-work-card__body">
+                <h4 class="pay-work-card__title">トラベルシッター</h4>
+                <p class="pay-work-card__text">旅行・出張など、移動を含むシーンでも安心を担保。</p>
+              </div>
+            </article>
+          </div>
+
+          <!-- ⑤ 横長2つ（縦並び） -->
+          <div class="pay-work--solo">
+            <article class="pay-work-card pay-work-card--wide">
+              <img class="pay-work-card__icon" src="bbj-images/icon-tutor.svg" alt="">
+              <div class="pay-work-card__body">
+                <h4 class="pay-work-card__title">家庭教師</h4>
+                <p class="pay-work-card__text">学習サポート・受験対策など。シッティングとは別軸で価値提供。</p>
+              </div>
+            </article>
+
+            <article class="pay-work-card pay-work-card--wide">
+              <img class="pay-work-card__icon" src="bbj-images/icon-regular.svg" alt="">
+              <div class="pay-work-card__body">
+                <h4 class="pay-work-card__title">定期予約</h4>
+                <p class="pay-work-card__text">継続依頼が前提の案件。信頼の積み上げがダイレクトに効きます。</p>
+              </div>
+            </article>
+          </div>
+
+          <!-- ⑥ 注意書き（セット） -->
+          <p class="pay-note">※ 本サービスは家事代行ではありません
+            調理・掃除・洗濯などの家事代行業務はお受けしていません</p>
+
+          <!-- ⑦ 条件カード（2枚） -->
+          <div class="pay-meta">
+
+            <!-- 左：対象年齢・人数 -->
+            <!-- 左：対象年齢・人数 -->
+            <article class="pay-meta-card pay-meta-card--age">
+              <div class="pay-meta-card__head">
+                <h4 class="pay-meta-card__title">対象年齢・人数</h4>
+              </div>
+
+              <div class="pay-meta-age">
+                <div class="pay-meta-age__text">
+
+                  <div class="pay-meta-age__grid">
+                    <div class="pay-meta-age__stat">
+                      <p class="pay-meta-age__statlabel">お子さまの年齢</p>
+                      <p class="pay-meta-age__statvalue">0歳〜20代</p>
+                      <p class="pay-meta-age__statnote">新生児〜高校生・予備校生</p>
+                    </div>
+
+                    <div class="pay-meta-age__stat">
+                      <p class="pay-meta-age__statlabel">お子さまの人数</p>
+                      <p class="pay-meta-age__statvalue">上限なし</p>
+                      <p class="pay-meta-age__statnote">※案件ごとに相談</p>
+                    </div>
+                  </div>
+
+                  <p class="pay-meta-age__sub">シッター・案件内容により最適な形でご案内します</p>
+                </div>
+
+                <div class="pay-meta-card__art" aria-hidden="true">
+                  <img src="bbj-images/pay-family.svg" alt="" class="pay-meta-card__art-img">
+                </div>
+              </div>
+            </article>
+
+            <!-- 右：対応エリア -->
+            <article class="pay-meta-card pay-meta-card--area">
+              <div class="pay-meta-card__head">
+                <h4 class="pay-meta-card__title">対応エリア</h4>
+              </div>
+
+              <p class="pay-meta-area__value">全国47都道府県</p>
+
+              <div class="pay-meta-card__art--area" aria-hidden="true">
+                <img src="bbj-images/pay-japanmap.svg" alt="" class="pay-meta-card__art-img">
+              </div>
+
+              <p class="pay-meta-area__note">ご希望条件に合わせて案件をご案内します。</p>
+            </article>
+
+          </div>
+
+        </div>
+      </section>
+      <!-- /#pay -->
+
+      <!-- ===== LET'S START（SSOT: bj-block）===== -->
+      <section class="start-cta" id="start">
+        <div class="start-cta__inner container">
+
+          <!-- 背景文字はそのまま（必要なら共通化は後でOK） -->
+          <div class="start-cta__bg-title" aria-hidden="true">Let’s Start!</div>
+
+          <!-- 1段目：登録 -->
+          <section class="bj-block bj-primary top-register" data-bj="primary">
+            <div class="bj-primary__inner container">
+              <div class="bj-primary__media">
+                <div class="bj-disc bj-disc--img" style="--disc-img:url('bbj-images/start-register.webp');"></div>
+              </div>
+
+              <div class="bj-primary__main">
+                <p class="bj-kicker">すぐに選考を受けたい方は</p>
+                <h3 class="bj-title">サポーター登録へ</h3>
+                <p class="bj-en">Register as a supporter</p>
+                <p class="bj-body">登録はオンラインで完結。確認事項のご案内後、同意いただければ次ステップへ進みます。</p>
+              </div>
+
+              <div class="bj-primary__aside">
+                <div class="bj-note">
+                  <div class="bj-note__inner">
+                    <div class="bj-note__text">
+                      <p>
+                        登録はオンラインで実施します。<br>
+                        ご経験の確認などがあるため、所要時間は約1時間です。<br>
+                        お早めのご登録をおすすめします。
+                      </p>
+                    </div>
+                    <div class="bj-note__illust" aria-hidden="true">
+                      <img src="bbj-images/start-note.svg" alt="">
+                    </div>
+                  </div>
+                </div>
+                <a class="bj-btn bj-btn--primary" href="#start">今すぐ登録する</a>
+              </div>
+            </div>
+          </section>
+
+          <!-- B/C: Help -->
+          <section class="bj-block bj-help" data-bj="help">
+            <div class="bj-help__grid">
+
+              <!-- B: consult -->
+              <article class="bj-card bj-card--light" data-bj-card="consult">
+                <div class="bj-card__inner">
+                  <div class="bj-card__visual">
+                    <div class="bj-disc bj-disc--img" style="--disc-img:url('bbj-images/start-question.svg');"></div>
+                  </div>
+
+                  <div class="bj-card__text">
+                    <p class="bj-kicker">まずは、Baby-J運営に</p>
+                    <h3 class="bj-title">ご相談してみる</h3>
+                    <p class="bj-en">Ask a question</p>
+                    <p class="bj-body">「登録するかまだ迷っている」など、気になる点はお気軽にご相談ください。</p>
+                    <a class="bj-btn bj-btn--soft" href="https://service.baby-j.site/contact">まずは相談する</a>
+                  </div>
+                </div>
+              </article>
+
+              <!-- C: faq -->
+              <article class="bj-card bj-card--dark" data-bj-card="faq">
+                <div class="bj-card__inner">
+                  <div class="bj-card__visual">
+                    <div class="bj-disc bj-disc--faq" aria-hidden="true">
+                      <img class="bj-disc__icon bj-disc__icon--faq" src="bbj-images/start-faq.svg" alt="">
+                    </div>
+                  </div>
+
+                  <div class="bj-card__text">
+                    <p class="bj-kicker">よくある質問（FAQ）</p>
+                    <h3 class="bj-title">FAQをみる</h3>
+                    <p class="bj-en">Frequently Asked Questions</p>
+                    <div class="bj-faq-snippet">
+                      <p>・登録って誰でもできますか？</p>
+                      <p>・報酬ってどれくらいですか？</p>
+                    </div>
+                    <a class="bj-btn bj-btn--ghost" href="./bbj-lp.html#faq">FAQはこちら →</a>
+                  </div>
+                </div>
+              </article>
+
+            </div>
+          </section>
+
+
+          <section class="income-examples" id="income-examples">
+            <div class="income-examples__inner container">
+
+              <p class="income-examples__script" aria-hidden="true">Support example</p>
+
+              <header class="income-examples__head">
+                <h2 class="income-examples__title">サポート1回の収入例</h2>
+                <p class="income-examples__sub">Example of income per support session</p>
+              </header>
+
+              <div class="income-examples__rail">
+                <div class="income-examples__viewport js-income-rail" tabindex="0">
+
+                  <!-- ===== Case 1 ===== -->
+                  <article class="income-card js-income-card" data-case="1">
+                    <div class="income-card__frame">
+                      <div class="income-card__case">Case 1</div>
+
+                      <h3 class="income-card__title js-title"></h3>
+                      <p class="income-card__sub js-sub"></p>
+
+                      <div class="income-card__top">
+                        <dl class="income-tags">
+                          <div class="income-tags__row">
+                            <dt class="income-tags__badge">時 給</dt>
+                            <dd class="income-tags__val"><span class="js-hourly"></span> <span
+                                class="income-tags__unit">/
+                                1時間</span></dd>
+                          </div>
+
+                          <div class="income-tags__row">
+                            <dt class="income-tags__badge">割増料金</dt>
+                            <dd class="income-tags__val">
+                              <span class="js-addons"></span>
+                              <span class="income-tags__icons js-addon-icons" aria-hidden="true"></span>
+                              <span class="income-tags__unit">（合計）</span>
+                            </dd>
+                          </div>
+
+                          <div class="income-tags__row">
+                            <dt class="income-tags__badge">交通費</dt>
+                            <dd class="income-tags__val"><span class="js-traffic"></span></dd>
+                          </div>
+
+                          <div class="income-tags__row">
+                            <dt class="income-tags__badge">稼 働</dt>
+                            <dd class="income-tags__val"><span class="js-hours"></span> <span
+                                class="income-tags__unit">時間</span></dd>
+                          </div>
+                        </dl>
+
+                        <div class="income-card__photo" aria-hidden="true"></div>
+                      </div>
+
+                      <div class="income-breakdown" aria-label="内訳（タップで全体表示）">
+                        <div class="income-breakdown__row">
+                          <div class="income-breakdown__label">基本料金</div>
+                          <div class="income-breakdown__value"><span class="js-base"></span></div>
+                        </div>
+                        <div class="income-breakdown__row">
+                          <div class="income-breakdown__label">割増料金</div>
+                          <div class="income-breakdown__value"><span class="js-addon-total"></span></div>
+                        </div>
+                        <div class="income-breakdown__row">
+                          <div class="income-breakdown__label">交通費</div>
+                          <div class="income-breakdown__value"><span class="js-traffic2"></span></div>
+                        </div>
+                        <div class="income-breakdown__row">
+                          <div class="income-breakdown__label">サービス手数料（23.6%）</div>
+                          <div class="income-breakdown__value">-¥ <span class="js-fee"></span></div>
+                        </div>
+                        <div class="income-breakdown__row">
+                          <div class="income-breakdown__label">手数料消費税（10%）</div>
+                          <div class="income-breakdown__value">-¥ <span class="js-fee-tax"></span></div>
+                        </div>
+
+                      </div>
+                      <div class="income-breakdown__total income-card__total">
+                        <div class="income-breakdown__label">お受け取り合計</div>
+                        <div class="income-breakdown__value"><span class="js-net"></span></div>
+                      </div>
+                    </div>
+                  </article>
+
+                  <!-- ===== Case 2 ===== -->
+                  <article class="income-card js-income-card" data-case="2">
+                    <div class="income-card__frame">
+                      <div class="income-card__case">Case 2</div>
+
+                      <h3 class="income-card__title js-title"></h3>
+                      <p class="income-card__sub js-sub"></p>
+
+                      <div class="income-card__top">
+                        <dl class="income-tags">
+                          <div class="income-tags__row">
+                            <dt class="income-tags__badge">時 給</dt>
+                            <dd class="income-tags__val"><span class="js-hourly"></span> <span
+                                class="income-tags__unit">/
+                                1時間</span></dd>
+                          </div>
+
+                          <div class="income-tags__row">
+                            <dt class="income-tags__badge">割増料金</dt>
+                            <dd class="income-tags__val">
+                              <span class="js-addons"></span>
+                              <span class="income-tags__icons js-addon-icons" aria-hidden="true"></span>
+                              <span class="income-tags__unit">（合計）</span>
+                            </dd>
+                          </div>
+
+                          <div class="income-tags__row">
+                            <dt class="income-tags__badge">交通費</dt>
+                            <dd class="income-tags__val"><span class="js-traffic"></span></dd>
+                          </div>
+
+                          <div class="income-tags__row">
+                            <dt class="income-tags__badge">稼 働</dt>
+                            <dd class="income-tags__val"><span class="js-hours"></span> <span
+                                class="income-tags__unit">時間</span></dd>
+                          </div>
+                        </dl>
+
+                        <div class="income-card__photo" aria-hidden="true"></div>
+                      </div>
+
+                      <div class="income-breakdown" aria-label="内訳（タップで全体表示）">
+                        <div class="income-breakdown__row">
+                          <div class="income-breakdown__label">基本料金</div>
+                          <div class="income-breakdown__value"><span class="js-base"></span></div>
+                        </div>
+                        <div class="income-breakdown__row">
+                          <div class="income-breakdown__label">割増料金</div>
+                          <div class="income-breakdown__value"><span class="js-addon-total"></span></div>
+                        </div>
+                        <div class="income-breakdown__row">
+                          <div class="income-breakdown__label">交通費</div>
+                          <div class="income-breakdown__value"><span class="js-traffic2"></span></div>
+                        </div>
+                        <div class="income-breakdown__row">
+                          <div class="income-breakdown__label">サービス手数料（23.6%）</div>
+                          <div class="income-breakdown__value">-¥ <span class="js-fee"></span></div>
+                        </div>
+                        <div class="income-breakdown__row">
+                          <div class="income-breakdown__label">手数料消費税（10%）</div>
+                          <div class="income-breakdown__value">-¥ <span class="js-fee-tax"></span></div>
+                        </div>
+
+                      </div>
+                      <div class="income-breakdown__total income-card__total">
+                        <div class="income-breakdown__label">お受け取り合計</div>
+                        <div class="income-breakdown__value"><span class="js-net"></span></div>
+                      </div>
+                    </div>
+                  </article>
+
+
+                  <!-- Case 3 -->
+                  <article class="income-card js-income-card" data-case="3">
+                    <div class="income-card__frame">
+                      <div class="income-card__case">Case 3</div>
+
+                      <h3 class="income-card__title js-title"></h3>
+                      <p class="income-card__sub js-sub"></p>
+
+                      <div class="income-card__top">
+                        <dl class="income-tags">
+                          <div class="income-tags__row">
+                            <dt class="income-tags__badge">時 給</dt>
+                            <dd class="income-tags__val"><span class="js-hourly"></span> <span
+                                class="income-tags__unit">/
+                                1時間</span></dd>
+                          </div>
+
+                          <div class="income-tags__row">
+                            <dt class="income-tags__badge">割増料金</dt>
+                            <dd class="income-tags__val">
+                              <span class="js-addons"></span>
+                              <span class="income-tags__icons js-addon-icons" aria-hidden="true"></span>
+                              <span class="income-tags__unit">（合計）</span>
+                            </dd>
+                          </div>
+
+                          <div class="income-tags__row">
+                            <dt class="income-tags__badge">交通費</dt>
+                            <dd class="income-tags__val"><span class="js-traffic"></span></dd>
+                          </div>
+
+                          <div class="income-tags__row">
+                            <dt class="income-tags__badge">稼 働</dt>
+                            <dd class="income-tags__val"><span class="js-hours"></span> <span
+                                class="income-tags__unit">時間</span></dd>
+                          </div>
+                        </dl>
+
+                        <div class="income-card__photo" aria-hidden="true"></div>
+                      </div>
+
+                      <div class="income-breakdown" aria-label="内訳（タップで全体表示）">
+                        <div class="income-breakdown__row">
+                          <div class="income-breakdown__label">基本料金</div>
+                          <div class="income-breakdown__value"><span class="js-base"></span></div>
+                        </div>
+                        <div class="income-breakdown__row">
+                          <div class="income-breakdown__label">割増料金</div>
+                          <div class="income-breakdown__value"><span class="js-addon-total"></span></div>
+                        </div>
+                        <div class="income-breakdown__row">
+                          <div class="income-breakdown__label">交通費</div>
+                          <div class="income-breakdown__value"><span class="js-traffic2"></span></div>
+                        </div>
+                        <div class="income-breakdown__row">
+                          <div class="income-breakdown__label">サービス手数料（23.6%）</div>
+                          <div class="income-breakdown__value">-¥ <span class="js-fee"></span></div>
+                        </div>
+                        <div class="income-breakdown__row">
+                          <div class="income-breakdown__label">手数料消費税（10%）</div>
+                          <div class="income-breakdown__value">-¥ <span class="js-fee-tax"></span></div>
+                        </div>
+
+                      </div>
+                      <div class="income-breakdown__total income-card__total">
+                        <div class="income-breakdown__label">お受け取り合計</div>
+                        <div class="income-breakdown__value"><span class="js-net"></span></div>
+                      </div>
+                    </div>
+                  </article>
+
+                  <!-- Case 4 -->
+                  <article class="income-card js-income-card" data-case="4">
+                    <div class="income-card__frame">
+                      <div class="income-card__case">Case 4</div>
+
+                      <h3 class="income-card__title js-title"></h3>
+                      <p class="income-card__sub js-sub"></p>
+
+                      <div class="income-card__top">
+                        <dl class="income-tags">
+                          <div class="income-tags__row">
+                            <dt class="income-tags__badge">時 給</dt>
+                            <dd class="income-tags__val"><span class="js-hourly"></span> <span
+                                class="income-tags__unit">/
+                                1時間</span></dd>
+                          </div>
+
+                          <div class="income-tags__row">
+                            <dt class="income-tags__badge">割増料金</dt>
+                            <dd class="income-tags__val">
+                              <span class="js-addons"></span>
+                              <span class="income-tags__icons js-addon-icons" aria-hidden="true"></span>
+                              <span class="income-tags__unit">（合計）</span>
+                            </dd>
+                          </div>
+
+                          <div class="income-tags__row">
+                            <dt class="income-tags__badge">交通費</dt>
+                            <dd class="income-tags__val"><span class="js-traffic"></span></dd>
+                          </div>
+
+                          <div class="income-tags__row">
+                            <dt class="income-tags__badge">稼 働</dt>
+                            <dd class="income-tags__val"><span class="js-hours"></span> <span
+                                class="income-tags__unit">時間</span></dd>
+                          </div>
+                        </dl>
+
+                        <div class="income-card__photo" aria-hidden="true"></div>
+                      </div>
+
+                      <div class="income-breakdown" aria-label="内訳（タップで全体表示）">
+                        <div class="income-breakdown__row">
+                          <div class="income-breakdown__label">基本料金</div>
+                          <div class="income-breakdown__value"><span class="js-base"></span></div>
+                        </div>
+                        <div class="income-breakdown__row">
+                          <div class="income-breakdown__label">割増料金</div>
+                          <div class="income-breakdown__value"><span class="js-addon-total"></span></div>
+                        </div>
+                        <div class="income-breakdown__row">
+                          <div class="income-breakdown__label">交通費</div>
+                          <div class="income-breakdown__value"><span class="js-traffic2"></span></div>
+                        </div>
+                        <div class="income-breakdown__row">
+                          <div class="income-breakdown__label">サービス手数料（23.6%）</div>
+                          <div class="income-breakdown__value">-¥ <span class="js-fee"></span></div>
+                        </div>
+                        <div class="income-breakdown__row">
+                          <div class="income-breakdown__label">手数料消費税（10%）</div>
+                          <div class="income-breakdown__value">-¥ <span class="js-fee-tax"></span></div>
+                        </div>
+
+                      </div>
+                      <div class="income-breakdown__total income-card__total">
+                        <div class="income-breakdown__label">お受け取り合計</div>
+                        <div class="income-breakdown__value"><span class="js-net"></span></div>
+                      </div>
+                    </div>
+                  </article>
+
+                  <!-- Case 5 -->
+                  <article class="income-card js-income-card" data-case="5">
+                    <div class="income-card__frame">
+                      <div class="income-card__case">Case 5</div>
+
+                      <h3 class="income-card__title js-title"></h3>
+                      <p class="income-card__sub js-sub"></p>
+
+                      <div class="income-card__top">
+                        <dl class="income-tags">
+                          <div class="income-tags__row">
+                            <dt class="income-tags__badge">時 給</dt>
+                            <dd class="income-tags__val"><span class="js-hourly"></span> <span
+                                class="income-tags__unit">/
+                                1時間</span></dd>
+                          </div>
+
+                          <div class="income-tags__row">
+                            <dt class="income-tags__badge">割増料金</dt>
+                            <dd class="income-tags__val">
+                              <span class="js-addons"></span>
+                              <span class="income-tags__icons js-addon-icons" aria-hidden="true"></span>
+                              <span class="income-tags__unit">（合計）</span>
+                            </dd>
+                          </div>
+
+                          <div class="income-tags__row">
+                            <dt class="income-tags__badge">交通費</dt>
+                            <dd class="income-tags__val"><span class="js-traffic"></span></dd>
+                          </div>
+
+                          <div class="income-tags__row">
+                            <dt class="income-tags__badge">稼 働</dt>
+                            <dd class="income-tags__val"><span class="js-hours"></span> <span
+                                class="income-tags__unit">時間</span></dd>
+                          </div>
+                        </dl>
+
+                        <div class="income-card__photo" aria-hidden="true"></div>
+                      </div>
+
+                      <div class="income-breakdown" aria-label="内訳（タップで全体表示）">
+                        <div class="income-breakdown__row">
+                          <div class="income-breakdown__label">基本料金</div>
+                          <div class="income-breakdown__value"><span class="js-base"></span></div>
+                        </div>
+                        <div class="income-breakdown__row">
+                          <div class="income-breakdown__label">割増料金</div>
+                          <div class="income-breakdown__value"><span class="js-addon-total"></span></div>
+                        </div>
+                        <div class="income-breakdown__row">
+                          <div class="income-breakdown__label">交通費</div>
+                          <div class="income-breakdown__value"><span class="js-traffic2"></span></div>
+                        </div>
+                        <div class="income-breakdown__row">
+                          <div class="income-breakdown__label">サービス手数料（23.6%）</div>
+                          <div class="income-breakdown__value">-¥ <span class="js-fee"></span></div>
+                        </div>
+                        <div class="income-breakdown__row">
+                          <div class="income-breakdown__label">手数料消費税（10%）</div>
+                          <div class="income-breakdown__value">-¥ <span class="js-fee-tax"></span></div>
+                        </div>
+
+                      </div>
+                      <div class="income-breakdown__total income-card__total">
+                        <div class="income-breakdown__label">お受け取り合計</div>
+                        <div class="income-breakdown__value"><span class="js-net"></span></div>
+                      </div>
+                    </div>
+                  </article>
+
+                </div>
+
+                <!-- ✅ ここ：viewportの外、railの中にボタン -->
+                <button class="income-examples__nav income-examples__nav--prev js-income-prev" type="button"
+                  aria-label="前へ">‹</button>
+                <button class="income-examples__nav income-examples__nav--next js-income-next" type="button"
+                  aria-label="次へ">›</button>
+
+              </div>
+            </div>
+          </section>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- =========================
+      FOOTER（TOPと同じ）
+      ※bbj-lp.html の footer をそのまま移植
+    ========================= -->
+    <footer class="site-footer">
+      <div class="container site-footer__inner">
+        <div class="site-footer__brand">
+          <a class="site-footer__logo" href="#top">Baby-J</a>
+          <p class="site-footer__tagline">プロの力が、未来を育む。</p>
+        </div>
+
+        <nav class="site-footer__nav" aria-label="フッターメニュー">
+          <a href="#about">Baby-Jとは</a>
+          <a href="#reason">選ばれる理由</a>
+          <a href="#workstyle">働き方</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+
+        <small class="site-footer__copy">© Baby-J</small>
+      </div>
+    </footer>
+
+  </div><!-- /.page -->
+
+  <!-- footer stop slot (SP fixed seat) -->
+  <div class="footer-cta-slot" aria-label="登録・相談CTA">
+    <a class="footer-cta__btn is-primary" href="#start">今すぐ登録</a>
+    <a class="footer-cta__btn is-secondary" href="https://service.baby-j.site/contact">まずは相談</a>
+  </div>
+
+  <!-- ===== 右追従CTA（TOWA / PCのみ） ===== -->
+  <div class="bottom-seat">
+
+    <aside class="floating-cta" aria-label="プロ登録CTA">
+      <!-- 中身はTOWA用に後で詰める。今は器だけでOK -->
+      <div style="padding:16px 16px 14px;">
+        <p style="margin:0 0 10px;font-weight:800;">プロ登録を検討中の方へ</p>
+        <a class="bj-btn bj-btn--primary" href="#start">登録へ進む</a>
+      </div>
+    </aside>
+
+    <!-- ===== 一番上へ戻るボタン ===== -->
+    <button type="button" class="back-to-top" data-to-top aria-label="ページの先頭へ戻る">
+      <span class="back-to-top__circle">
+        <span class="back-to-top__icon">↑</span>
+      </span>
+    </button>
+
+    <script defer src="./bbj_lp_data.js"></script>
+  </div>
+
+  <script defer src="./bbj_components.js"></script>
+  <script defer src="./bbj_features.js"></script>
+
+  <!-- ページ別 launcher -->
+  <script defer src="./bbj-lp.js"></script>
+
+  <!-- ヘッダー（共通） -->
+  <script defer src="./bbj_header.js"></script>
+  <!-- role gate -->
+  <script defer src="./bbj_role_gate.js"></script>
+</body>
+
+</html>
